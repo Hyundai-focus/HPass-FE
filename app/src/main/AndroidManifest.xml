@@ -13,7 +13,13 @@
         android:theme="@style/Theme.HPass"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".nfc.NfcMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".subscription.SubscriptionMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".socialLogIn.SocialLoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,6 +27,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".popUpStore.PopUpStoreActivity"
+            android:exported="false" />
+        <activity
+            android:name=".onBoarding.OnBoardingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".newProduct.NewProductActivity"
+            android:exported="false" />
+        <activity
+            android:name=".myReservation.MyReservationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".myPage.MyPageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".myCoupon.MyCouponActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
