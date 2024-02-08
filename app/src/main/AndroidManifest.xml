@@ -42,7 +42,7 @@
             android:name=".newProduct.NewProductActivity"
             android:exported="false" />
         <activity
-            android:name=".myReservation.MyReservationActivity"
+            android:name=".myBooking.MyBooking"
             android:exported="false" />
         <activity
             android:name=".myPage.MyPageActivity"

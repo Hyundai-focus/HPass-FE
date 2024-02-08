@@ -7,6 +7,6 @@ import com.hyundai.hpass.R
 class MyCouponActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_my_coupon)
+        setContentView(R.layout.my_coupon_activity_my_coupon)
     }
 }

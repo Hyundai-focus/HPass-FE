@@ -1,12 +1,12 @@
-package com.hyundai.hpass.myReservation
+package com.hyundai.hpass.myBooking
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.hyundai.hpass.R
 
-class MyReservationActivity : AppCompatActivity() {
+class MyBooking : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_my_reservation)
+        setContentView(R.layout.my_booking_activity_my_booking)
     }
 }

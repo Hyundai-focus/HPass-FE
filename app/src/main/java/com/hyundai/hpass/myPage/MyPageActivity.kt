@@ -7,6 +7,6 @@ import com.hyundai.hpass.R
 class MyPageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_my_page)
+        setContentView(R.layout.my_page_activity_my_page)
     }
 }

@@ -7,6 +7,6 @@ import com.hyundai.hpass.R
 class NewProductActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_new_product)
+        setContentView(R.layout.new_product_activity_new_product)
     }
 }

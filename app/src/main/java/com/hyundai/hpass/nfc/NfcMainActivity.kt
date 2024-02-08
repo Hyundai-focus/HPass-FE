@@ -7,6 +7,6 @@ import com.hyundai.hpass.R
 class NfcMainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_nfc_main)
+        setContentView(R.layout.nfc_activity_nfc_main)
     }
 }

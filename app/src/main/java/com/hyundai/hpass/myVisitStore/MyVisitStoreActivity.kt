@@ -7,6 +7,6 @@ import com.hyundai.hpass.R
 class MyVisitStoreActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_my_visit_store)
+        setContentView(R.layout.my_visit_store_activity_my_visit_store)
     }
 }

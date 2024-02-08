@@ -7,6 +7,6 @@ import com.hyundai.hpass.R
 class PopUpStoreActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_pop_up_store)
+        setContentView(R.layout.pop_up_store_activity_pop_up_store)
     }
 }
