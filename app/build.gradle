@@ -15,6 +15,9 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        loadProperties("api.properties").each {
+            buildConfigField("String", it.key, it.value)
+        }
     }
 
     buildTypes {
@@ -34,6 +37,10 @@ android {
     viewBinding {
         enabled = true
     }
+    buildFeatures {
+        dataBinding true
+        buildConfig = true
+    }
 }
 
 dependencies {
@@ -49,6 +56,7 @@ dependencies {
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation "com.squareup.okhttp3:logging-interceptor:4.12.0"
 
     // Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1'
@@ -62,4 +70,15 @@ dependencies {
 
     // Glide
     implementation 'com.github.bumptech.glide:glide:4.16.0'
+
+    // NaverLogin
+    implementation 'com.navercorp.nid:oauth:5.9.0'
+
+    //bootpay
+    implementation 'io.github.bootpay:android:+'
+}
+static def loadProperties(String file) {
+    Properties properties = new Properties()
+    properties.load(new FileInputStream(file))
+    return properties
 }
