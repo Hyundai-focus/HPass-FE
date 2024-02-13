@@ -41,14 +41,29 @@
         <activity
             android:name=".newProduct.NewProductActivity"
             android:exported="false" />
-        <activity android:name=".newProduct.UserNewProductActivity"
+        <activity
+            android:name=".newProduct.UserNewProductActivity"
             android:exported="false" />
         <activity
             android:name=".myBooking.MyBooking"
             android:exported="false" />
         <activity
             android:name=".myPage.MyPageActivity"
-            android:exported="false" />
+            android:exported="true" >
+        </activity>
+        <activity
+            android:name=".myPage.MyPageSubsInfoActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".myPage.MyPageUserInfoActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".myPage.MyPageSubsStopActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".myPage.MyPageSubsStopResultActivty"
+            android:exported="false"/>
+
         <activity
             android:name=".myCoupon.MyCouponActivity"
             android:exported="false" />
