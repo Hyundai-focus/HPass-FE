@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/my_visit_store_check_list_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+    <TextView
+        android:id="@+id/my_visit_store_check_list_floor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center"
+        android:textSize="12sp"
+        android:fontFamily="@font/happiness_sans_title"
+        android:textStyle="bold"
+        android:textColor="@color/dark_blue"
+        />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/my_visit_store_status"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:backgroundTint="#B30A0A0A"
+        app:cardCornerRadius="70dp"
+        android:visibility="invisible">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="완료"
+            android:fontFamily="@font/happiness_sans_bold"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="12sp"
+            />
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
