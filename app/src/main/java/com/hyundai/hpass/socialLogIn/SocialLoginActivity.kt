@@ -31,7 +31,7 @@ class SocialLoginActivity : AppCompatActivity() {
     private fun bind() {
         viewModel.getLoginSuccess().observe(this) { success ->
             if (success) {
-                val intent = Intent(this, OnBoardingActivity::class.java)
+                val intent = Intent(this, PurchaseTestActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
                 startActivity(intent)
                 finish()
