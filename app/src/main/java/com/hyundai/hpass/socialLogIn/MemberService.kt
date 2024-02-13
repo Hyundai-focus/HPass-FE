@@ -15,7 +15,7 @@ import retrofit2.http.Query
  *
  */
 interface MemberService {
-    @POST("/user/login")
+    @POST("/member/login")
     suspend fun naverLogin(
         @Query("email") email: String,
         @Query("memberName") memberName: String
