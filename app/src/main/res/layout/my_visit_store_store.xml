@@ -14,7 +14,6 @@
         android:id="@+id/my_visit_store_image"
         android:layout_width="match_parent"
         android:layout_height="170dp"
-        android:src="@drawable/dummy_store_1"
         android:scaleType="centerCrop"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +31,7 @@
         app:layout_constraintTop_toTopOf="@id/my_visit_store_image"
         android:background="@drawable/my_visit_store_store_outline"
         android:clipToOutline="true"
-        android:backgroundTint="#B30A0A0A"
+        android:backgroundTint="@color/status_false"
         android:visibility="invisible">
         <TextView
             android:layout_width="wrap_content"

@@ -30,7 +30,7 @@
         android:id="@+id/my_visit_store_status"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:backgroundTint="#B30A0A0A"
+        android:backgroundTint="@color/status_false"
         app:cardCornerRadius="70dp"
         android:visibility="invisible">
         <TextView

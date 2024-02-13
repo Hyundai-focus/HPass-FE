@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="280dp"
+    android:layout_height="310dp"
+    android:background="@drawable/new_product_user_history"
+    android:clipToOutline="true"
+    android:backgroundTint="@color/white">
+    <ImageView
+        android:id="@+id/minus_icon"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/new_product_impossible_minus_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="50dp"
+        />
+    <ImageView
+        android:id="@+id/face_icon"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/new_product_impossible_face_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="70dp"
+        android:layout_marginStart="-80dp"
+        />
+
+    <TextView
+        android:id="@+id/impossible_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/face_icon"
+        app:layout_constraintBottom_toTopOf="@id/new_product_impossible_ok_button"
+        android:text="1인 1회 신청 가능합니다 \n 수령 혹은 취소 후 다시 이용해주세요"
+        android:fontFamily="@font/happiness_sans_regular"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/new_product_impossible_ok_button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/new_product_apply_button"
+        android:layout_marginBottom="20dp"
+        android:textSize="17sp"
+        android:text="확인"
+        android:fontFamily="@font/happiness_sans_bold"
+        android:textColor="@color/white"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

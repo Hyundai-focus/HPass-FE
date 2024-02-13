@@ -41,6 +41,8 @@
         <activity
             android:name=".newProduct.NewProductActivity"
             android:exported="false" />
+        <activity android:name=".newProduct.UserNewProductActivity"
+            android:exported="false" />
         <activity
             android:name=".myBooking.MyBooking"
             android:exported="false" />
