@@ -37,10 +37,10 @@ class UserNewProductActivity : AppCompatActivity() {
 
         binding.newProductCancelButton.setOnClickListener {
             cancelProduct()
-            gotoNewProduct()
+            finish()
         }
         binding.newProductButtonOk.setOnClickListener{
-            gotoNewProduct()
+            finish()
         }
     }
     fun setUserProductStatus(binding: NewProductActivityUserNewProductBinding){
@@ -57,12 +57,6 @@ class UserNewProductActivity : AppCompatActivity() {
 
     fun cancelProduct(){
         //취소 로직
-    }
-
-    fun gotoNewProduct(){
-        val intent = Intent(this, NewProductActivity::class.java)
-        startActivity(intent)
-        finish()
     }
 
     fun dateFormat(beforeDate : String): String? {
