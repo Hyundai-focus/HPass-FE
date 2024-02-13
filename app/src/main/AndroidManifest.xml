@@ -14,8 +14,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HPass"
-        tools:targetApi="31"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+        <activity
+            android:name=".socialLogIn.PurchaseTestActivity"
+            android:exported="false" />
         <activity
             android:name=".myVisitStore.MyVisitStoreActivity"
             android:exported="false" />
@@ -43,7 +46,8 @@
         <activity
             android:name=".newProduct.NewProductActivity"
             android:exported="false" />
-        <activity android:name=".newProduct.UserNewProductActivity"
+        <activity
+            android:name=".newProduct.UserNewProductActivity"
             android:exported="false" />
         <activity
             android:name=".myBooking.MyBooking"
