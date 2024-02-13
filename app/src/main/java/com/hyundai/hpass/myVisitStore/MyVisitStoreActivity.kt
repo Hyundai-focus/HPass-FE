@@ -2,7 +2,6 @@ package com.hyundai.hpass.myVisitStore
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.hyundai.hpass.R
 import com.hyundai.hpass.databinding.MyVisitStoreActivityMyVisitStoreBinding
 
 class MyVisitStoreActivity : AppCompatActivity() {
@@ -12,10 +11,10 @@ class MyVisitStoreActivity : AppCompatActivity() {
         binding = MyVisitStoreActivityMyVisitStoreBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val check_list_item = binding.myVisitStoreCheckListItem
-        check_list_item.adapter = CheckListAdapter()
+        val checkListItem = binding.myVisitStoreCheckListItem
+        checkListItem.adapter = CheckListAdapter()
 
-        val store_list_item = binding.myVisitStoreStoreList
-        store_list_item.adapter = StoreListAdapter()
+        val storeListItem = binding.myVisitStoreStoreList
+        storeListItem.adapter = StoreListAdapter()
     }
 }
