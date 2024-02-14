@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <ImageView
+            android:id="@+id/buttonImage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintTop_toTopOf="@id/guidelineH05"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineH70"
+            app:layout_constraintStart_toStartOf="@id/guidelineV05"
+            app:layout_constraintEnd_toEndOf="@id/guidelineV95"
+            />
+
+        <TextView
+            android:id="@+id/buttonText"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="나의 예약"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/guidelineH70"
+            app:layout_constraintStart_toStartOf="@id/guidelineV05"
+            app:layout_constraintEnd_toEndOf="@id/guidelineV95"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineV05"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05"
+            />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineV95"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95"
+            />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineH05"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.05"
+            />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineH95"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.95"
+            />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineH70"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.70"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
