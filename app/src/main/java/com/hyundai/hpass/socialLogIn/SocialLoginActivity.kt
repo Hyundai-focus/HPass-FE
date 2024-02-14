@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.hyundai.hpass.R
 import com.hyundai.hpass.databinding.SocialLoginActivitySocialLoginBinding
 import com.hyundai.hpass.onBoarding.OnBoardingActivity
+import com.hyundai.hpass.subscription.SubscriptionMainActivity
 
 class SocialLoginActivity : AppCompatActivity() {
 
@@ -31,7 +32,7 @@ class SocialLoginActivity : AppCompatActivity() {
     private fun bind() {
         viewModel.getLoginSuccess().observe(this) { success ->
             if (success) {
-                val intent = Intent(this, PurchaseTestActivity::class.java)
+                val intent = Intent(this, SubscriptionMainActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
                 startActivity(intent)
                 finish()
