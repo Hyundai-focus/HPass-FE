@@ -1,19 +1,13 @@
 package com.hyundai.hpass.socialLogIn
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.hyundai.hpass.BuildConfig
-import com.hyundai.hpass.RetrofitClient
+import com.hyundai.hpass.network.RetrofitClient
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import kr.co.bootpay.android.Bootpay
-import kr.co.bootpay.android.models.BootExtra
-import kr.co.bootpay.android.models.BootUser
-import kr.co.bootpay.android.models.Payload
 
 /**
  *

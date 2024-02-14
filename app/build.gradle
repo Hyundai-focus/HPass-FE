@@ -3,10 +3,10 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
-def localProperties = new Properties()
-File localPropertiesFile = rootProject.file('local.properties')
-if (localPropertiesFile.exists()) {
-    localProperties.load(new FileInputStream(localPropertiesFile))
+static def loadProperties(String file) {
+    Properties properties = new Properties()
+    properties.load(new FileInputStream(file))
+    return properties
 }
 
 android {
@@ -19,8 +19,6 @@ android {
         targetSdk 34
         versionCode 1
         versionName "1.0"
-
-        buildConfigField("String", "BASE_URL", localProperties['BASE_URL'])
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         loadProperties("api.properties").each {
@@ -88,9 +86,4 @@ dependencies {
 
     //bootpay
     implementation 'io.github.bootpay:android:+'
-}
-static def loadProperties(String file) {
-    Properties properties = new Properties()
-    properties.load(new FileInputStream(file))
-    return properties
 }
