@@ -7,4 +7,5 @@
     <color name="main_blue">#8EBFE1</color>
     <color name="grey">#6F6F6F</color>
     <color name="status_false">#B30A0A0A</color>
+    <color name="clear">#00000000</color>
 </resources>

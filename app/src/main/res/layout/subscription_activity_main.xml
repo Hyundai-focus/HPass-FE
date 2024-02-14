@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".subscription.SubscriptionMainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="@id/guidelineV95"
+            app:layout_constraintStart_toStartOf="@id/guidelineV05"
+            android:paddingTop="30dp"
+            android:paddingBottom="30dp">
+
+            <include
+                android:id="@+id/subscriptionMainHpassGroup"
+                layout="@layout/subscription_main_hpass_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+            <include
+                android:id="@+id/subscriptionMainGreetingGroup"
+                layout="@layout/subscription_main_greeting_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+            <include
+                android:id="@+id/subscriptionMainButtonGroup"
+                layout="@layout/subscription_main_button_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                />
+            <include
+                android:id="@+id/subscriptionMainPopupGroup"
+                layout="@layout/subscription_main_popup_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                />
+            <include
+                android:id="@+id/subscriptionMainStoreGroup"
+                layout="@layout/subscription_main_store_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                />
+            <include
+                android:id="@+id/subscriptionMainNewproductGroup"
+                layout="@layout/subscription_main_newproduct_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                />
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineV05"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineV95"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineH05"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.05" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
