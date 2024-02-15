@@ -35,6 +35,7 @@ class SocialLoginViewModel: ViewModel() {
             response.profile?.run {
                 email?.let { email ->
                     name?.let { name ->
+                        Log.d("SocialLoginActivity userInfo", "email:$email memberName:$name")
                         loginWithNaver(email, name)
                     }
                 }
