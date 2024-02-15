@@ -1,18 +1,20 @@
 package com.hyundai.hpass.socialLogIn
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.hyundai.hpass.BuildConfig
-import com.hyundai.hpass.R
+import com.hyundai.hpass.BuildConfig.PREF_KEY_SUBS
+import com.hyundai.hpass.BuildConfig.PREF_KEY_TOKEN
 import com.hyundai.hpass.databinding.PurchaseTestActivityBinding
-import kr.co.bootpay.android.Bootpay
 import kr.co.bootpay.android.events.BootpayEventListener
-import kr.co.bootpay.android.models.BootExtra
 import kr.co.bootpay.android.models.BootUser
-import kr.co.bootpay.android.models.Payload
+import kr.co.bootpay.bio.BootpayBio
+import kr.co.bootpay.bio.models.BioPayload
+import kr.co.bootpay.bio.models.BioPrice
 import org.json.JSONObject
 
 class PurchaseTestActivity : AppCompatActivity() {
@@ -32,6 +34,16 @@ class PurchaseTestActivity : AppCompatActivity() {
         binding.purchaseBtn.setOnClickListener {
             purchaseSubscribe()
         }
+        binding.logoutBtn.setOnClickListener {
+            MyApplication.preferences.setString(PREF_KEY_TOKEN,null)
+            MyApplication.preferences.setString(PREF_KEY_SUBS, null)
+            Log.d("LOGOUT: PREF_KEY_TOKEN:", MyApplication.preferences.getString(PREF_KEY_TOKEN)?:"삭제됨")
+            Log.d("LOGOUT: PREF_KEY_SUBS:", MyApplication.preferences.getString(PREF_KEY_SUBS)?:"삭제됨")
+            val intent = Intent(this@PurchaseTestActivity, SocialLoginActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun bind() {
@@ -45,22 +57,27 @@ class PurchaseTestActivity : AppCompatActivity() {
 
     private fun purchaseSubscribe() {
         val user = BootUser().setPhone("010-1234-5678") // 구매자 정보
-        val extra = BootExtra()
-            .setCardQuota("0,2,3") // 일시불, 2개월, 3개월 할부 허용, 할부는 최대 12개월까지 사용됨 (5만원 이상 구매시 할부허용 범위)
-        var price = 1000.0
+        var price = 500.0
 
-        val payload = Payload()
+        val payload = BioPayload()
         payload.setApplicationId(BuildConfig.bootpay_api_key)
-            .setOrderName("부트페이 결제테스트")
+            .setOrderName("HPASS 구독 정기 결제")
             .setOrderId("1234")
             .setPrice(price)
+            .setPg("나이스페이")
+            .setUserToken("65cd692f00c78a0036992c3b")
+            .setPrices(
+                listOf(BioPrice("구독 정기결제 (월)", 9900.0))
+            )
             .setUser(user)
-        Bootpay.init(supportFragmentManager, applicationContext)
-            .setPayload(payload)
+        BootpayBio.init(applicationContext)
+            .setBioPayload(payload)
             .setEventListener(object : BootpayEventListener {
                 override fun onCancel(data: String) { Log.d("bootpay", "cancel: $data") }
                 override fun onError(data: String) {Log.d("bootpay", "error: $data")}
-                override fun onClose() {Bootpay.removePaymentWindow()}
+                override fun onClose() {
+                    BootpayBio.removePaymentWindow()
+                }
                 override fun onIssued(data: String) { Log.d("bootpay", "issued: $data") }
                 override fun onConfirm(data: String): Boolean {
                     Log.d("bootpay", "confirm: $data")
@@ -69,12 +86,22 @@ class PurchaseTestActivity : AppCompatActivity() {
                     //                        return false; //결제를 진행하지 않을때 false
                 }
                 override fun onDone(data: String) {
-                    Log.d("bootpay", "done: $data")
-                    val payment = JSONObject(data).getJSONObject("data").getString("method_origin")
-                    val jwtToken = TokenManager.getToken(MyApplication.instance)!! // 이 한줄로 accessToken값 얻음
+                    Log.d("bootpayhschoi", "done: $data")
+                    var payment: String
+                    try {
+                        payment = JSONObject(data).getJSONObject("card_data").getString("card_company") + "카드"
+                    } catch (e: Exception) {
+                        try {
+                            payment = JSONObject(data).getJSONObject("data").getString("method_origin")
+                        } catch (e: Exception) {
+                            payment = "결제 정보를 찾을 수 없습니다."
+                        }
+                    }
+                    val jwtToken = MyApplication.preferences.getString(PREF_KEY_TOKEN)!!
+                    Log.d("bootpayhschoi", "$payment+!!!")
                     viewModel.addSubscriber(jwtToken, payment)
-                }
-            }).requestPayment()
 
+                }
+            }).requestPassword()
     }
 }
