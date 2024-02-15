@@ -1,24 +1,44 @@
 package com.hyundai.hpass.popUpStore
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import androidx.fragment.app.DialogFragment
-import com.hyundai.hpass.R
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.hyundai.hpass.databinding.PopUpStoreActivityListBinding
+import com.hyundai.hpass.subscription.model.response.PopUpStoreResponse
 
-class PopUpStoreActivity : AppCompatActivity() {
+class PopUpStoreActivity : AppCompatActivity(), PopUpStoreListAdapter.OnItemClickListener {
 
-    private lateinit var button : Button
+    private lateinit var binding: PopUpStoreActivityListBinding
+    private lateinit var viewModel: PopUpStoreViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.pop_up_store_activity_pop_up_store)
+        binding = PopUpStoreActivityListBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        viewModel = ViewModelProvider(this)[PopUpStoreViewModel::class.java]
 
-        button = findViewById(R.id.button)
+        configureEvent()
+        bind()
+    }
 
-        button.setOnClickListener {
-            // CalendarBottomSheetDialogFragment를 표시
-            val bottomSheetDialogFragment = CalendarBottomSheetDialogFragment()
-            bottomSheetDialogFragment.show(supportFragmentManager, bottomSheetDialogFragment.tag)
+    private fun configureEvent() {
+        binding.backButton.setOnClickListener {
+            finish()
         }
+    }
+
+    private fun bind() {
+        viewModel.getPopUpStore().observe(this) { storeList ->
+            val popUpStoreListAdapter = PopUpStoreListAdapter(storeList, this)
+            binding.popUpStoreList.adapter = popUpStoreListAdapter
+            binding.popUpStoreList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        }
+    }
+
+    override fun onItemClick(storeData: PopUpStoreResponse) {
+        Log.d("PopUpStoreActivity", "onItemClick: $storeData")
+        val bottomSheetDialogFragment = CalendarBottomSheetDialogFragment()
+        bottomSheetDialogFragment.show(supportFragmentManager, bottomSheetDialogFragment.tag)
     }
 }

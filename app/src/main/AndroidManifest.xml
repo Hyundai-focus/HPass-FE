@@ -27,8 +27,7 @@
             android:exported="false" />
         <activity
             android:name=".subscription.SubscriptionMainActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".socialLogIn.SocialLoginActivity"
             android:exported="true">
