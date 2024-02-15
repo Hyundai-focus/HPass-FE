@@ -1,12 +1,14 @@
 package com.hyundai.hpass.popUpStore
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hyundai.hpass.databinding.PopUpStoreActivityListBinding
+import com.hyundai.hpass.subscription.model.response.PopUpStoreResponse
 
-class PopUpStoreActivity : AppCompatActivity() {
+class PopUpStoreActivity : AppCompatActivity(), PopUpStoreListAdapter.OnItemClickListener {
 
     private lateinit var binding: PopUpStoreActivityListBinding
     private lateinit var viewModel: PopUpStoreViewModel
@@ -28,9 +30,15 @@ class PopUpStoreActivity : AppCompatActivity() {
 
     private fun bind() {
         viewModel.getPopUpStore().observe(this) { storeList ->
-            val popUpStoreListAdapter = PopUpStoreListAdapter(storeList)
+            val popUpStoreListAdapter = PopUpStoreListAdapter(storeList, this)
             binding.popUpStoreList.adapter = popUpStoreListAdapter
             binding.popUpStoreList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         }
+    }
+
+    override fun onItemClick(storeData: PopUpStoreResponse) {
+        Log.d("PopUpStoreActivity", "onItemClick: $storeData")
+        val bottomSheetDialogFragment = CalendarBottomSheetDialogFragment()
+        bottomSheetDialogFragment.show(supportFragmentManager, bottomSheetDialogFragment.tag)
     }
 }

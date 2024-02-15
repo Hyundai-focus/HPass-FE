@@ -13,7 +13,7 @@ import com.hyundai.hpass.subscription.model.response.PopUpStoreResponse
  * @author 김기훈
  *
  */
-class PopUpStoreListAdapter(private val storeList: List<PopUpStoreResponse>): RecyclerView.Adapter<PopUpStoreListAdapter.MyViewHolder>() {
+class PopUpStoreListAdapter(private val storeList: List<PopUpStoreResponse>, private val listener: OnItemClickListener): RecyclerView.Adapter<PopUpStoreListAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(binding: PopUpStoreListItemBinding): RecyclerView.ViewHolder(binding.root) {
         val image = binding.popUpStoreImage
@@ -22,6 +22,10 @@ class PopUpStoreListAdapter(private val storeList: List<PopUpStoreResponse>): Re
         val storeLocation = binding.location
 
         val root = binding.root
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(storeData: PopUpStoreResponse)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -42,6 +46,10 @@ class PopUpStoreListAdapter(private val storeList: List<PopUpStoreResponse>): Re
         holder.storeName.text = storeData.name
         holder.period.text = storeData.startDate + " ~ " + storeData.endDate
         holder.storeLocation.text = storeData.location
+
+        holder.root.setOnClickListener {
+            listener.onItemClick(storeData)
+        }
     }
 
     override fun getItemCount(): Int {
