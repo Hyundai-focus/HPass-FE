@@ -4,6 +4,105 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".newProduct.NewProductActivity">
+    tools:context=".newProduct.NewProductActivity"
+    android:background="@color/white">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:scrollbars="none"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/new_product_user_history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/new_product_user_history"
+            android:elevation="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="70dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:paddingStart="20dp"
+            >
+            <TextView
+                android:id="@+id/new_product_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textSize="13sp"
+                android:text="황수연님!"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/happiness_sans_bold"
+                android:textColor="@color/white"/>
+            <TextView
+                android:id="@+id/new_product_user_product_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/new_product_user_name"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="이번달 신제품을 신청하고 체험해보세요!"
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"
+                android:paddingBottom="20dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/happiness_sans_title" />
+
+            <ImageView
+                android:id="@+id/new_product_user_img"
+                android:layout_width="100dp"
+                android:layout_height="78dp"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/new_product_user_history"
+                android:clipToOutline="true"
+                android:scaleType="centerCrop"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/new_product_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:spanCount="2"
+                app:layout_constraintTop_toBottomOf="@id/new_product_user_history"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                android:layout_marginTop="10dp"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/new_product_top"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:elevation="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/white">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="이달의 신제품"
+            android:gravity="center"
+            android:fontFamily="@font/happiness_sans_bold"
+            android:textSize="17.5sp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

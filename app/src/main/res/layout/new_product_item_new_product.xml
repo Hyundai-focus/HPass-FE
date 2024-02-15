@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/new_product_item"
+    android:layout_width="170dp"
+    android:layout_height="240dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/new_product_outline"
+    android:clipToOutline="true"
+    android:backgroundTint="@color/white"
+    android:elevation="10dp"
+    android:layout_marginTop="15dp"
+    android:layout_marginBottom="15dp"
+    android:layout_marginStart="12dp"
+    android:layout_marginEnd="12dp">
+
+    <ImageView
+        android:id="@+id/new_product_list_img"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/new_product_outline"
+        android:clipToOutline="true"/>
+    <TextView
+        android:id="@+id/new_product_list_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/new_product_list_img"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Re X Re"
+        android:fontFamily="@font/happiness_sans_title"
+        android:textSize="17sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
+        />
+    <TextView
+        android:id="@+id/new_product_list_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/new_product_list_title"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="10sp"
+        android:text="리바이리 소듐 미네랄 앰플"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="2.5dp"
+        android:fontFamily="@font/happiness_sans_bold"
+        />
+
+    <TextView
+        android:id="@+id/new_product_list_status_true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/main_blue"
+        android:background="@drawable/new_product_status_outline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/new_product_list_img"
+        android:text="신청 가능"
+        android:textColor="@color/white"
+        android:fontFamily="@font/happiness_sans_bold"
+        android:textSize="7.5sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingTop="2.5dp"
+        android:paddingBottom="2.5dp"
+        android:visibility="visible"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/new_product_list_status_false"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/status_false"
+        android:visibility="invisible"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="25sp"
+            android:fontFamily="@font/happiness_sans_title"
+            android:textColor="@color/white"
+            android:text="신청 마감"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

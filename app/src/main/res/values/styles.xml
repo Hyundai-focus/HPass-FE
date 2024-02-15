@@ -1,3 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="DialogTheme" parent="Theme.AppCompat.Dialog">
+        <item name="android:maxWidth">280dp</item>
+        <item name="android:windowCloseOnTouchOutside">true</item> <!-- 바깥을 터치하면 닫히도록 -->
+        <item name="android:windowBackground">@drawable/new_product_user_history</item> <!-- 둥근 모서리 배경 적용 -->
+        <item name="android:backgroundDimEnabled">true</item> <!-- 배경 어둡게 활성화 -->
+    </style>
+    <style name="DialogTheme_Impossible" parent="Theme.AppCompat.Dialog">
+        <item name="android:minWidth">300dp</item>
+        <item name="android:windowCloseOnTouchOutside">true</item> <!-- 바깥을 터치하면 닫히도록 -->
+        <item name="android:windowBackground">@drawable/new_product_user_history</item> <!-- 둥근 모서리 배경 적용 -->
+        <item name="android:backgroundDimEnabled">true</item> <!-- 배경 어둡게 활성화 -->
+    </style>
 </resources>

@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".socialLogIn.MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -13,7 +14,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HPass"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".socialLogIn.PurchaseTestActivity"
+            android:exported="false" />
         <activity
             android:name=".myVisitStore.MyVisitStoreActivity"
             android:exported="false" />
@@ -22,7 +27,8 @@
             android:exported="false" />
         <activity
             android:name=".subscription.SubscriptionMainActivity"
-            android:exported="false" />
+            android:exported="false">
+        </activity>
         <activity
             android:name=".socialLogIn.SocialLoginActivity"
             android:exported="true">
@@ -42,11 +48,28 @@
             android:name=".newProduct.NewProductActivity"
             android:exported="false" />
         <activity
+            android:name=".newProduct.UserNewProductActivity"
+            android:exported="false" />
+        <activity
             android:name=".myBooking.MyBooking"
             android:exported="false" />
         <activity
             android:name=".myPage.MyPageActivity"
-            android:exported="false" />
+            android:exported="true" >
+        </activity>
+        <activity
+            android:name=".myPage.MyPageSubsInfoActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".myPage.MyPageUserInfoActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".myPage.MyPageSubsStopActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".myPage.MyPageSubsStopResultActivty"
+            android:exported="false"/>
+
         <activity
             android:name=".myCoupon.MyCouponActivity"
             android:exported="false" />
