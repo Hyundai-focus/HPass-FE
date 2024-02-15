@@ -1,13 +1,13 @@
 package com.hyundai.hpass.subscription
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.hyundai.hpass.databinding.SubscriptionActivityMainBinding
+import com.hyundai.hpass.popUpStore.PopUpStoreActivity
 
 class SubscriptionMainActivity : AppCompatActivity() {
 
@@ -39,7 +39,8 @@ class SubscriptionMainActivity : AppCompatActivity() {
     private fun configureEvent() {
 
         binding.subscriptionMainPopupGroup.popUpStoreMoreText.setOnClickListener {
-
+            val intent = Intent(this, PopUpStoreActivity::class.java)
+            startActivity(intent)
         }
 
         binding.subscriptionMainStoreGroup.todayStoreMoreText.setOnClickListener {
