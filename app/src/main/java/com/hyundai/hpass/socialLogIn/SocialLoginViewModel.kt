@@ -7,6 +7,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.hyundai.hpass.BuildConfig
+import com.hyundai.hpass.BuildConfig.PREF_KEY_TOKEN
 import com.hyundai.hpass.network.RetrofitClient
 import com.navercorp.nid.NaverIdLoginSDK
 import com.navercorp.nid.oauth.NidOAuthLogin
@@ -76,7 +78,7 @@ class SocialLoginViewModel: ViewModel() {
                 if(loginResponse != null){
                     Log.d("SocialLoginActivity Retrofit 통신:", "성공: ${loginResponse.toString()}")
                     Log.d("SocialLoginActivity 자체 JWT 토큰 발급:", "성공: ${loginResponse.accessToken}")
-                    TokenManager.saveToken(MyApplication.instance, loginResponse.accessToken)
+                    MyApplication.preferences.setString(PREF_KEY_TOKEN, loginResponse.accessToken)
                     loginSuccess.postValue(true)
                 }
                 else errorMessage.postValue("loginResponse: null")
