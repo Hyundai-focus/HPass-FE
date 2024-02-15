@@ -21,7 +21,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        loadProperties("api.properties").each {
+        loadProperties("app.properties").each {
             buildConfigField("String", it.key, it.value)
         }
     }
@@ -86,4 +86,5 @@ dependencies {
 
     //bootpay
     implementation 'io.github.bootpay:android:+'
+    implementation 'io.github.bootpay:android-bio:+'
 }
