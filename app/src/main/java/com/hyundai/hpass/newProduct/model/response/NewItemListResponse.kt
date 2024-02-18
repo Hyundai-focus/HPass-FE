@@ -3,8 +3,11 @@ package com.hyundai.hpass.newProduct.model.response
 import java.io.Serializable
 
 data class NewItemListResponse(
-    val title : String,
-    val subTitle : String,
-    val img : String,
-    val status : Boolean
+    val productNo : Long,
+    val productBrand : String,
+    val productName : String,
+    val productImg : String,
+    val stock : Int,
+    val receiveDt:String,
+    val receiveLoc : String
 ): Serializable

@@ -21,21 +21,15 @@ class MyVIsitStoreViewModel: ViewModel()  {
     val token = MyApplication.preferences.getString(PREF_KEY_TOKEN)
     val errorMessage: MutableLiveData<String> = MutableLiveData()
 
-    val storeList : MutableLiveData<List<StoreListResponse>?> = MutableLiveData()
+    val storeList : MutableLiveData<List<StoreListResponse>> = MutableLiveData()
 
     fun getStoreList(){
-        Log.d("list", token)
         viewModelScope.launch {
             val storeRes = async(Dispatchers.IO){
                 RetrofitClient.myVisitStoreService.getStoreList(token)
             }.await()
-            if (storeRes.isSuccessful) {
-                val storeListResponse = storeRes.body()
-                storeList.postValue(storeListResponse)
-            }
-            else{
-                errorMessage.postValue("상점 목록 통신 실패: ${storeRes.code()}")
-            }
+            if (storeRes.isSuccessful) storeList.postValue(storeRes.body()!!)
+            else errorMessage.postValue("상점 목록 통신 실패: ${storeRes.code()}")
         }
     }
 }
