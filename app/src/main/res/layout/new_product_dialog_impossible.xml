@@ -10,7 +10,7 @@
         android:id="@+id/minus_icon"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:src="@drawable/new_product_impossible_minus_icon"
+        android:src="@drawable/new_product_no"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -19,13 +19,13 @@
         />
     <ImageView
         android:id="@+id/face_icon"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:src="@drawable/new_product_impossible_face_icon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="40dp"
         android:layout_marginStart="-80dp"
         />
 
