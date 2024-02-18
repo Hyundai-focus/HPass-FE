@@ -25,13 +25,11 @@ class MyVisitStoreActivity : AppCompatActivity() {
     }
     private fun bind(){
         viewModel.storeList.observe(this) {storeList ->
-            if(storeList != null){
-                val checkListItem = binding.myVisitStoreCheckListItem
-                checkListItem.adapter = CheckListAdapter(storeList)
+            val checkListItem = binding.myVisitStoreCheckListItem
+            checkListItem.adapter = CheckListAdapter(storeList)
 
-                val storeListItem = binding.myVisitStoreStoreList
-                storeListItem.adapter = StoreListAdapter(storeList)
-            }
+            val storeListItem = binding.myVisitStoreStoreList
+            storeListItem.adapter = StoreListAdapter(storeList)
         }
     }
 }
