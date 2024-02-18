@@ -23,6 +23,8 @@ class MyPageSubsStopActivity : AppCompatActivity() {
 
     fun setBtnEvent(binding: MyPageActivityStopSubscriptionBinding){
         binding.subsNoStopButton.setOnClickListener {
+            val intent = Intent(this, MyPageActivity::class.java)
+            startActivity(intent)
             finish()
         }
         binding.continueStopSubs.setOnClickListener {
