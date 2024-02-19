@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.PagerSnapHelper
 import com.hyundai.hpass.R
 import com.hyundai.hpass.databinding.SubscriptionActivityMainBinding
 import com.hyundai.hpass.myCoupon.MyCouponActivity
+import com.hyundai.hpass.myVisitStore.MyVisitStoreActivity
+import com.hyundai.hpass.newProduct.NewProductActivity
 import com.hyundai.hpass.popUpStore.PopUpStoreActivity
 
 class SubscriptionMainActivity : AppCompatActivity() {
@@ -72,11 +74,13 @@ class SubscriptionMainActivity : AppCompatActivity() {
         }
 
         binding.subscriptionMainStoreGroup.todayStoreMoreText.setOnClickListener {
-
+            val intent = Intent(this, MyVisitStoreActivity::class.java)
+            startActivity(intent)
         }
 
         binding.subscriptionMainNewproductGroup.newProductMoreText.setOnClickListener {
-
+            val intent = Intent(this, NewProductActivity::class.java)
+            startActivity(intent)
         }
     }
 

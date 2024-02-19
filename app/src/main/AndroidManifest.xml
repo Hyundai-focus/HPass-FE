@@ -62,6 +62,9 @@
             android:name=".myPage.MyPageActivity"
             android:exported="true" />
         <activity
+            android:name=".myPage.MyPageMainActivity"
+            android:exported="false"/>
+        <activity
             android:name=".myPage.MyPageSubsStopActivity"
             android:exported="false" />
         <activity
