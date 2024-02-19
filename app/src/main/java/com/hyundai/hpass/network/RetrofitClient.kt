@@ -45,6 +45,7 @@ object RetrofitClient {
             .build()
             .create(PopUpBookingService::class.java)
     }
+
     val myVisitStoreService: MyVisitStoreService by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
