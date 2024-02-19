@@ -1,20 +1,25 @@
 package com.hyundai.hpass.popUpStore
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
 import com.applandeo.materialcalendarview.EventDay
 import com.applandeo.materialcalendarview.listeners.OnDayClickListener
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.hyundai.hpass.R
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import com.hyundai.hpass.databinding.PopUpStoreActivityBookingBinding
+import com.hyundai.hpass.subscription.model.response.PopUpStoreResponse
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -25,14 +30,14 @@ import java.util.Locale
  * @author 황수연
  *
  */
-class CalendarBottomSheetDialogFragment : BottomSheetDialogFragment() {
+class CalendarBottomSheetDialogFragment(private val storeData: PopUpStoreResponse) : BottomSheetDialogFragment() {
 
     private lateinit var binding: PopUpStoreActivityBookingBinding
     private lateinit var viewModel: CalendarViewModel
 
     private val popupNo: Int by lazy { arguments?.getInt("popupNo") ?: 1 }
-    private val popupStartDt: String by lazy { arguments?.getString("popupStartDt") ?: "2024-02-10" }
-    private val popupEndDt: String by lazy { arguments?.getString("popupEndDt") ?: "2024-02-27" }
+    private val popupStartDt: String by lazy { arguments?.getString("popupStartDt") ?: storeData.startDate }
+    private val popupEndDt: String by lazy { arguments?.getString("popupEndDt") ?: storeData.endDate }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -94,28 +99,41 @@ class CalendarBottomSheetDialogFragment : BottomSheetDialogFragment() {
                 val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
                 val dateStr = dateFormat.format(calendar.time)
 
-                viewModel.reservations.value?.let { reservations ->
-                    val availabilities = reservations[dateStr] ?: listOf()
+                // viewModel의 viewModelScope에서 launch하여 loadReservations 함수를 호출
+                viewModel.viewModelScope.launch {
+                    try {
+                        // 비동기로 예약 데이터를 로드
+                        viewModel.loadReservations()
 
-                    // 모든 버튼을 초기 상태로 리셋
-                    timeButtons.forEach { button ->
-                        button.visibility = View.VISIBLE
-                        button.isEnabled = true
-                        button.background = ContextCompat.getDrawable(requireContext(), R.drawable.popup_booking_button_background)
-                        button.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
-                    }
+                        // 예약 데이터가 업데이트될 때까지 대기
+                        viewModel.reservations.observe(viewLifecycleOwner) { reservations ->
+                            val availabilities = reservations[dateStr] ?: listOf()
 
-                    // 각 timeButton에 대해, 잔여 시간 데이터에 따라 가시성 설정
-                    timeButtons.forEachIndexed { index, button ->
-                        if (index < availabilities.size && availabilities[index]) {
-                            button.visibility = View.VISIBLE
-                            button.isEnabled = false
-                            button.background = ContextCompat.getDrawable(requireContext(), R.drawable.popup_booking_invalidated)
-                        } else {
-                            button.visibility = View.VISIBLE
-                            button.isEnabled = true
-                            button.background = ContextCompat.getDrawable(requireContext(), R.drawable.popup_booking_button_background)
+                            // 모든 버튼을 초기 상태로 리셋
+                            timeButtons.forEach { button ->
+                                button.visibility = View.VISIBLE
+                                button.isEnabled = true
+                                button.background = ContextCompat.getDrawable(requireContext(), R.drawable.popup_booking_button_background)
+                                button.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+                            }
+
+                            // 각 timeButton에 대해, 잔여 시간 데이터에 따라 가시성 설정
+                            timeButtons.forEachIndexed { index, button ->
+                                if (index < availabilities.size && availabilities[index]) {
+                                    button.visibility = View.VISIBLE
+                                    button.isEnabled = false
+                                    button.background = ContextCompat.getDrawable(requireContext(), R.drawable.popup_booking_invalidated)
+                                } else {
+                                    button.visibility = View.VISIBLE
+                                    button.isEnabled = true
+                                    button.background = ContextCompat.getDrawable(requireContext(), R.drawable.popup_booking_button_background)
+                                }
+                            }
                         }
+                    } catch (e: Exception) {
+                        // 예외 처리
+                        Log.e("CalendarFragment", "Error loading reservations: ${e.message}")
+                        Toast.makeText(requireContext(), "Error loading reservations", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
@@ -141,6 +159,37 @@ class CalendarBottomSheetDialogFragment : BottomSheetDialogFragment() {
         // ViewModel에서 선택된 시간을 관찰하고 UI를 업데이트
         viewModel.selectedTime.observe(viewLifecycleOwner) { selectedTime ->
             updateTimeButtons(selectedTime, timeButtons)
+        }
+
+        val btn_booking: AppCompatButton = view.findViewById(R.id.booking_insert)
+
+        btn_booking.setOnClickListener {
+            // 선택한 시간대
+            val selectedTime = viewModel.selectedTime.value
+
+            // 선택한 날짜
+            val selectedDate = dateFormat.format(binding.materialCalendar.selectedDate.time)
+
+            if (!selectedTime.isNullOrEmpty() && !selectedDate.isNullOrEmpty()) {
+                val item = bookingItem(
+                    popupNo = 1,
+                    bookingTime = selectedTime,
+                    bookingDt = selectedDate
+                )
+                Log.d("insert item", item.toString())
+                viewModel.insertBooking(item)
+
+                viewModel.bookingSuccess.observe(viewLifecycleOwner) { success ->
+                    if (success) {
+                        val intent = Intent(requireContext(), PopUpBookingConfirmationActivity::class.java).apply {
+                            putExtra("selectedDate", selectedDate)
+                            putExtra("selectedTime", selectedTime)
+                            putExtra("storeName", storeData.name)
+                        }
+                        startActivity(intent)
+                    }
+                }
+            }
         }
     }
 
