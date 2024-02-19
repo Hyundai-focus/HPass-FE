@@ -7,7 +7,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.hyundai.hpass.BuildConfig
 import com.hyundai.hpass.BuildConfig.PREF_KEY_SUBS
 import com.hyundai.hpass.BuildConfig.PREF_KEY_TOKEN
 import com.hyundai.hpass.BuildConfig.PREF_VALUE_TRUE
@@ -34,6 +33,10 @@ class SocialLoginViewModel: ViewModel() {
     fun getLoginPass(): LiveData<Boolean> = loginPass
     fun getLoginSuccess(): LiveData<Boolean> = loginSuccess
     fun getErrorMessage(): LiveData<String> = errorMessage
+
+    init {
+        isLogin()
+    }
 
     val profileCallback = object : NidProfileCallback<NidProfileResponse> {
         override fun onSuccess(response: NidProfileResponse) {
@@ -120,9 +123,13 @@ class SocialLoginViewModel: ViewModel() {
                     if (it.isSubscribed) MyApplication.preferences.setString(PREF_KEY_SUBS, PREF_VALUE_TRUE)
                     Log.d("verifyToken: userName", it.memberName)
                 }
-                if(verifyResponse == null) Log.d("verifyToken Retrofit 통신:", "실패")
+                if(verifyResponse == null) {
+                    Log.d("verifyToken Retrofit 통신:", "실패")
+                }
             }
-            else Log.d("verifyToken Retrofit 통신:", "실패")
+            else {
+                Log.d("verifyToken Retrofit 통신:", "실패")
+            }
         }
     }
 }
