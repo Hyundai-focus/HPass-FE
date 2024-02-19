@@ -65,7 +65,7 @@ class PurchaseTestActivity : AppCompatActivity() {
             .setOrderId("1234")
             .setPrice(price)
             .setPg("나이스페이")
-            .setUserToken("65cd692f00c78a0036992c3b")
+            .setUserToken("65cea1f5e57a7e002335f025")
             .setPrices(
                 listOf(BioPrice("구독 정기결제 (월)", 9900.0))
             )
