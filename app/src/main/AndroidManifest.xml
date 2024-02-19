@@ -66,6 +66,10 @@
         <activity
             android:name=".myCoupon.MyCouponActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".popUpStore.PopUpBookingConfirmationActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

@@ -9,11 +9,12 @@
 
 
     <!--   for popup booking color   -->
-    <color name="skyBlue">#788EBFE1</color>
-    <color name="lightBlue">#8EBFE1</color>
+    <color name="skyBlue">#7801A66A</color>
+    <color name="lightBlue">#01A66A</color>
     <color name="gray">#717070</color>
     <color name="lightGray">#E8E8E8</color>
     <color name="lineGray">#B9B9B9</color>
+    <color name="textGray">#868686</color>
 
 
     <!--   for new product color   -->
