@@ -17,7 +17,8 @@ class MyPageSubsStopResultActivty : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.subStopFinishButton.setOnClickListener {
-            finish()
+            //메인페이지의 마이페이지로 이동
+            //finish()
         }
     }
 }

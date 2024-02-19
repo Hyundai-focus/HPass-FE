@@ -3,9 +3,12 @@ package com.hyundai.hpass.newProduct
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.hyundai.hpass.databinding.NewProductActivityUserNewProductBinding
-import com.hyundai.hpass.newProduct.model.response.NewItemUserHistory
+import com.hyundai.hpass.newProduct.model.NewProductViewModel
+import com.hyundai.hpass.newProduct.model.request.ApplyNewProdRequest
+import com.hyundai.hpass.newProduct.model.response.UsrProdStatusResponse
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -16,55 +19,54 @@ import java.util.Locale
  *
  */
 class UserNewProductActivity : AppCompatActivity() {
-    //더미
-    val user : NewItemUserHistory = NewItemUserHistory(
-        true,
-        "황수연",
-        "Re X Re",
-        "리바이리 소듐 미네랄 엠플",
-        "https://imgprism.ehyundai.com/evntCrdInf/imgPath/202402/06/b0c14928-6ca1-4ea7-9405-58ed5c9c961b.png",
-        "2024-02-12T15:30:00",
-        "더현대 서울 1F 컨시어지"
-    )
-
+    lateinit var viewModel: NewProductViewModel
     lateinit var binding : NewProductActivityUserNewProductBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = NewProductActivityUserNewProductBinding.inflate(layoutInflater)
+        viewModel = ViewModelProvider(this)[NewProductViewModel::class.java]
         setContentView(binding.root)
 
-        setUserProductStatus(binding)
-
+        configureEvent()
+        bind()
+    }
+    private fun configureEvent(){
+        viewModel.getUsrProdInfo()
+    }
+    private fun bind(){
         binding.newProductCancelButton.setOnClickListener {
-            cancelProduct()
-            finish()
+            viewModel.cancelProd()
+            viewModel.cancelStatus.observe(this) { cancelStatus ->
+                if(cancelStatus.equals("success")) finish()
+            }
         }
         binding.newProductButtonOk.setOnClickListener{
             finish()
         }
+        viewModel.userProdInfo.observe(this){userProdInfo->
+            setUserProductStatus(userProdInfo)
+        }
     }
-    fun setUserProductStatus(binding: NewProductActivityUserNewProductBinding){
-        val userText = user.userName + "님의"
+    fun setUserProductStatus(prodInfo: UsrProdStatusResponse){
+        val userText = prodInfo.memberName + "님의"
         binding.newProductUserName.text = userText
-        binding.newProductTitle.text = user.title
-        binding.newProductSubtitle.text = user.itemName
-        binding.newProductUserTime.text = dateFormat(user.time)
-        binding.newProductUserPlace.text = user.place
+        binding.newProductTitle.text = prodInfo.prodBrand
+        binding.newProductSubtitle.text = prodInfo.prodName
+        val time = dateFormat(prodInfo.receiveDt)
+        binding.newProductUserTime.text = time
+        binding.newProductUserPlace.text = prodInfo.receiveLoc
         Glide.with(binding.newProductImg.context)
-            .load(user.itemImg)
+            .load(prodInfo.prodImg)
             .into(binding.newProductImg)
     }
 
-    fun cancelProduct(){
-        //취소 로직
+    fun dateFormat(beforeDate: String?): String {
+        if (beforeDate.isNullOrEmpty()) return "" // null 또는 빈 문자열이면 빈 문자열 반환
+        val parts = beforeDate.split(" ")
+        return if (parts.isNotEmpty()) {
+            parts[0].replace("-", ".")
+        } else ""
     }
 
-    fun dateFormat(beforeDate : String): String? {
-        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
-        val outputFormat = SimpleDateFormat("yyyy.MM.dd   HH : mm", Locale.getDefault())
-
-        val date: Date? = inputFormat.parse(beforeDate)
-        return date?.let { outputFormat.format(it) }
-    }
 }
 
