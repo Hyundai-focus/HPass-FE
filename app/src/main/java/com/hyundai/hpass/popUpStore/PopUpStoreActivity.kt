@@ -38,7 +38,7 @@ class PopUpStoreActivity : AppCompatActivity(), PopUpStoreListAdapter.OnItemClic
 
     override fun onItemClick(storeData: PopUpStoreResponse) {
         Log.d("PopUpStoreActivity", "onItemClick: $storeData")
-        val bottomSheetDialogFragment = CalendarBottomSheetDialogFragment()
+        val bottomSheetDialogFragment = CalendarBottomSheetDialogFragment(storeData)
         bottomSheetDialogFragment.show(supportFragmentManager, bottomSheetDialogFragment.tag)
     }
 }
