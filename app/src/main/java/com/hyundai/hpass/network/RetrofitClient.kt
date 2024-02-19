@@ -2,14 +2,11 @@ package com.hyundai.hpass.network
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-
 import com.hyundai.hpass.BuildConfig
-import com.hyundai.hpass.BuildConfig.BASE_URL
 import com.hyundai.hpass.myVisitStore.MyVisitStoreService
 import com.hyundai.hpass.newProduct.NewProductService
 import com.hyundai.hpass.popUpStore.PopUpBookingService
 import com.hyundai.hpass.socialLogIn.MemberService
-
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
@@ -21,8 +18,8 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
  *
  */
 object RetrofitClient {
-//    private const val BASE_URL = BuildConfig.BASE_URL
-    private const val BASE_URL = "http://10.0.2.2:8080/"
+    private const val BASE_URL = BuildConfig.BASE_URL
+//    private const val BASE_URL = "http://10.0.2.2:8080/"
 
     val memberService: MemberService by lazy {
         Retrofit.Builder()
@@ -44,6 +41,7 @@ object RetrofitClient {
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(PopUpBookingService::class.java)
+    }
 
     val myVisitStoreService: MyVisitStoreService by lazy {
         Retrofit.Builder()

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
+import com.hyundai.hpass.R
 import com.hyundai.hpass.databinding.SubscriptionActivityMainBinding
 import com.hyundai.hpass.myCoupon.MyCouponActivity
 import com.hyundai.hpass.popUpStore.PopUpStoreActivity
@@ -31,10 +32,15 @@ class SubscriptionMainActivity : AppCompatActivity() {
 
     private fun configureUI() {
         binding.subscriptionMainButtonGroup.myReservation.buttonText.text = "나의 예약"
+        binding.subscriptionMainButtonGroup.myReservation.buttonImage.setImageResource(R.drawable.subscription_my_reservation)
         binding.subscriptionMainButtonGroup.myCoupon.buttonText.text = "쿠폰 리스트"
+        binding.subscriptionMainButtonGroup.myCoupon.buttonImage.setImageResource(R.drawable.subscription_my_coupon)
         binding.subscriptionMainButtonGroup.todayStore.buttonText.text = "오늘의 매장"
+        binding.subscriptionMainButtonGroup.todayStore.buttonImage.setImageResource(R.drawable.subscription_today_store)
         binding.subscriptionMainButtonGroup.newProduct.buttonText.text = "이달의 신제품"
+        binding.subscriptionMainButtonGroup.newProduct.buttonImage.setImageResource(R.drawable.subscription_new_product)
         binding.subscriptionMainButtonGroup.myPage.buttonText.text = "마이 페이지"
+        binding.subscriptionMainButtonGroup.myPage.buttonImage.setImageResource(R.drawable.my_page_subs_icon)
     }
 
     private fun configureEvent() {

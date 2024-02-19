@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName
  *
  */
 data class PopUpStoreResponse (
-    @SerializedName("popup_no") val id: Int,
+    @SerializedName("popup_no") val no: Int,
     @SerializedName("popup_name") val name: String,
     @SerializedName("popup_start_dt") val startDate: String,
     @SerializedName("popup_end_dt") val endDate: String,
