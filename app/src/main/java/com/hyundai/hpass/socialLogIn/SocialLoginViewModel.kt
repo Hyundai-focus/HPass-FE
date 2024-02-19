@@ -8,8 +8,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hyundai.hpass.BuildConfig
+import com.hyundai.hpass.BuildConfig.PREF_KEY_SUBS
 import com.hyundai.hpass.BuildConfig.PREF_KEY_TOKEN
+import com.hyundai.hpass.BuildConfig.PREF_VALUE_TRUE
 import com.hyundai.hpass.network.RetrofitClient
+import com.hyundai.hpass.socialLogIn.model.response.LoginResponse
 import com.navercorp.nid.NaverIdLoginSDK
 import com.navercorp.nid.oauth.NidOAuthLogin
 import com.navercorp.nid.oauth.OAuthLoginCallback
@@ -25,8 +28,10 @@ import kotlinx.coroutines.launch
  *
  */
 class SocialLoginViewModel: ViewModel() {
+    private val loginPass: MutableLiveData<Boolean> = MutableLiveData()
     private val loginSuccess: MutableLiveData<Boolean> = MutableLiveData()
     val errorMessage: MutableLiveData<String> = MutableLiveData()
+    fun getLoginPass(): LiveData<Boolean> = loginPass
     fun getLoginSuccess(): LiveData<Boolean> = loginSuccess
     fun getErrorMessage(): LiveData<String> = errorMessage
 
@@ -80,6 +85,7 @@ class SocialLoginViewModel: ViewModel() {
                     Log.d("SocialLoginActivity Retrofit 통신:", "성공: ${loginResponse.toString()}")
                     Log.d("SocialLoginActivity 자체 JWT 토큰 발급:", "성공: ${loginResponse.accessToken}")
                     MyApplication.preferences.setString(PREF_KEY_TOKEN, loginResponse.accessToken)
+                    if (loginResponse.isSubscribed) MyApplication.preferences.setString(PREF_KEY_SUBS, PREF_VALUE_TRUE)
                     loginSuccess.postValue(true)
                 }
                 else errorMessage.postValue("loginResponse: null")
@@ -90,4 +96,33 @@ class SocialLoginViewModel: ViewModel() {
         }
     }
 
+    fun isLogin() {
+        val accessToken = MyApplication.preferences.getString(PREF_KEY_TOKEN)
+        Log.d("accessToken 유무", accessToken)
+        if( accessToken != "null"){
+            verifyToken(accessToken)
+        }
+    }
+    private fun verifyToken(accessToken: String) {
+        var verifyResponse: LoginResponse? = null
+        viewModelScope.launch {
+            val verifyRes = async(Dispatchers.IO) {
+                RetrofitClient.memberService.verifyToken(accessToken)
+            }.await()
+            if(verifyRes.isSuccessful){
+                verifyResponse = verifyRes.body()
+                verifyResponse?.let {
+                    Log.d("verifyToken Retrofit 통신:", "성공: $it")
+                    if (it.isMember) {
+                        MyApplication.preferences.setString(PREF_KEY_TOKEN, it.accessToken)
+                        loginPass.postValue(true)
+                    }
+                    if (it.isSubscribed) MyApplication.preferences.setString(PREF_KEY_SUBS, PREF_VALUE_TRUE)
+                    Log.d("verifyToken: userName", it.memberName)
+                }
+                if(verifyResponse == null) Log.d("verifyToken Retrofit 통신:", "실패")
+            }
+            else Log.d("verifyToken Retrofit 통신:", "실패")
+        }
+    }
 }
