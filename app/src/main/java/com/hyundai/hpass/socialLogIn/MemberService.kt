@@ -15,6 +15,10 @@ import retrofit2.http.Query
  *
  */
 interface MemberService {
+    @GET("/member")
+    suspend fun verifyToken(
+        @Header("Authorization") authorization: String
+    ): Response<LoginResponse>
     @POST("/member/login")
     suspend fun naverLogin(
         @Query("email") email: String,
@@ -22,7 +26,7 @@ interface MemberService {
     ): Response<LoginResponse>
     @POST("/subscription")
     suspend fun addSubscriber(
-        @Header("Authorization") Authorization: String,
+        @Header("Authorization") authorization: String,
         @Query("payment") payment: String
     ): Response<ResponseBody>
 }
