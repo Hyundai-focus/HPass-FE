@@ -57,6 +57,9 @@
             android:exported="true" >
         </activity>
         <activity
+            android:name=".myPage.MyPageMainActivity"
+            android:exported="false"/>
+        <activity
             android:name=".myPage.MyPageSubsStopActivity"
             android:exported="false"/>
         <activity
