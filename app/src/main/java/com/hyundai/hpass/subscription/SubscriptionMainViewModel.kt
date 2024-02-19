@@ -51,9 +51,9 @@ class SubscriptionMainViewModel: ViewModel() {
         user.value = UserResponse("김기훈", "", "", "")
 
         popUpStore.value = listOf(
-            PopUpStoreResponse("스타벅스", "", "", "", "https://www.ehyundai.com/attachfiles/branch/20210209104434346.jpg"),
-            PopUpStoreResponse("이디야", "", "", "", "https://www.ehyundai.com/attachfiles/branch/20220906035951614.jpg"),
-            PopUpStoreResponse("투썸플레이스", "", "", "", "https://www.ehyundai.com/attachfiles/branch/20210209093808991.jpg")
+            PopUpStoreResponse(1,"스타벅스", "", "", "", "https://www.ehyundai.com/attachfiles/branch/20210209104434346.jpg"),
+            PopUpStoreResponse(2, "이디야", "", "", "", "https://www.ehyundai.com/attachfiles/branch/20220906035951614.jpg"),
+            PopUpStoreResponse(3, "투썸플레이스", "", "", "", "https://www.ehyundai.com/attachfiles/branch/20210209093808991.jpg")
         )
 
         todayStore.value = listOf(
