@@ -55,7 +55,7 @@
         android:id="@+id/new_product_list_status_true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/main_blue"
+        android:backgroundTint="@color/main_green"
         android:background="@drawable/new_product_status_outline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/new_product_list_img"
