@@ -44,6 +44,7 @@ object RetrofitClient {
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(PopUpBookingService::class.java)
+    }
 
     val myVisitStoreService: MyVisitStoreService by lazy {
         Retrofit.Builder()

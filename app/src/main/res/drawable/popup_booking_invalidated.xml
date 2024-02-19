@@ -16,7 +16,7 @@
             <shape android:shape="line">
                 <stroke
                     android:color="@color/lineGray"
-                    android:width="3dp" />
+                    android:width="2dp" />
             </shape>
         </rotate>
     </item>

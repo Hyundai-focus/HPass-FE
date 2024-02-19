@@ -121,7 +121,11 @@ class CalendarBottomSheetDialogFragment(private val storeData: PopUpStoreRespons
                             timeButtons.forEachIndexed { index, button ->
                                 if (index < availabilities.size && availabilities[index]) {
                                     button.visibility = View.VISIBLE
-                                    button.isEnabled = false
+                                    button.isClickable = true
+                                    button.setOnClickListener {
+                                        val dialogFragment = ImpossibleBookingDialog()
+                                        dialogFragment.show(childFragmentManager, "impossibleBookingDialog")
+                                    }
                                     button.background = ContextCompat.getDrawable(requireContext(), R.drawable.popup_booking_invalidated)
                                 } else {
                                     button.visibility = View.VISIBLE
