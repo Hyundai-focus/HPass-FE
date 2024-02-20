@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.hyundai.hpass.R
 import com.hyundai.hpass.databinding.HamburgerMenuActivityBinding
-import com.hyundai.hpass.myPage.MyPageActivity
+import com.hyundai.hpass.myPage.MyPageMainActivity
 import com.hyundai.hpass.socialLogIn.MyApplication
 import com.hyundai.hpass.subscription.SubscriptionMainActivity
 
@@ -34,7 +34,7 @@ class HamburgerMenuActivity : AppCompatActivity() {
     private fun configureEvent() {
         binding.menuImage.setOnClickListener {
             if (MyApplication.preferences.getString("loginPass") == "true") {
-                val intent = Intent(this, MyPageActivity::class.java)
+                val intent = Intent(this, MyPageMainActivity::class.java)
                 startActivity(intent)
             } else {
                 val intent = Intent(this, SubscriptionMainActivity::class.java)
