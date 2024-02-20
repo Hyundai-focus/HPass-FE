@@ -122,23 +122,14 @@ class CalendarBottomSheetDialogFragment(private val storeData: PopUpStoreRespons
                                 if (index < availabilities.size && availabilities[index]) {
                                     button.visibility = View.VISIBLE
                                     button.isEnabled = false
-//                                    button.isClickable = true
-//                                    button.setOnClickListener {
-//                                        val dialogFragment = ImpossibleBookingDialog()
-//                                        dialogFragment.show(childFragmentManager, "impossibleBookingDialog")
-//                                    }
                                     button.background = ContextCompat.getDrawable(requireContext(), R.drawable.popup_booking_invalidated)
                                 } else {
                                     button.visibility = View.VISIBLE
                                     button.isEnabled = true
                                     button.background = ContextCompat.getDrawable(requireContext(), R.drawable.popup_booking_button_background)
-//                                    button.setOnClickListener {
-//                                        it.background = ContextCompat.getDrawable(requireContext(), R.drawable.popup_booking_selected_button_background)
-//                                    }
                                 }
                             }
                         }
-
                     } catch (e: Exception) {
                         // 예외 처리
                         Log.e("CalendarFragment", "Error loading reservations: ${e.message}")
@@ -198,6 +189,10 @@ class CalendarBottomSheetDialogFragment(private val storeData: PopUpStoreRespons
                         startActivity(intent)
                     }
                 }
+            } else {
+                // 예약 불가능한 경우
+                val dialogFragment = ImpossibleBookingDialog()
+                dialogFragment.show(childFragmentManager, "impossibleBookingDialog")
             }
         }
     }
