@@ -8,6 +8,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.hyundai.hpass.databinding.PopUpStoreActivityListBinding
 import com.hyundai.hpass.subscription.model.response.PopUpStoreResponse
 
+/**
+ *
+ * @author 김기훈
+ *
+ */
 class PopUpStoreActivity : AppCompatActivity(), PopUpStoreListAdapter.OnItemClickListener {
 
     private lateinit var binding: PopUpStoreActivityListBinding
