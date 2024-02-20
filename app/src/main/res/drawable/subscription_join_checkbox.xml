@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Unchecked -->
+    <item android:state_checked="false">
+        <shape>
+            <stroke android:color="@color/textGray" android:width="1.5dp" />
+            <corners android:radius= "300dp"/>
+            <solid android:color="#fff" />
+        </shape>
+    </item>
+    <!-- Checked -->
+    <item android:state_checked="true">
+        <layer-list>
+            <item>
+                <shape>
+                    <corners android:radius="300dp" />
+                    <solid android:color="@color/main_green"/>
+                </shape>
+            </item>
+            <!-- 이미지 영역 -->
+            <item android:drawable="@drawable/subscription_check" android:top="1dp" android:right="1dp" android:bottom="1dp" android:left="1dp" />
+        </layer-list>
+    </item>
+</selector>
