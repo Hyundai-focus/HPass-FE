@@ -33,17 +33,21 @@ class NfcProductActivity : AppCompatActivity() {
         }
         viewModel.userProdInfo.observe(this) { userProdInfo ->
             if (userProdInfo.status) { //신청 정보 있음
-                setContentView(binding.root)
-                binding.productNfcStoreBrand.text = userProdInfo.prodBrand
-                binding.productNfcName.text = userProdInfo.prodName
-                Glide.with(binding.productNfcImg.context)
-                    .load(userProdInfo.prodImg)
-                    .into(binding.productNfcImg)
-            } else {//신청 정보 없음
-                val intent = Intent(this, NfcFailInfoActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
+                if(userProdInfo.receiveLoc.equals("더현대 서울 2F 티슬로")){ //받아온 매장 이름 넣기
+                    setContentView(binding.root)
+                    binding.productNfcStoreBrand.text = userProdInfo.prodBrand
+                    binding.productNfcName.text = userProdInfo.prodName
+                    Glide.with(binding.productNfcImg.context)
+                        .load(userProdInfo.prodImg)
+                        .into(binding.productNfcImg)
+                }
+                else gotoFail()//다른곳에서 받으세요
+            } else gotoFail()//신청 정보 없음
         }
+    }
+    private fun gotoFail(){
+        val intent = Intent(this, NfcFailInfoActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }
