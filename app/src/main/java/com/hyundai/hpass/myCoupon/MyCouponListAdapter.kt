@@ -14,6 +14,11 @@ import com.hyundai.hpass.myCoupon.model.response.CouponResponse
 class MyCouponListAdapter(private val couponList: List<CouponResponse>): RecyclerView.Adapter<MyCouponListAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(binding: MyCouponListItemBinding): RecyclerView.ViewHolder(binding.root) {
+        val image = binding.popUpStoreImage
+        val location = binding.location
+        val name = binding.couponName
+        val startDate = binding.startDate
+        val endDate = binding.endDate
 
         val root = binding.root
     }
@@ -26,6 +31,10 @@ class MyCouponListAdapter(private val couponList: List<CouponResponse>): Recycle
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val coupon = couponList[position]
+
+        holder.name.text = coupon.content
+        holder.startDate.text = coupon.startDate
+        holder.endDate.text = coupon.endDate
 
     }
 

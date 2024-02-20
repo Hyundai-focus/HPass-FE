@@ -7,6 +7,7 @@ import com.hyundai.hpass.BuildConfig.BASE_URL
 import com.hyundai.hpass.myPage.MyPageService
 import com.hyundai.hpass.myVisitStore.MyVisitStoreService
 import com.hyundai.hpass.newProduct.NewProductService
+import com.hyundai.hpass.nfc.NfcService
 import com.hyundai.hpass.popUpStore.PopUpBookingService
 import com.hyundai.hpass.socialLogIn.MemberService
 import retrofit2.Retrofit
@@ -20,7 +21,8 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
  *
  */
 object RetrofitClient {
-    private const val BASE_URL = BuildConfig.BASE_URL
+    //private const val BASE_URL = BuildConfig.BASE_URL
+    private const val BASE_URL = "http://10.0.2.2:8080/"
 
     val memberService: MemberService by lazy {
         Retrofit.Builder()
@@ -65,5 +67,13 @@ object RetrofitClient {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(MyPageService::class.java)
+    }
+
+    val nfcService : NfcService by lazy{
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(NfcService::class.java)
     }
 }

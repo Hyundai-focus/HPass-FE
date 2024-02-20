@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white">
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/success_animation"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginTop="100dp"
+        android:layout_height="350dp"
+        app:lottie_fileName="success.json"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true" />
+    <TextView
+        android:id="@+id/fail_info_text1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="오늘의 매장 방문 완료"
+        android:fontFamily="@font/happiness_sans_title"
+        app:layout_constraintTop_toBottomOf="@id/success_animation"
+        android:gravity="center"
+        android:textSize="20sp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="쿠폰함을 확인해보세요!"
+        android:fontFamily="@font/happiness_sans_bold"
+        app:layout_constraintTop_toBottomOf="@id/fail_info_text1"
+        android:gravity="center"
+        android:textColor="@color/grey"
+        android:layout_marginTop="10dp"
+        android:textSize="15sp"/>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/visit_final_button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/new_product_apply_button"
+        android:text="확인"
+        android:textColor="@color/white"
+        android:fontFamily="@font/happiness_sans_bold"
+        android:textSize="20sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="30dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
