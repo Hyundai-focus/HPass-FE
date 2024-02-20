@@ -24,7 +24,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center_vertical|end"
+            android:gravity="bottom|start"
             android:padding="10dp"
             android:orientation="vertical">
 
@@ -32,7 +32,6 @@
                 android:id="@+id/storeName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="end"
                 android:text="브랜드이름"
                 android:textColor="@color/white"
                 android:textSize="20sp"
@@ -42,7 +41,6 @@
                 android:id="@+id/productName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="end"
                 android:text="제품 이름"
                 android:textColor="@color/white"
                 android:textSize="15sp" />

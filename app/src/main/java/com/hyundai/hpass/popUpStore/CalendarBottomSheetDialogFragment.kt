@@ -35,7 +35,7 @@ class CalendarBottomSheetDialogFragment(private val storeData: PopUpStoreRespons
     private lateinit var binding: PopUpStoreActivityBookingBinding
     private lateinit var viewModel: CalendarViewModel
 
-    private val popupNo: Int by lazy { arguments?.getInt("popupNo") ?: 1 }
+    private val popupNo: Int by lazy { arguments?.getInt("popupNo") ?: storeData.no }
     private val popupStartDt: String by lazy { arguments?.getString("popupStartDt") ?: storeData.startDate }
     private val popupEndDt: String by lazy { arguments?.getString("popupEndDt") ?: storeData.endDate }
 
@@ -172,7 +172,7 @@ class CalendarBottomSheetDialogFragment(private val storeData: PopUpStoreRespons
 
             if (!selectedTime.isNullOrEmpty() && !selectedDate.isNullOrEmpty()) {
                 val item = bookingItem(
-                    popupNo = 1,
+                    popupNo = storeData.no,
                     bookingTime = selectedTime,
                     bookingDt = selectedDate
                 )
@@ -189,6 +189,10 @@ class CalendarBottomSheetDialogFragment(private val storeData: PopUpStoreRespons
                         startActivity(intent)
                     }
                 }
+            } else {
+                // 예약 불가능한 경우
+                val dialogFragment = ImpossibleBookingDialog()
+                dialogFragment.show(childFragmentManager, "impossibleBookingDialog")
             }
         }
     }

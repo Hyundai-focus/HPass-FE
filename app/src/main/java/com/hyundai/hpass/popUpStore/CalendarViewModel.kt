@@ -37,7 +37,12 @@ class CalendarViewModel(
         viewModelScope.launch {
             val loadRes = async(Dispatchers.IO) {
                 val jwtToken = MyApplication.preferences.getString(PREF_KEY_TOKEN)
-                RetrofitClient.bookingService.getBookingsWithinPopupPeriod(jwtToken, popupNo, popupStartDt, popupEndDt)
+                RetrofitClient.bookingService.getBookingsWithinPopupPeriod(
+                    jwtToken,
+                    popupNo,
+                    popupStartDt,
+                    popupEndDt
+                )
             }.await()
 
             if (loadRes.isSuccessful) {
@@ -61,7 +66,8 @@ class CalendarViewModel(
                     }
 
                     // 예약된 시간을 true로 표시
-                    val availabilityList = reservationMap[date]?.toMutableList() ?: MutableList(5) { false }
+                    val availabilityList =
+                        reservationMap[date]?.toMutableList() ?: MutableList(5) { false }
                     availabilityList[timeToIndex(time)] = true
                     reservationMap[date] = availabilityList
                 }

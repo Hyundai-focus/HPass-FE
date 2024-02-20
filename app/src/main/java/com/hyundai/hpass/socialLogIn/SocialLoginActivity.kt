@@ -1,12 +1,10 @@
 package com.hyundai.hpass.socialLogIn
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.core.content.ContextCompat.startActivity
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.hyundai.hpass.BuildConfig.PREF_KEY_TOKEN
 import com.hyundai.hpass.databinding.SocialLoginActivitySocialLoginBinding
 import com.hyundai.hpass.subscription.SubscriptionMainActivity
 
@@ -30,7 +28,7 @@ class SocialLoginActivity : AppCompatActivity() {
 
     private fun configureEvent() {
 
-        viewModel.isLogin()
+//        viewModel.isLogin()
         binding.naverBtn.setOnClickListener {
             viewModel.authenticateNaver(this@SocialLoginActivity)
         }

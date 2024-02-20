@@ -11,8 +11,8 @@ import com.hyundai.hpass.newProduct.model.NewProductViewModel
 import com.hyundai.hpass.newProduct.model.response.UsrProdStatusResponse
 
 class NewProductActivity : AppCompatActivity() {
-    lateinit var viewModel: NewProductViewModel
-    lateinit var binding: NewProductActivityNewProductBinding
+    private lateinit var viewModel: NewProductViewModel
+    private lateinit var binding: NewProductActivityNewProductBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = NewProductActivityNewProductBinding.inflate(layoutInflater)
