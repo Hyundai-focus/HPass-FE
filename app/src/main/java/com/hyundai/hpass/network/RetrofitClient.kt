@@ -4,6 +4,7 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.hyundai.hpass.BuildConfig
 import com.hyundai.hpass.BuildConfig.BASE_URL
+import com.hyundai.hpass.myBooking.MyBookingService
 import com.hyundai.hpass.myPage.MyPageService
 import com.hyundai.hpass.myVisitStore.MyVisitStoreService
 import com.hyundai.hpass.newProduct.NewProductService
@@ -21,8 +22,8 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
  *
  */
 object RetrofitClient {
-    //private const val BASE_URL = BuildConfig.BASE_URL
-    private const val BASE_URL = "http://10.0.2.2:8080/"
+    private const val BASE_URL = BuildConfig.BASE_URL
+//     private const val BASE_URL = "http://10.0.2.2:8080/"
 
     val memberService: MemberService by lazy {
         Retrofit.Builder()
@@ -67,6 +68,15 @@ object RetrofitClient {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(MyPageService::class.java)
+    }
+
+
+    val myBookingService : MyBookingService by lazy {
+      Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(MyBookingService::class.java)
     }
 
     val nfcService : NfcService by lazy{
