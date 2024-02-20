@@ -11,7 +11,6 @@ import retrofit2.http.Header
  *
  */
 interface MyBookingService {
-
     @GET("popup/booking/mylist")
     suspend fun getMyBooking(@Header("Authorization") authorization: String): Response<List<MyBookingDTO>>
 }

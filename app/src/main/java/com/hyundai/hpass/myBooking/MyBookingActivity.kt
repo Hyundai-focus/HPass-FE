@@ -2,15 +2,11 @@ package com.hyundai.hpass.myBooking
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.hyundai.hpass.R
-import com.hyundai.hpass.popUpStore.CalendarViewModel
-import java.text.SimpleDateFormat
 import java.time.format.DateTimeFormatter
-import java.util.Locale
 
 /**
  *
