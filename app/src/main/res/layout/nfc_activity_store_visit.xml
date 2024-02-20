@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/visit_nfc_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/shape_corner_round"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginTop="-130dp"
+        android:elevation="10dp"
+        >
+        <ImageView
+            android:id="@+id/visit_nfc_img"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="H, 1:1"
+            android:layout_margin="15dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/shape_corner_round"
+            android:clipToOutline="true"
+            android:scaleType="centerCrop"
+            />
+        <TextView
+            android:id="@+id/visit_nfc_store_name"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="젠틀몬스터"
+            app:layout_constraintTop_toBottomOf="@id/visit_nfc_img"
+            android:textSize="23sp"
+            android:fontFamily="@font/happiness_sans_bold"
+            android:gravity="center"
+            android:paddingTop="20dp"/>
+        <TextView
+            android:id="@+id/visit_nfc_floor"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="1F EXCLUSIVE LABEL "
+            app:layout_constraintTop_toBottomOf="@id/visit_nfc_store_name"
+            android:gravity="center_horizontal"
+            android:textSize="18sp"
+            android:fontFamily="@font/happiness_sans_bold"
+            android:textColor="@color/grey"
+            android:paddingTop="10dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/visit_text1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="매장 방문 완료되었습니다."
+        android:fontFamily="@font/happiness_sans_title"
+        app:layout_constraintTop_toBottomOf="@id/visit_nfc_info"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="다른 매장들도 방문해보세요!"
+        android:fontFamily="@font/happiness_sans_bold"
+        app:layout_constraintTop_toBottomOf="@id/visit_text1"
+        android:gravity="center"
+        android:textColor="@color/grey"
+        android:layout_marginTop="10dp"
+        android:textSize="15sp"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/visit_nfc_button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/new_product_apply_button"
+        android:text="확인"
+        android:textColor="@color/white"
+        android:fontFamily="@font/happiness_sans_bold"
+        android:textSize="20sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="30dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

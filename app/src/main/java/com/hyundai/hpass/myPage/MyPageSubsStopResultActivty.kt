@@ -10,7 +10,7 @@ import com.hyundai.hpass.databinding.MyPageActivitySubsStopFinishBinding
  *
  */
 class MyPageSubsStopResultActivty : AppCompatActivity() {
-    lateinit var binding : MyPageActivitySubsStopFinishBinding
+    private lateinit var binding : MyPageActivitySubsStopFinishBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = MyPageActivitySubsStopFinishBinding.inflate(layoutInflater)

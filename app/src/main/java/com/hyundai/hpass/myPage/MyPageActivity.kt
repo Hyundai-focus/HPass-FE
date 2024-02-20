@@ -12,7 +12,7 @@ import com.hyundai.hpass.popUpStore.PopUpStoreActivity
 import com.hyundai.hpass.socialLogIn.SocialLoginActivity
 
 class MyPageActivity : AppCompatActivity() {
-    lateinit var binding: MyPageActivityMyPageBinding
+    private lateinit var binding: MyPageActivityMyPageBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = MyPageActivityMyPageBinding.inflate(layoutInflater)

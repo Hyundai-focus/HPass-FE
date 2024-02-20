@@ -23,7 +23,7 @@ import com.hyundai.hpass.newProduct.model.response.NewItemListResponse
 class ApplyNewProductDialog : DialogFragment() {
     private lateinit var context: Context
     private lateinit var binding: NewProductDialogApplyNewProductBinding
-    lateinit var viewModel: NewProductViewModel
+    private lateinit var viewModel: NewProductViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(STYLE_NORMAL, R.style.DialogTheme)

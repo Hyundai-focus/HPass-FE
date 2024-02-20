@@ -14,7 +14,7 @@ import com.hyundai.hpass.subscription.SubscriptionMainActivity
  *
  */
 class MyPageMainActivity:AppCompatActivity() {
-    lateinit var binding: MyPageActivityMainBinding
+    private lateinit var binding: MyPageActivityMainBinding
     private lateinit var viewModel: MyPageViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
