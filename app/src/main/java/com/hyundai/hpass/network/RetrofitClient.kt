@@ -23,7 +23,6 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
  */
 object RetrofitClient {
     private const val BASE_URL = BuildConfig.BASE_URL
-//    private const val BASE_URL = "http://10.0.2.2:8080/"
 
     val memberService: MemberService by lazy {
         Retrofit.Builder()
@@ -70,8 +69,8 @@ object RetrofitClient {
             .create(MyPageService::class.java)
     }
 
-    val myBookingService : MyBookingService by lazy{
-        Retrofit.Builder()
+    val myBookingService : MyBookingService by lazy {
+      Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
