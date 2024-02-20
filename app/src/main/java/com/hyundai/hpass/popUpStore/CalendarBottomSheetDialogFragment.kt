@@ -69,6 +69,9 @@ class CalendarBottomSheetDialogFragment(private val storeData: PopUpStoreRespons
             binding.time5
         )
 
+        var storeName: TextView = view.findViewById(R.id.store_name)
+        storeName.text = storeData.name
+
         // CalendarView의 최소 날짜 설정
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val startCalendar = Calendar.getInstance().apply {
