@@ -8,7 +8,7 @@ import com.hyundai.hpass.myVisitStore.model.MyVIsitStoreViewModel
 
 
 class MyVisitStoreActivity : AppCompatActivity() {
-    lateinit var binding: MyVisitStoreActivityMyVisitStoreBinding
+    private lateinit var binding: MyVisitStoreActivityMyVisitStoreBinding
     private lateinit var viewModel: MyVIsitStoreViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
