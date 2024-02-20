@@ -25,10 +25,9 @@ class MyCouponViewModel: ViewModel() {
 
     private fun mockData() {
         coupons.value = listOf(
-            CouponResponse("스타벅스", "02.01(목)", "02.07(수)", "1층", "https://www.ehyundai.com/attachfiles/branch/20210209104434346.jpg"),
-            CouponResponse("이디야", "02.01(목)", "02.07(수)", "2층", "https://www.ehyundai.com/attachfiles/branch/20220906035951614.jpg"),
-            CouponResponse("투썸플레이스", "02.1(목)", "02.07(수)", "3층", "https://www.ehyundai.com/attachfiles/branch/20210209093808991.jpg")
-        )
+            CouponResponse("1","스타벅스", "옷 상품 이름 및 대충 브랜드 이름 30% 할인", "02.01(목)", "02.07(수)"),
+            CouponResponse("2","이디야", "어떤 화장품 브랜드 이름 바디워시 40% 할인", "02.01(목)", "02.07(수)"),
+            CouponResponse("3","투썸플레이스", "앤 프렌즈 40% 할인", "02.1(목)", "02.07(수)"))
     }
 
 }

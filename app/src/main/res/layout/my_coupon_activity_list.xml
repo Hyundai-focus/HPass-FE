@@ -10,7 +10,7 @@
         android:id="@+id/title"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="타이틀"
+        android:text="나의 쿠폰"
         android:textSize="30sp"
         android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
