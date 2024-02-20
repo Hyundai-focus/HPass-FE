@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.hyundai.hpass.R
 import com.hyundai.hpass.databinding.SubscriptionActivityMainBinding
+import com.hyundai.hpass.myBooking.MyBookingActivity
 import com.hyundai.hpass.myCoupon.MyCouponActivity
+import com.hyundai.hpass.myPage.MyPageActivity
 import com.hyundai.hpass.myVisitStore.MyVisitStoreActivity
 import com.hyundai.hpass.newProduct.NewProductActivity
 import com.hyundai.hpass.popUpStore.PopUpStoreActivity
@@ -48,7 +50,8 @@ class SubscriptionMainActivity : AppCompatActivity() {
     private fun configureEvent() {
 
         binding.subscriptionMainButtonGroup.myReservation.root.setOnClickListener {
-
+            val intent = Intent(this, MyBookingActivity::class.java)
+            startActivity(intent)
         }
 
         binding.subscriptionMainButtonGroup.myCoupon.root.setOnClickListener {
@@ -57,15 +60,18 @@ class SubscriptionMainActivity : AppCompatActivity() {
         }
 
         binding.subscriptionMainButtonGroup.todayStore.root.setOnClickListener {
-
+            val intent = Intent(this, MyVisitStoreActivity::class.java)
+            startActivity(intent)
         }
 
         binding.subscriptionMainButtonGroup.newProduct.root.setOnClickListener {
-
+            val intent = Intent(this, NewProductActivity::class.java)
+            startActivity(intent)
         }
 
         binding.subscriptionMainButtonGroup.myPage.root.setOnClickListener {
-
+            val intent = Intent(this, MyPageActivity::class.java)
+            startActivity(intent)
         }
 
         binding.subscriptionMainPopupGroup.popUpStoreMoreText.setOnClickListener {

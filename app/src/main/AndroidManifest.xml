@@ -22,11 +22,6 @@
         <activity
             android:name=".main.MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".socialLogIn.PurchaseTestActivity"
@@ -42,7 +37,13 @@
             android:exported="false" />
         <activity
             android:name=".socialLogIn.SocialLoginActivity"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".popUpStore.PopUpStoreActivity"
             android:exported="false" />
@@ -56,7 +57,7 @@
             android:name=".newProduct.UserNewProductActivity"
             android:exported="false" />
         <activity
-            android:name=".myBooking.MyBooking"
+            android:name=".myBooking.MyBookingActivity"
             android:exported="false" />
         <activity
             android:name=".myPage.MyPageActivity"
