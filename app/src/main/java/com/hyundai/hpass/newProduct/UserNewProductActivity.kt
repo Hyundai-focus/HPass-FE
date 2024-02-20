@@ -19,8 +19,8 @@ import java.util.Locale
  *
  */
 class UserNewProductActivity : AppCompatActivity() {
-    lateinit var viewModel: NewProductViewModel
-    lateinit var binding : NewProductActivityUserNewProductBinding
+    private lateinit var viewModel: NewProductViewModel
+    private lateinit var binding : NewProductActivityUserNewProductBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = NewProductActivityUserNewProductBinding.inflate(layoutInflater)

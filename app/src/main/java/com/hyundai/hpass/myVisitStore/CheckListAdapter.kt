@@ -15,7 +15,6 @@ import com.hyundai.hpass.myVisitStore.model.response.StoreListResponse
 class CheckListAdapter(private val items : List<StoreListResponse>) : RecyclerView.Adapter<CheckListAdapter.CheckListViewHolder>() {
     class CheckListViewHolder(val binding: MyVisitStoreItemCheckListBinding) : RecyclerView.ViewHolder(binding.root)
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CheckListViewHolder {
         val binding = MyVisitStoreItemCheckListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CheckListViewHolder(binding)

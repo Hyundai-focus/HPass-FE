@@ -14,7 +14,7 @@ import com.hyundai.hpass.subscription.SubscriptionMainActivity
  *
  */
 class MyPageMainActivity:AppCompatActivity() {
-    lateinit var binding: MyPageActivityMainBinding
+    private lateinit var binding: MyPageActivityMainBinding
     private lateinit var viewModel: MyPageViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,7 +37,7 @@ class MyPageMainActivity:AppCompatActivity() {
             if(userInfo.status){//구독자 전용
                 binding.mypageUserStatus.text="구독중"
                 binding.myPageSubsButton.setOnClickListener {
-                    val intent = Intent(this, SubscriptionMainActivity::class.java)
+                    val intent = Intent(this, MyPageActivity::class.java)
                     startActivity(intent)
                     finish()
                 }

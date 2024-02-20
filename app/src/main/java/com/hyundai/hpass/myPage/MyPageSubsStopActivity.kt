@@ -12,7 +12,7 @@ import com.hyundai.hpass.newProduct.ImpossibleNewProductDialog
  *
  */
 class MyPageSubsStopActivity : AppCompatActivity() {
-    lateinit var binding: MyPageActivityStopSubscriptionBinding
+    private lateinit var binding: MyPageActivityStopSubscriptionBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = MyPageActivityStopSubscriptionBinding.inflate(layoutInflater)
