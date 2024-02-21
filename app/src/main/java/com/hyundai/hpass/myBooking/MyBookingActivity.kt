@@ -3,9 +3,11 @@ package com.hyundai.hpass.myBooking
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageButton
 
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hyundai.hpass.R
 import java.time.format.DateTimeFormatter
@@ -17,28 +19,37 @@ import java.time.format.DateTimeFormatter
  */
 class MyBookingActivity : AppCompatActivity() {
     private lateinit var viewModel: MyBookingViewModel
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: MyBookingAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.my_booking_activity_my_booking)
+
+        // RecyclerView 초기화
+        recyclerView = findViewById(R.id.MyBookingList)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        adapter = MyBookingAdapter(emptyList())
+        recyclerView.adapter = adapter
 
         viewModel = ViewModelProvider(this).get(MyBookingViewModel::class.java)
 
         // 데이터 관찰
         viewModel.bookingInfoList.observe(this, Observer { bookingList ->
             // 예약 정보가 업데이트될 때마다 실행되는 코드
-            updateUI(bookingList)
+            adapter.updateData(bookingList)
         })
 
         // 예약 정보 로드
         viewModel.loadBookings()
         Log.d("MyBookingActivity", "Loading bookings...")
+
+        backEvent()
     }
 
-    private fun updateUI(bookingList: List<MyBookingDTO>) {
-        // 예약된 팝업스토어 정보를 UI에 업데이트
-        val recyclerView: RecyclerView = findViewById(R.id.MyBookingList)
-        val adapter = MyBookingAdapter(bookingList)
-        recyclerView.adapter = adapter
+    private fun backEvent() {
+        findViewById<ImageButton>(R.id.backButton).setOnClickListener {
+            finish()
+        }
     }
 }
