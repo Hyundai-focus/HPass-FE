@@ -1,5 +1,6 @@
 package com.hyundai.hpass.myBooking
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -26,16 +27,20 @@ class MyBookingViewModel: ViewModel() {
 
     fun loadBookings() {
         viewModelScope.launch {
-            val loadBookingRes = async(Dispatchers.IO) {
+            try {
                 val jwtToken = MyApplication.preferences.getString(BuildConfig.PREF_KEY_TOKEN)
-                RetrofitClient.myBookingService.getMyBooking(jwtToken)
-            }.await()
+                val loadBookingRes = RetrofitClient.myBookingService.getMyBooking(jwtToken)
+                Log.d("MyBookingViewModel", "loadBookings response: $loadBookingRes")
 
-            if (loadBookingRes.isSuccessful) {
-                val bookings = loadBookingRes.body() ?: emptyList()
-                _bookingInfoList.postValue(bookings)
-            } else {
-                _errorMessage.postValue("서버로부터 예상치 못한 응답을 받았습니다: ${loadBookingRes.errorBody()?.string()}")
+                if (loadBookingRes.isSuccessful) {
+                    val bookings = loadBookingRes.body() ?: emptyList()
+                    _bookingInfoList.postValue(bookings)
+                } else {
+                    _errorMessage.postValue("서버로부터 예상치 못한 응답을 받았습니다: ${loadBookingRes.errorBody()?.string()}")
+                }
+            } catch (e: Exception) {
+                Log.e("MyBookingViewModel", "Error loading bookings: ${e.message}", e)
+                _errorMessage.postValue("예약 정보를 불러오는 중 오류가 발생했습니다: ${e.message}")
             }
         }
     }

@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter
  * @author 황수연
  *
  */
-class MyBookingAdapter(private val bookingList: List<MyBookingDTO>, private val dateFormat: DateTimeFormatter, private val timeFormat: DateTimeFormatter) : RecyclerView.Adapter<MyBookingAdapter.MyBookingViewHolder>() {
+class MyBookingAdapter(private val bookingList: List<MyBookingDTO>) : RecyclerView.Adapter<MyBookingAdapter.MyBookingViewHolder>() {
 
     inner class MyBookingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val bookingStore: TextView = itemView.findViewById(R.id.bookingStore)
@@ -22,9 +22,7 @@ class MyBookingAdapter(private val bookingList: List<MyBookingDTO>, private val 
 
         fun bind(booking: MyBookingDTO) {
             bookingStore.text = booking.popupName
-            val bookingDate = LocalDateTime.parse(booking.bookingDt, dateFormat)
-            val bookingTime = LocalDateTime.parse(booking.bookingTime, timeFormat)
-            val periodText = "$bookingDate $bookingTime"
+            val periodText = "${booking.bookingDt} ${booking.bookingTime}"
             period.text = periodText
         }
     }
