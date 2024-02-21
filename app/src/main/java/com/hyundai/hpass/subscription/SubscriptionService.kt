@@ -1,6 +1,6 @@
 package com.hyundai.hpass.subscription
 
-import com.hyundai.hpass.socialLogIn.model.response.LoginResponse
+import com.hyundai.hpass.myPage.model.Subscription
 import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.GET
@@ -23,5 +23,16 @@ interface SubscriptionService {
     suspend fun addSubscriber(
         @Header("Authorization") authorization: String,
         @Query("payment") payment: String
+    ): Response<ResponseBody>
+
+    @GET("/subscription/info")
+    suspend fun getSubscribeInfo(
+        @Header("Authorization") authorization: String
+    ): Response<Subscription>
+
+    @POST("/subscription/stop")
+    suspend fun stopSubscription(
+        @Header("Authorization") authorization: String,
+        @Query("lastDate") lastDate: String
     ): Response<ResponseBody>
 }
