@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.hyundai.hpass.databinding.SocialLoginActivitySocialLoginBinding
+import com.hyundai.hpass.main.MainActivity
 import com.hyundai.hpass.subscription.SubscriptionMainActivity
 
 /**
@@ -54,8 +55,9 @@ class SocialLoginActivity : AppCompatActivity() {
     }
 
     private fun goToMain() {
-        val intent = Intent(this, SubscriptionMainActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        val intent = Intent(this, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+        }
         startActivity(intent)
         finish()
     }

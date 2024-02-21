@@ -27,16 +27,10 @@ import kotlinx.coroutines.launch
  *
  */
 class SocialLoginViewModel: ViewModel() {
-    private val loginPass: MutableLiveData<Boolean> = MutableLiveData()
     private val loginSuccess: MutableLiveData<Boolean> = MutableLiveData()
     val errorMessage: MutableLiveData<String> = MutableLiveData()
-    fun getLoginPass(): LiveData<Boolean> = loginPass
     fun getLoginSuccess(): LiveData<Boolean> = loginSuccess
     fun getErrorMessage(): LiveData<String> = errorMessage
-
-    init {
-        isLogin()
-    }
 
     val profileCallback = object : NidProfileCallback<NidProfileResponse> {
         override fun onSuccess(response: NidProfileResponse) {
@@ -99,37 +93,5 @@ class SocialLoginViewModel: ViewModel() {
         }
     }
 
-    fun isLogin() {
-        val accessToken = MyApplication.preferences.getString(PREF_KEY_TOKEN)
-        Log.d("accessToken 유무", accessToken)
-        if( accessToken != "null"){
-            verifyToken(accessToken)
-        }
-    }
-    private fun verifyToken(accessToken: String) {
-        var verifyResponse: LoginResponse? = null
-        viewModelScope.launch {
-            val verifyRes = async(Dispatchers.IO) {
-                RetrofitClient.memberService.verifyToken(accessToken)
-            }.await()
-            if(verifyRes.isSuccessful){
-                verifyResponse = verifyRes.body()
-                verifyResponse?.let {
-                    Log.d("verifyToken Retrofit 통신:", "성공: $it")
-                    if (it.isMember) {
-                        MyApplication.preferences.setString(PREF_KEY_TOKEN, it.accessToken)
-                        loginPass.postValue(true)
-                    }
-                    if (it.isSubscribed) MyApplication.preferences.setString(PREF_KEY_SUBS, PREF_VALUE_TRUE)
-                    Log.d("verifyToken: userName", it.memberName)
-                }
-                if(verifyResponse == null) {
-                    Log.d("verifyToken Retrofit 통신:", "실패")
-                }
-            }
-            else {
-                Log.d("verifyToken Retrofit 통신:", "실패")
-            }
-        }
-    }
+
 }
