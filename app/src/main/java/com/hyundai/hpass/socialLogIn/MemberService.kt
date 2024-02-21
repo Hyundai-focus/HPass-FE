@@ -24,9 +24,4 @@ interface MemberService {
         @Query("email") email: String,
         @Query("memberName") memberName: String
     ): Response<LoginResponse>
-    @POST("/subscription")
-    suspend fun addSubscriber(
-        @Header("Authorization") authorization: String,
-        @Query("payment") payment: String
-    ): Response<ResponseBody>
 }

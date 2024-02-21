@@ -2,6 +2,7 @@ package com.hyundai.hpass.subscription
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.hyundai.hpass.socialLogIn.MyApplication
 import com.hyundai.hpass.subscription.model.response.NewProductResponse
 import com.hyundai.hpass.subscription.model.response.PopUpStoreResponse
 import com.hyundai.hpass.subscription.model.response.TodayStoreResponse
@@ -13,7 +14,7 @@ import com.hyundai.hpass.subscription.model.response.UserResponse
  *
  */
 class SubscriptionMainViewModel: ViewModel() {
-    private val user: MutableLiveData<UserResponse> = MutableLiveData()
+    private val memberName: MutableLiveData<String> = MutableLiveData()
     private val popUpStore: MutableLiveData<List<PopUpStoreResponse>> = MutableLiveData()
     private val todayStore: MutableLiveData<List<TodayStoreResponse>> = MutableLiveData()
     private val newProduct: MutableLiveData<List<NewProductResponse>> = MutableLiveData()
@@ -26,13 +27,13 @@ class SubscriptionMainViewModel: ViewModel() {
         mockData()
     }
 
-    fun getUser(): MutableLiveData<UserResponse> = user
+    fun getMemberName(): MutableLiveData<String> = memberName
     fun getPopUpStore(): MutableLiveData<List<PopUpStoreResponse>> = popUpStore
     fun getTodayStore(): MutableLiveData<List<TodayStoreResponse>> = todayStore
     fun getNewProduct(): MutableLiveData<List<NewProductResponse>> = newProduct
 
     private fun loadUser() {
-
+        memberName.postValue(MyApplication.preferences.getString("memberName"))
     }
 
     private fun loadPopUpStore() {
@@ -48,7 +49,7 @@ class SubscriptionMainViewModel: ViewModel() {
     }
 
     private fun mockData() {
-        user.value = UserResponse("김기훈", "", "", "")
+//        user.value = UserResponse("김기훈", "", "", "")
 
         popUpStore.value = listOf(
             PopUpStoreResponse(1,"스타벅스", "", "", "", "https://www.ehyundai.com/attachfiles/branch/20210209104434346.jpg"),
