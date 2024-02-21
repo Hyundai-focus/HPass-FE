@@ -14,8 +14,10 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
+import com.hyundai.hpass.BuildConfig
 import com.hyundai.hpass.R
 import com.hyundai.hpass.databinding.AddSubscriptionFragmentInfoBinding
+import com.hyundai.hpass.socialLogIn.MyApplication
 import java.time.LocalDate
 
 class AddSubscriptionInfoFragment : Fragment() {
@@ -86,6 +88,7 @@ class AddSubscriptionInfoFragment : Fragment() {
         }
         viewModel.getSubsSuccess().observe(viewLifecycleOwner){payment ->
             if (payment != "") {
+                MyApplication.preferences.setString(BuildConfig.PREF_KEY_SUBS, BuildConfig.PREF_VALUE_TRUE)
                 val bundle = Bundle().apply {
                     putString("subs_period", binding.subsPeriod.text.toString())
                     putString("subs_endDate", binding.subsEndDate.text.toString())
