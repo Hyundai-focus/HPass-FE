@@ -11,6 +11,7 @@ import com.hyundai.hpass.newProduct.NewProductService
 import com.hyundai.hpass.nfc.NfcService
 import com.hyundai.hpass.popUpStore.PopUpBookingService
 import com.hyundai.hpass.socialLogIn.MemberService
+import com.hyundai.hpass.subscription.SubscriptionService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
@@ -33,9 +34,17 @@ object RetrofitClient {
             .create(MemberService::class.java)
     }
 
-    val gson = GsonBuilder()
+    private val gson = GsonBuilder()
         .setLenient()
         .create()
+
+    val subscriptionService: SubscriptionService by lazy {
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .build()
+            .create(SubscriptionService::class.java)
+    }
 
     val bookingService: PopUpBookingService by lazy {
         Retrofit.Builder()

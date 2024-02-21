@@ -91,9 +91,9 @@ class SubscriptionMainActivity : AppCompatActivity() {
     }
 
     private fun bind() {
-        viewModel.getUser().observe(this) { user ->
-            binding.subscriptionMainHpassGroup.userName.text = user.name + "님은"
-            binding.subscriptionMainGreetingGroup.greetingMessage.text = user.name + "님 안녕하세요!"
+        viewModel.getMemberName().observe(this) { memberName ->
+            binding.subscriptionMainHpassGroup.userName.text = memberName + "님은"
+            binding.subscriptionMainGreetingGroup.greetingMessage.text = memberName + "님 안녕하세요!"
         }
 
         viewModel.getPopUpStore().observe(this) { popUpStoreList ->

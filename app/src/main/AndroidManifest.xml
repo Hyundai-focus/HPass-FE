@@ -22,10 +22,12 @@
         <activity
             android:name=".main.MainActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity
-            android:name=".socialLogIn.PurchaseTestActivity"
-            android:exported="false" />
         <activity
             android:name=".myVisitStore.MyVisitStoreActivity"
             android:exported="false" />
@@ -37,13 +39,7 @@
             android:exported="false" />
         <activity
             android:name=".socialLogIn.SocialLoginActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false"/>
         <activity
             android:name=".popUpStore.PopUpStoreActivity"
             android:exported="false" />
@@ -95,7 +91,8 @@
             android:exported="false" />
         <activity android:name=".nfc.NfcVisitWarnActivity"
             android:exported="false" />
-
+        <activity android:name=".subscription.AddSubscriptionActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

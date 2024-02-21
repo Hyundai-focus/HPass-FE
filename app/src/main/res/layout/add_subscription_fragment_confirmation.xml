@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/add_subs_confirmation_top"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:elevation="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/subs_conf_img"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/happiness_sans_bold"
+            android:gravity="center"
+            android:text="H.Pass"
+            android:textSize="17.5sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:src="@drawable/subscription_confirm"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_subs_confirmation_top"
+        app:layout_constraintBottom_toTopOf="@id/img_guideline"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/img_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.45" />
+
+    <TextView
+        android:id="@+id/subs_conf_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:gravity="center"
+        android:text="결제 및 구독이 완료되었습니다.\n결제하신 방법으로 다음 구독 회차도 결제됩니다."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_guideline"
+        android:textSize="17sp"
+        android:textStyle="bold"/>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.10" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.90" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingVertical="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/confirm_btn"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintStart_toEndOf="@id/guideline_left"
+        app:layout_constraintTop_toBottomOf="@+id/subs_conf_msg">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/guideline_bottom"
+            app:layout_constraintTop_toBottomOf="@id/guideline_top"
+            >
+
+            <TextView
+                android:id="@+id/subs_conf_info_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/new_product_user_history"
+                android:fontFamily="@font/happiness_sans_bold"
+                android:gravity="center"
+                android:paddingHorizontal="18dp"
+                android:paddingVertical="8dp"
+                android:text="구독 기간"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toTopOf="@+id/subs_conf_info_2"
+                app:layout_constraintEnd_toEndOf="@+id/subs_conf_info_4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/subs_conf_text_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="24.02.04 ~ 24.03.03"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/subs_conf_info_1"
+                app:layout_constraintTop_toTopOf="@+id/subs_conf_info_1" />
+
+            <TextView
+                android:id="@+id/subs_conf_info_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/new_product_user_history"
+                android:fontFamily="@font/happiness_sans_bold"
+                android:gravity="center"
+                android:paddingHorizontal="18dp"
+                android:paddingVertical="8dp"
+                android:text="결제 금액"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toTopOf="@+id/subs_conf_info_3"
+                app:layout_constraintEnd_toEndOf="@+id/subs_conf_info_4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/subs_conf_info_1" />
+
+            <TextView
+                android:id="@+id/subs_conf_text_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="4500원"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/subs_conf_info_2"
+                app:layout_constraintTop_toTopOf="@+id/subs_conf_info_2" />
+
+            <TextView
+                android:id="@+id/subs_conf_info_3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/new_product_user_history"
+                android:fontFamily="@font/happiness_sans_bold"
+                android:gravity="center"
+                android:paddingHorizontal="18dp"
+                android:paddingVertical="8dp"
+                android:text="결제 방법"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toTopOf="@+id/subs_conf_info_4"
+                app:layout_constraintEnd_toEndOf="@+id/subs_conf_info_4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/subs_conf_info_2" />
+            <TextView
+                android:id="@+id/subs_conf_text_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="정기결제 (KB국민카드)"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/subs_conf_info_3"
+                app:layout_constraintTop_toTopOf="@+id/subs_conf_info_3" />
+
+            <TextView
+                android:id="@+id/subs_conf_info_4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/new_product_user_history"
+                android:fontFamily="@font/happiness_sans_bold"
+                android:gravity="center"
+                android:paddingHorizontal="18dp"
+                android:paddingVertical="8dp"
+                android:text="결제 예정일"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/subs_conf_info_3" />
+            <TextView
+                android:id="@+id/subs_conf_text_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="24.03.03"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/subs_conf_info_4"
+                app:layout_constraintTop_toTopOf="@+id/subs_conf_info_4" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.04" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.88" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/confirm_btn"
+        android:layout_width="363dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/popup_booking_button_design"
+        android:text="확인"
+        android:textColor="@color/white"
+        android:textSize="17dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
