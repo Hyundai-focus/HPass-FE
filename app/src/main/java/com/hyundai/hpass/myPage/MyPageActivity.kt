@@ -3,6 +3,7 @@ package com.hyundai.hpass.myPage
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.hyundai.hpass.databinding.MyPageActivityMyPageBinding
 import java.time.LocalDate
@@ -34,6 +35,12 @@ class MyPageActivity : AppCompatActivity() {
                 val startLocalDate  = LocalDate.of(startDate[0], startDate[1], startDate[2])
                 binding.myPageSubsDetailStartDate.text = startLocalDate.toString()
                 binding.myPageSubsDetailNextDate.text = viewModel.getNextPaymentDate(startLocalDate)
+                if (subsInfo.lastDate == "9999-99-99") {
+                    binding.endDateText.text = "결제 예정일"
+                    binding.subscriptionStopButton.visibility = View.VISIBLE
+                } else {
+                    binding.endDateText.text = "만료 예정일"
+                }
             }
         }
     }
