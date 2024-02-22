@@ -1,5 +1,6 @@
 package com.hyundai.hpass.popUpStore
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -81,19 +82,27 @@ class CalendarViewModel(
 
     fun insertBooking(item: bookingItem) {
         viewModelScope.launch {
-            val insertRes = async(Dispatchers.IO) {
-                val jwtToken = MyApplication.preferences.getString(PREF_KEY_TOKEN)
-                RetrofitClient.bookingService.insert(jwtToken, item)
-            }.await()
+            try {
+                val insertRes = async(Dispatchers.IO) {
+                    val jwtToken = MyApplication.preferences.getString(PREF_KEY_TOKEN)
+                    RetrofitClient.bookingService.insert(jwtToken, item)
+                }.await()
 
-            if (insertRes.isSuccessful) {
-                _bookingSuccess.postValue(true)
-            } else {
-                _errorMessage.postValue(
-                    "서버로부터 예상치 못한 응답을 받았습니다: ${
-                        insertRes.errorBody()?.string()
-                    }"
-                )
+                if (insertRes.isSuccessful) {
+                    Log.d("여기야 여기", insertRes.body().toString())
+                    _bookingSuccess.postValue(true)
+                } else {
+                    _bookingSuccess.postValue(false)
+                    _errorMessage.postValue(
+                        "서버로부터 예상치 못한 응답을 받았습니다: ${
+                            insertRes.errorBody()?.string()
+                        }"
+                    )
+                }
+            } catch (e: Exception) {
+                _bookingSuccess.postValue(false)
+                Log.e("InsertBooking", "Error inserting booking: ${e.message}", e)
+                _errorMessage.postValue("예약 정보를 삽입하는 중 오류가 발생했습니다: ${e.message}")
             }
         }
     }
