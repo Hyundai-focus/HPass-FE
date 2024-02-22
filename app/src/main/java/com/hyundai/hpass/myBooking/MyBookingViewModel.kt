@@ -17,13 +17,18 @@ import kotlinx.coroutines.launch
  * @author 황수연
  *
  */
-class MyBookingViewModel: ViewModel() {
+class MyBookingViewModel(private val bookingNo: Int): ViewModel() {
     private val _bookingInfoList = MutableLiveData<List<MyBookingDTO>>()
     val bookingInfoList: LiveData<List<MyBookingDTO>>
         get() = _bookingInfoList
 
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> = _errorMessage
+
+    private val _successMessage = MutableLiveData<String>()
+    val successMessage: LiveData<String> = _successMessage
+
+    val deleteSuccess = MutableLiveData<Boolean>()
 
     fun loadBookings() {
         viewModelScope.launch {
@@ -44,4 +49,34 @@ class MyBookingViewModel: ViewModel() {
             }
         }
     }
+
+    fun deleteBooking() {
+        viewModelScope.launch {
+            try {
+                val jwtToken = MyApplication.preferences.getString(BuildConfig.PREF_KEY_TOKEN)
+                val deleteRes = RetrofitClient.myBookingService.deleteBooking(jwtToken, bookingNo)
+                Log.d("MyBookingViewModel", "deleteBooking response: $deleteRes")
+
+                if (deleteRes.isSuccessful) {
+                    _successMessage.postValue("예약이 성공적으로 취소되었습니다.")
+
+                    // 예약 목록 새로고침
+                    loadBookings()
+
+                    // 삭제 성공 여부 저장
+                    deleteSuccess.postValue(true)
+                } else {
+                    _errorMessage.postValue("서버로부터 예상치 못한 응답을 받았습니다: ${deleteRes.errorBody()?.string()}")
+
+                    // 삭제 실패 여부 저장
+                    deleteSuccess.postValue(false)
+                }
+            } catch (e: Exception) {
+                Log.e("MyBookingViewModel", "Error delete bookings: ${e.message}", e)
+                _errorMessage.postValue("예약을 삭제하는 중 오류가 발생했습니다: ${e.message}")
+            }
+        }
+    }
+
+    constructor(): this(0)
 }

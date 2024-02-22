@@ -5,6 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -23,6 +25,7 @@ class MyBookingAdapter(private var bookingList: List<MyBookingDTO>) : RecyclerVi
         private val bookingStore: TextView = itemView.findViewById(R.id.bookingStore)
         private val period: TextView = itemView.findViewById(R.id.period)
         private val image: ImageView = itemView.findViewById(R.id.popUpStoreImage)
+        private val deleteButton: AppCompatButton = itemView.findViewById(R.id.delete_btn)
 
         fun bind(booking: MyBookingDTO) {
             bookingStore.text = booking.popupName
@@ -33,6 +36,13 @@ class MyBookingAdapter(private var bookingList: List<MyBookingDTO>) : RecyclerVi
                 .load(booking.popupImg)
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .into(image)
+
+            // 삭제 버튼 클릭 이벤트 처리
+            deleteButton.setOnClickListener {
+                val context = itemView.context
+                val dialogFragment = MyBookingDeleteBottomSheetDialogFragment(booking)
+                dialogFragment.show((context as AppCompatActivity).supportFragmentManager, dialogFragment.tag)
+            }
         }
     }
 
