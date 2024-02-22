@@ -180,7 +180,6 @@ class CalendarBottomSheetDialogFragment(private val storeData: PopUpStoreRespons
                     bookingDt = selectedDate
                 )
                 Log.d("insert item", item.toString())
-                viewModel.insertBooking(item)
 
                 viewModel.bookingSuccess.observe(viewLifecycleOwner) { success ->
                     if (success) {
@@ -190,8 +189,14 @@ class CalendarBottomSheetDialogFragment(private val storeData: PopUpStoreRespons
                             putExtra("storeName", storeData.name)
                         }
                         startActivity(intent)
+                    } else {
+                        // 예약 불가능한 경우
+                        val dialogFragment = ImpossibleBookingDialog()
+                        dialogFragment.show(childFragmentManager, "impossibleBookingDialog")
                     }
                 }
+
+                viewModel.insertBooking(item)
             } else {
                 // 예약 불가능한 경우
                 val dialogFragment = ImpossibleBookingDialog()
