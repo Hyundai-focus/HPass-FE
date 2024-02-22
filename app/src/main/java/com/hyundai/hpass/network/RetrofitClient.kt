@@ -90,7 +90,8 @@ object RetrofitClient {
     val myBookingService: MyBookingService by lazy{
         Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(ScalarsConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(MyBookingService::class.java)
     }
