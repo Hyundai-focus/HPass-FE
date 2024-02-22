@@ -8,8 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.hyundai.hpass.BuildConfig
 import com.hyundai.hpass.network.RetrofitClient
 import com.hyundai.hpass.socialLogIn.MyApplication
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 /**
@@ -50,7 +48,7 @@ class MyBookingViewModel(private val bookingNo: Int): ViewModel() {
         }
     }
 
-    fun deleteBooking() {
+    fun deleteBooking(bookingNo: Int) {
         viewModelScope.launch {
             try {
                 val jwtToken = MyApplication.preferences.getString(BuildConfig.PREF_KEY_TOKEN)
