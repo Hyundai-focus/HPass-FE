@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.hyundai.hpass.R
 import com.hyundai.hpass.databinding.MyBookingDeleteBinding
-import com.hyundai.hpass.popUpStore.PopUpBookingConfirmationActivity
 
 /**
  *
@@ -54,7 +53,8 @@ class MyBookingDeleteBottomSheetDialogFragment(private val booking: MyBookingDTO
         }
 
         yes.setOnClickListener {
-            viewModel.deleteBooking()
+            val bookingNo = booking.bookingNo
+            viewModel.deleteBooking(bookingNo)
         }
 
         viewModel.deleteSuccess.observe(viewLifecycleOwner) { success ->
