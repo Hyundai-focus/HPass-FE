@@ -3,13 +3,11 @@ package com.hyundai.hpass.main
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.hyundai.hpass.R
 import com.hyundai.hpass.databinding.MainActivityBinding
 import com.hyundai.hpass.socialLogIn.MyApplication
-import com.hyundai.hpass.socialLogIn.SocialLoginViewModel
 
 
 class MainActivity : AppCompatActivity() {
@@ -21,13 +19,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = MainActivityBinding.inflate(layoutInflater)
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        bind()
         setContentView(binding.root)
+
+        bind()
         configureEvent()
     }
 
     private fun configureEvent() {
-        binding.mainPage.setOnClickListener {
+        binding.overlay.setOnClickListener {
             val intent = Intent(this, HamburgerMenuActivity::class.java)
             startActivity(intent)
         }
@@ -37,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.getLoginPass().observe(this) { pass ->
             MyApplication.preferences.setString("loginPass", pass.toString())
             Log.d("MainActivity: 로그인 여부",MyApplication.preferences.getString("loginPass"))
+
             if (pass) {
                 binding.mainPage.setImageResource(R.drawable.main_page_login)
             } else {
