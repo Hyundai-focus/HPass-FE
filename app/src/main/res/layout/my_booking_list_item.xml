@@ -67,6 +67,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/guidelineH95"
             app:layout_constraintStart_toStartOf="@id/guidelineV05"
+            app:layout_constraintEnd_toEndOf="@id/guidelineV95"
             app:layout_constraintTop_toBottomOf="@id/period" />
 
         <androidx.constraintlayout.widget.Guideline

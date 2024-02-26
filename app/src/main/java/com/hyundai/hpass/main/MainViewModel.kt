@@ -20,7 +20,9 @@ import kotlinx.coroutines.launch
  */
 class MainViewModel : ViewModel() {
     private val loginPass: MutableLiveData<Boolean> = MutableLiveData()
+    private val isSubscribed: MutableLiveData<Boolean> = MutableLiveData()
     fun getLoginPass(): LiveData<Boolean> = loginPass
+    fun getIsSubscribed(): LiveData<Boolean> = isSubscribed
 
     init {
         isLogin()
@@ -48,6 +50,7 @@ class MainViewModel : ViewModel() {
                         Log.d("verifyToken: userName", it.memberName)
                         MyApplication.preferences.setString("memberName", it.memberName)
                         loginPass.postValue(true)
+                        isSubscribed.postValue(it.isSubscribed)
                     } else loginPass.postValue(false)
                     if (it.isSubscribed) MyApplication.preferences.setString(
                         BuildConfig.PREF_KEY_SUBS,

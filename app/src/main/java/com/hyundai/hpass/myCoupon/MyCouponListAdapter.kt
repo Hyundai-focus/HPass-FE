@@ -3,15 +3,16 @@ package com.hyundai.hpass.myCoupon
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.hyundai.hpass.databinding.MyCouponListItemBinding
-import com.hyundai.hpass.myCoupon.model.response.CouponResponse
+import com.hyundai.hpass.myCoupon.model.response.MyCouponResponse
 
 /**
  *
  * @author 김기훈
  *
  */
-class MyCouponListAdapter(private val couponList: List<CouponResponse>): RecyclerView.Adapter<MyCouponListAdapter.MyViewHolder>() {
+class MyCouponListAdapter(private val couponList: List<MyCouponResponse>): RecyclerView.Adapter<MyCouponListAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(binding: MyCouponListItemBinding): RecyclerView.ViewHolder(binding.root) {
         val image = binding.popUpStoreImage
@@ -32,6 +33,10 @@ class MyCouponListAdapter(private val couponList: List<CouponResponse>): Recycle
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val coupon = couponList[position]
 
+        Glide.with(holder.root.context)
+            .load(coupon.image)
+            .into(holder.image)
+        holder.location.text = coupon.brand
         holder.name.text = coupon.content
         holder.startDate.text = coupon.startDate
         holder.endDate.text = coupon.endDate

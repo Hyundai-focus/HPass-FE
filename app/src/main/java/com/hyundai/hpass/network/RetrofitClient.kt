@@ -1,15 +1,15 @@
 package com.hyundai.hpass.network
 
-import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.hyundai.hpass.BuildConfig
-import com.hyundai.hpass.BuildConfig.BASE_URL
 import com.hyundai.hpass.myBooking.MyBookingService
+import com.hyundai.hpass.myCoupon.MyCouponService
 import com.hyundai.hpass.myPage.MyPageService
 import com.hyundai.hpass.myVisitStore.MyVisitStoreService
 import com.hyundai.hpass.newProduct.NewProductService
 import com.hyundai.hpass.nfc.NfcService
 import com.hyundai.hpass.popUpStore.PopUpBookingService
+import com.hyundai.hpass.popUpStore.PopUpStoreService
 import com.hyundai.hpass.socialLogIn.MemberService
 import com.hyundai.hpass.subscription.SubscriptionService
 import retrofit2.Retrofit
@@ -71,7 +71,7 @@ object RetrofitClient {
             .create(NewProductService::class.java)
     }
 
-    val myPageService : MyPageService by lazy{
+    val myPageService : MyPageService by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -94,5 +94,22 @@ object RetrofitClient {
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(MyBookingService::class.java)
+    }
+
+    val popUpStoreService: PopUpStoreService by lazy {
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(ScalarsConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .build()
+            .create(PopUpStoreService::class.java)
+    }
+
+    val myCouponService: MyCouponService by lazy {
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(MyCouponService::class.java)
     }
 }
