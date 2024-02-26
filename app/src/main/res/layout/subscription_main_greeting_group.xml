@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@drawable/new_product_user_history"
-    android:padding="20dp"
+    android:padding="15dp"
     >
 
     <TextView
@@ -12,13 +12,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="김현대님 안녕하세요!"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:paddingBottom="5dp"
+        />
 
     <TextView
         android:id="@+id/welcomeMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="현대백화점에 오신것을 환영해요!"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        />
 
 </LinearLayout>

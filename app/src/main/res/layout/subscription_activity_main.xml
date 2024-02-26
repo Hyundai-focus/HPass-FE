@@ -16,8 +16,8 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="@id/guidelineV95"
             app:layout_constraintStart_toStartOf="@id/guidelineV05"
-            android:paddingTop="30dp"
-            android:paddingBottom="30dp">
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp">
 
             <include
                 android:id="@+id/subscriptionMainHpassGroup"
@@ -36,7 +36,7 @@
                 layout="@layout/subscription_main_button_group"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 />
             <include
                 android:id="@+id/subscriptionMainPopupGroup"

@@ -11,7 +11,6 @@ import com.hyundai.hpass.R
 import com.hyundai.hpass.databinding.HamburgerMenuActivityBinding
 import com.hyundai.hpass.myPage.MyPageMainActivity
 import com.hyundai.hpass.socialLogIn.MyApplication
-import com.hyundai.hpass.socialLogIn.SocialLoginActivity
 import com.hyundai.hpass.socialLogIn.SocialLoginViewModel
 import com.hyundai.hpass.subscription.AddSubscriptionActivity
 import com.hyundai.hpass.subscription.SubscriptionMainActivity
@@ -33,14 +32,18 @@ class HamburgerMenuActivity : AppCompatActivity() {
 
     private fun configureUI() {
         if (MyApplication.preferences.getString("loginPass") == "true") {
-            binding.menuImage.setImageResource(R.drawable.hamburger_manu_login)
+            binding.login.setImageResource(R.drawable.hamburger_login)
         } else {
-            binding.menuImage.setImageResource(R.drawable.hamburger_menu_not_login)
+            binding.login.setImageResource(R.drawable.hamburger_not_login)
         }
     }
 
     private fun configureEvent() {
-        binding.menuImage.setOnClickListener {
+        binding.header.setOnClickListener {
+            finish()
+        }
+
+        binding.login.setOnClickListener {
             if (MyApplication.preferences.getString("loginPass") == "true") {
                 val intent = Intent(this, MyPageMainActivity::class.java)
                 startActivity(intent)
@@ -49,7 +52,7 @@ class HamburgerMenuActivity : AppCompatActivity() {
             }
         }
 
-        binding.menuText.setOnClickListener {
+        binding.hMenuText.setOnClickListener {
             Log.d("HamburgerMenuActivity: 로그인 여부",MyApplication.preferences.getString("loginPass"))
             Log.d("HamburgerMenuActivity: 구독 여부",MyApplication.preferences.getString(BuildConfig.PREF_KEY_SUBS))
             if (MyApplication.preferences.getString("loginPass") != "true") {

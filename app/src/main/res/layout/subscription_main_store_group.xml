@@ -13,23 +13,26 @@
 
         <TextView
             android:id="@+id/todayStoreButtonTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Today's Store"
-            android:textSize="25sp"
+            android:textSize="23sp"
             android:textStyle="bold"
+            android:layout_margin="5dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <TextView
             android:id="@+id/todayStoreMoreText"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/clear"
             android:text="더보기 >"
             android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:gravity="end"
             app:layout_constraintBottom_toBottomOf="parent"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>

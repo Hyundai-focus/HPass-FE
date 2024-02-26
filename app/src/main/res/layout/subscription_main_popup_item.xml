@@ -24,8 +24,10 @@
 
             <TextView
                 android:id="@+id/popUpStoreTitle"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="10dp"
                 android:text="[POP UP]"
                 android:textColor="@color/white"
                 android:textSize="25sp"
@@ -34,8 +36,10 @@
 
             <TextView
                 android:id="@+id/popUpStoreName"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="15dp"
                 android:text="팝업스토어 가게 이름"
                 android:textColor="@color/white"
                 android:textSize="25sp"
