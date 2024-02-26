@@ -8,10 +8,10 @@ import com.google.gson.annotations.SerializedName
  *
  */
 data class PopUpStoreResponse (
-    @SerializedName("popup_no") val no: Int,
-    @SerializedName("popup_name") val name: String,
-    @SerializedName("popup_start_dt") val startDate: String,
-    @SerializedName("popup_end_dt") val endDate: String,
-    @SerializedName("popup_loc") val location: String,
-    @SerializedName("popup_img") val image: String
+    @SerializedName("popUpNo") val no: Int,
+    @SerializedName("popUpName") val name: String,
+    @SerializedName("popUpStartDate") val startDate: String,
+    @SerializedName("popUpEndDate") val endDate: String,
+    @SerializedName("pupUpLocation") val location: String,
+    @SerializedName("popUpImage") val image: String
 )

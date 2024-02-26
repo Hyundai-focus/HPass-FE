@@ -5,17 +5,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.hyundai.hpass.R
 import com.hyundai.hpass.databinding.SubscriptionMainNewproductItemBinding
-import com.hyundai.hpass.databinding.SubscriptionMainPopupItemBinding
-import com.hyundai.hpass.subscription.model.response.NewProductResponse
+import com.hyundai.hpass.newProduct.model.response.NewItemListResponse
 
 /**
  *
  * @author 김기훈
  *
  */
-class NewProductListAdapter(private val productList: List<NewProductResponse>): RecyclerView.Adapter<NewProductListAdapter.MyViewHolder>() {
+class NewProductListAdapter(private val productList: List<NewItemListResponse>): RecyclerView.Adapter<NewProductListAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(binding: SubscriptionMainNewproductItemBinding): RecyclerView.ViewHolder(binding.root) {
         val image = binding.newProductImage
@@ -36,12 +34,12 @@ class NewProductListAdapter(private val productList: List<NewProductResponse>): 
 
         Glide
             .with(holder.root.context)
-            .load(productData.image)
+            .load(productData.productImg)
             .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
             .into(holder.image)
 
-        holder.productName.text = productData.name
-        holder.storeName.text = productData.brand
+        holder.productName.text = productData.productName
+        holder.storeName.text = productData.productBrand
     }
 
     override fun getItemCount(): Int {

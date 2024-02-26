@@ -3,6 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.NFC" />
+
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="true" />
 
     <application
         android:name=".socialLogIn.MyApplication"
@@ -33,7 +38,18 @@
             android:exported="false" />
         <activity
             android:name=".nfc.NfcMainActivity"
-            android:exported="false" />
+            android:exported="true"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:scheme="hpass"
+                    android:host="hyundai.com"
+                    android:pathPrefix="/nfc"
+                    />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".subscription.SubscriptionMainActivity"
             android:exported="false" />
@@ -42,9 +58,6 @@
             android:exported="false"/>
         <activity
             android:name=".popUpStore.PopUpStoreActivity"
-            android:exported="false" />
-        <activity
-            android:name=".onBoarding.OnBoardingActivity"
             android:exported="false" />
         <activity
             android:name=".newProduct.NewProductActivity"
@@ -60,7 +73,7 @@
             android:exported="true" />
         <activity
             android:name=".myPage.MyPageMainActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".myPage.MyPageSubsStopActivity"
             android:exported="false" />
@@ -70,26 +83,8 @@
         <activity
             android:name=".myCoupon.MyCouponActivity"
             android:exported="false" />
-
         <activity
             android:name=".popUpStore.PopUpBookingConfirmationActivity"
-            android:exported="false" />
-
-        <activity android:name=".nfc.NfcFailUserActivity"
-            android:exported="false" />
-        <activity android:name=".nfc.NfcFailInfoActivity"
-            android:exported="false" />
-        <activity android:name=".nfc.NfcPopUpActivity"
-            android:exported="false" />
-        <activity android:name=".nfc.NfcProductActivity"
-            android:exported="false" />
-        <activity android:name=".nfc.NfcVisitActivity"
-            android:exported="false" />
-        <activity android:name=".nfc.NfcVisitFianlActivity"
-            android:exported="false" />
-        <activity android:name=".nfc.NfcVisitWarnNotTodayActivity"
-            android:exported="false" />
-        <activity android:name=".nfc.NfcVisitWarnActivity"
             android:exported="false" />
         <activity android:name=".subscription.AddSubscriptionActivity"
             android:exported="false" />
