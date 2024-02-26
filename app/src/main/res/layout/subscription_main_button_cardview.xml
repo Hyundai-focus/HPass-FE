@@ -2,11 +2,16 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:cardCornerRadius="20dp"
+    app:cardPreventCornerOverlap="true"
+    app:strokeColor="@color/transparent"
+    app:cardElevation="2dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         >
 
         <ImageView
@@ -25,15 +30,16 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:text="나의 예약"
-            android:textSize="12sp"
-            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:textColor="@color/gray"
             android:maxLines="1"
             android:ellipsize="end"
             android:gravity="center"
             app:layout_constraintTop_toBottomOf="@id/guidelineH70"
             app:layout_constraintStart_toStartOf="@id/guidelineV05"
             app:layout_constraintEnd_toEndOf="@id/guidelineV95"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineH95"
             />
 
         <androidx.constraintlayout.widget.Guideline
