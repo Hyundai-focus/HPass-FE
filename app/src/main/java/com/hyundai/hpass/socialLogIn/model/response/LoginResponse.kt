@@ -8,6 +8,7 @@ package com.hyundai.hpass.socialLogIn.model.response
 data class LoginResponse (
     val isMember: Boolean,
     val memberName: String,
+    val memberNo: Int,
     val isSubscribed: Boolean,
     val accessToken: String,
     val refreshToken: String
