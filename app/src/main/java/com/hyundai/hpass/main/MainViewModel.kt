@@ -49,6 +49,7 @@ class MainViewModel : ViewModel() {
                         MyApplication.preferences.setString(BuildConfig.PREF_KEY_TOKEN, it.accessToken)
                         Log.d("verifyToken: userName", it.memberName)
                         MyApplication.preferences.setString("memberName", it.memberName)
+                        MyApplication.preferences.setString("memberNo", it.memberNo.toString())
                         loginPass.postValue(true)
                         isSubscribed.postValue(it.isSubscribed)
                     } else loginPass.postValue(false)
