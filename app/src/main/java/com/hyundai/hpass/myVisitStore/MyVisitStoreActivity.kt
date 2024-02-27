@@ -14,7 +14,6 @@ class MyVisitStoreActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = MyVisitStoreActivityMyVisitStoreBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         viewModel = ViewModelProvider(this)[MyVIsitStoreViewModel::class.java]
 
         configureEvent()
@@ -22,7 +21,6 @@ class MyVisitStoreActivity : AppCompatActivity() {
     }
     private fun configureEvent(){
         viewModel.getStoreList()
-
         binding.backButton.setOnClickListener {
             finish()
         }
@@ -33,7 +31,7 @@ class MyVisitStoreActivity : AppCompatActivity() {
             checkListItem.adapter = CheckListAdapter(storeList)
 
             val storeListItem = binding.myVisitStoreStoreList
-            storeListItem.adapter = StoreListAdapter(storeList)
+            storeListItem.adapter = StoreListAdapter(storeList,supportFragmentManager)
         }
     }
 }
