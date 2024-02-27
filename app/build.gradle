@@ -88,4 +88,7 @@ dependencies {
     //bootpay
     implementation 'io.github.bootpay:android:+'
     implementation 'io.github.bootpay:android-bio:+'
+
+    // OkHttp 웹소켓 라이브러리
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
 }
