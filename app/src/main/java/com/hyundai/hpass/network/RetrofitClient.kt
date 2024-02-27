@@ -79,9 +79,10 @@ object RetrofitClient {
             .create(MyPageService::class.java)
     }
 
-    val nfcService : NfcService by lazy{
+    val nfcService : NfcService by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
+            .addConverterFactory(EmptyToNullConverterFactory())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(NfcService::class.java)

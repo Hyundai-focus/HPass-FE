@@ -5,9 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hyundai.hpass.BuildConfig
+import com.hyundai.hpass.myVisitStore.model.response.StoreListResponse
 import com.hyundai.hpass.network.RetrofitClient
+import com.hyundai.hpass.nfc.model.PopUpBookingResponse
 import com.hyundai.hpass.socialLogIn.MyApplication
-import com.hyundai.hpass.subscription.model.response.PopUpStoreResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -20,27 +21,37 @@ import kotlinx.coroutines.launch
 class NfcViewModel : ViewModel() {
     private val token = MyApplication.preferences.getString(BuildConfig.PREF_KEY_TOKEN)
 
-    private val popUpStore: MutableLiveData<PopUpStoreResponse?> = MutableLiveData()
-    private val visitStore: MutableLiveData<Boolean> = MutableLiveData()
-    private val coupon: MutableLiveData<Boolean> = MutableLiveData()
+    private val popUpStore: MutableLiveData<PopUpBookingResponse?> = MutableLiveData()
+    private val visitStore: MutableLiveData<StoreListResponse> = MutableLiveData()
+    private val coupon: MutableLiveData<String> = MutableLiveData()
     private val isHPass: MutableLiveData<Boolean> = MutableLiveData()
+    private val isSuccessVisitFiveStore: MutableLiveData<Boolean> = MutableLiveData(false)
+    private val promotionCoupon: MutableLiveData<String> = MutableLiveData()
 
     fun getPopUpStore() = popUpStore
     fun getVisitStore() = visitStore
     fun getCoupon() = coupon
     fun getIsHPass() = isHPass
+    fun getIsSuccessVisitFiveStore() = isSuccessVisitFiveStore
+    fun getPromotionCoupon() = promotionCoupon
 
     fun fetchData(uri: Uri) {
-        val type = uri.getQueryParameter("type")
+        when (uri.getQueryParameter("type")) {
+            "popupstore" -> {
+                checkPopUpStore(uri.getQueryParameter("popupstoreno"))
+            }
 
-        if (type == "popupstore") {
-            checkPopUpStore(uri.getQueryParameter("popupstoreno"))
-        } else if (type == "store") {
-            visitStore(uri.getQueryParameter("storeno"))
-        } else if (type == "coupon") {
-            issueCoupon(uri.getQueryParameter("couponno"))
-        } else if (type == "subscription") {
-            isHPass.postValue(true)
+            "store" -> {
+                visitStore(uri.getQueryParameter("storeno"))
+            }
+
+            "coupon" -> {
+                issueCoupon(uri.getQueryParameter("couponno"))
+            }
+
+            "subscription" -> {
+                isHPass.postValue(true)
+            }
         }
     }
 
@@ -52,12 +63,10 @@ class NfcViewModel : ViewModel() {
                 }
             }.await()
 
-            popUpRes?.let {
-                if (popUpRes.isSuccessful) {
-//                    popUpStore.postValue()
-                } else {
-                    popUpStore.postValue(null)
-                }
+            if (popUpRes?.isSuccessful == true && popUpRes.body() != null) {
+                popUpStore.postValue(popUpRes.body())
+            } else {
+                popUpStore.postValue(null)
             }
         }
     }
@@ -70,11 +79,18 @@ class NfcViewModel : ViewModel() {
                 }
             }.await()
 
-            numRes?.let {
-                if (numRes.isSuccessful) {
-                    visitStore.postValue(true)
-                } else {
-                    visitStore.postValue(false)
+            if (numRes?.isSuccessful == true && numRes.body() != null) {
+                visitStore.postValue(numRes.body())
+
+
+                val visitStoreCountRes = async(Dispatchers.IO) {
+                    RetrofitClient.nfcService.visitNum(token)
+                }.await()
+
+                if (visitStoreCountRes.isSuccessful && visitStoreCountRes.body() != null) {
+                    if (visitStoreCountRes.body().toString() == "5") {
+                        isSuccessVisitFiveStore.postValue(true)
+                    }
                 }
             }
         }
@@ -88,12 +104,20 @@ class NfcViewModel : ViewModel() {
                 }
             }.await()
 
-            couponRes?.let {
-                if (couponRes.isSuccessful) {
-                    coupon.postValue(true)
-                } else {
-                    coupon.postValue(false)
-                }
+            if (couponRes?.isSuccessful == true && couponRes.body() != null) {
+                coupon.postValue(couponRes.body().toString())
+            }
+        }
+    }
+
+    fun issuePromotionCoupon() {
+        viewModelScope.launch {
+            val promotionCouponRes = async(Dispatchers.IO) {
+                RetrofitClient.nfcService.issueCoupon(0, token)
+            }.await()
+
+            if (promotionCouponRes.isSuccessful && promotionCouponRes.body() != null) {
+                promotionCoupon.postValue(promotionCouponRes.body().toString())
             }
         }
     }
