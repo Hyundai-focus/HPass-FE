@@ -35,5 +35,5 @@ interface NfcService {
     suspend fun issueCoupon(
         @Path("couponNo") couponNo: Long,
         @Header("Authorization") Authorization: String
-    ): Response<Boolean?>
+    ): Response<Boolean>
 }

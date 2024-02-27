@@ -6,6 +6,63 @@
     android:layout_height="match_parent"
     tools:context=".nfc.NfcMainActivity">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cardViewLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@id/guidelineH15"
+        app:layout_constraintBottom_toBottomOf="@id/guidelineH60"
+        app:layout_constraintStart_toStartOf="@id/guidelineV10"
+        app:layout_constraintEnd_toEndOf="@id/guidelineV90"
+        android:visibility="invisible"
+        >
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineH80"
+            />
+
+        <TextView
+            android:id="@+id/storeName"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:textColor="@color/black"
+            android:text="가게이름"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:fontFamily="@font/happiness_sans_bold"
+            app:layout_constraintTop_toBottomOf="@id/image"
+            app:layout_constraintBottom_toTopOf="@id/bookingTime"
+            />
+
+        <TextView
+            android:id="@+id/bookingTime"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:textColor="@color/black"
+            android:text="시간"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:fontFamily="@font/happiness_sans_bold"
+            app:layout_constraintTop_toBottomOf="@id/storeName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guidelineH80"
+            app:layout_constraintGuide_percent="0.80"
+            android:orientation="horizontal"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottieFail"
         android:layout_width="0dp"
@@ -23,12 +80,12 @@
         android:id="@+id/lottieCheck"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@id/guidelineH60"
         app:layout_constraintEnd_toEndOf="@id/guidelineV90"
         app:layout_constraintStart_toStartOf="@id/guidelineV10"
         app:layout_constraintTop_toTopOf="@id/guidelineH15"
         app:lottie_autoPlay="true"
+        android:visibility="invisible"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/check" />
 
@@ -43,7 +100,20 @@
         app:lottie_autoPlay="true"
         android:visibility="invisible"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/fail" />
+        app:lottie_rawRes="@raw/alert" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieFiveStart"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/guidelineH60"
+        app:layout_constraintEnd_toEndOf="@id/guidelineV90"
+        app:layout_constraintStart_toStartOf="@id/guidelineV10"
+        app:layout_constraintTop_toTopOf="@id/guidelineH15"
+        app:lottie_autoPlay="true"
+        android:visibility="invisible"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/five_star" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -51,7 +121,7 @@
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@id/confirmButton"
-        app:layout_constraintTop_toBottomOf="@id/lottieCheck">
+        app:layout_constraintTop_toBottomOf="@id/lottieFail">
 
         <TextView
             android:id="@+id/info_text"
@@ -84,6 +154,36 @@
         android:text="확인"
         android:textColor="@color/white"
         android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/issueButton"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/new_product_apply_button"
+        android:fontFamily="@font/happiness_sans_bold"
+        android:text="쿠폰 발급받기"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/finishButton"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/new_product_apply_button"
+        android:fontFamily="@font/happiness_sans_bold"
+        android:text="확인"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
