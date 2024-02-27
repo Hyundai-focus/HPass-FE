@@ -28,7 +28,10 @@ class MyVIsitStoreViewModel: ViewModel()  {
             val storeRes = async(Dispatchers.IO){
                 RetrofitClient.myVisitStoreService.getStoreList(token)
             }.await()
-            if (storeRes.isSuccessful) storeList.postValue(storeRes.body()!!)
+            if (storeRes.isSuccessful) {
+                val sortedStoreList = storeRes.body()!!.sortedBy { it.storeFloor.firstOrNull { it.isDigit() } }
+                storeList.postValue(sortedStoreList)
+            }
             else errorMessage.postValue("상점 목록 통신 실패: ${storeRes.code()}")
         }
     }
