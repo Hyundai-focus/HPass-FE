@@ -1,7 +1,7 @@
 package com.hyundai.hpass.myVisitStore
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.hyundai.hpass.databinding.MyVisitStoreActivityMyVisitStoreBinding
 import com.hyundai.hpass.myVisitStore.model.MyVIsitStoreViewModel
@@ -22,6 +22,10 @@ class MyVisitStoreActivity : AppCompatActivity() {
     }
     private fun configureEvent(){
         viewModel.getStoreList()
+
+        binding.backButton.setOnClickListener {
+            finish()
+        }
     }
     private fun bind(){
         viewModel.storeList.observe(this) {storeList ->

@@ -1,9 +1,9 @@
 package com.hyundai.hpass.newProduct
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.hyundai.hpass.databinding.NewProductActivityNewProductBinding
@@ -32,6 +32,10 @@ class NewProductActivity : AppCompatActivity() {
     private fun configureEvent(){
         viewModel.getProductList()
         viewModel.getUsrProdInfo()
+
+        binding.backButton.setOnClickListener {
+            finish()
+        }
     }
     private fun bind(){
         viewModel.newProductItems.observe(this){newProductItems ->

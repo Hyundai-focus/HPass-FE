@@ -1,17 +1,15 @@
 package com.hyundai.hpass.myBooking
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
-
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hyundai.hpass.R
-import com.hyundai.hpass.subscription.SubscriptionMainActivity
 
 /**
  *
@@ -27,31 +25,35 @@ class MyBookingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.my_booking_activity_my_booking)
 
-        // RecyclerView 초기화
-        recyclerView = findViewById(R.id.MyBookingList)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = MyBookingAdapter(emptyList())
-        recyclerView.adapter = adapter
-
         viewModel = ViewModelProvider(this).get(MyBookingViewModel::class.java)
-
-        // 데이터 관찰
-        viewModel.bookingInfoList.observe(this, Observer { bookingList ->
-            // 예약 정보가 업데이트될 때마다 실행되는 코드
-            adapter.updateData(bookingList)
-        })
 
         // 예약 정보 로드
         viewModel.loadBookings()
         Log.d("MyBookingActivity", "Loading bookings...")
 
-        backEvent()
+        configureEvent()
+        bind()
     }
 
-    private fun backEvent() {
+    private fun bind() {
+        viewModel.getBookingInfoList().observe(this, Observer { bookingList ->
+            recyclerView = findViewById(R.id.MyBookingList)
+            recyclerView.layoutManager = LinearLayoutManager(this)
+            adapter = MyBookingAdapter(bookingList, viewModel)
+            recyclerView.adapter = adapter
+        })
+
+        viewModel.deleteSuccess.observe(this, Observer { success ->
+            if (success) {
+                Toast.makeText(this, "예약이 취소되었습니다.", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "예약 취소에 실패했습니다.", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun configureEvent() {
         findViewById<ImageButton>(R.id.backButton).setOnClickListener {
-            val intent = Intent(this, SubscriptionMainActivity::class.java)
-            startActivity(intent)
             finish()
         }
     }

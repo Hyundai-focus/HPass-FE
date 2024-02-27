@@ -5,21 +5,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.hyundai.hpass.R
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
 /**
  *
  * @author 황수연
  *
  */
-class MyBookingAdapter(private var bookingList: List<MyBookingDTO>) : RecyclerView.Adapter<MyBookingAdapter.MyBookingViewHolder>() {
+class MyBookingAdapter(private var bookingList: List<MyBookingDTO>, private val viewModel: MyBookingViewModel) : RecyclerView.Adapter<MyBookingAdapter.MyBookingViewHolder>() {
 
     inner class MyBookingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val bookingStore: TextView = itemView.findViewById(R.id.bookingStore)
@@ -40,8 +37,8 @@ class MyBookingAdapter(private var bookingList: List<MyBookingDTO>) : RecyclerVi
             // 삭제 버튼 클릭 이벤트 처리
             deleteButton.setOnClickListener {
                 val context = itemView.context
-                val dialogFragment = MyBookingDeleteBottomSheetDialogFragment(booking)
-                dialogFragment.show((context as AppCompatActivity).supportFragmentManager, dialogFragment.tag)
+                val dialogFragment = MyBookingDeleteBottomSheetDialogFragment(booking, viewModel)
+                dialogFragment.show((context as MyBookingActivity).supportFragmentManager, dialogFragment.tag)
             }
         }
     }
@@ -58,11 +55,6 @@ class MyBookingAdapter(private var bookingList: List<MyBookingDTO>) : RecyclerVi
 
     override fun getItemCount(): Int {
         return bookingList.size
-    }
-
-    fun updateData(newList: List<MyBookingDTO>) {
-        bookingList = newList
-        notifyDataSetChanged()
     }
 }
 

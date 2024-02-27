@@ -16,13 +16,8 @@ class MyCouponActivity : AppCompatActivity() {
         setContentView(binding.root)
         viewModel = ViewModelProvider(this)[MyCouponViewModel::class.java]
 
-        configureUI()
         configureEvent()
         bind()
-    }
-
-    private fun configureUI() {
-        binding.title.text = "나의 쿠폰"
     }
 
     private fun configureEvent() {

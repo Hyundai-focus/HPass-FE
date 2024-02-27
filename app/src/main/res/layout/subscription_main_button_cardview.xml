@@ -33,6 +33,7 @@
             android:textSize="10sp"
             android:textStyle="bold"
             android:textColor="@color/gray"
+            android:fontFamily="@font/happiness_sans_bold"
             android:maxLines="1"
             android:ellipsize="end"
             android:gravity="center"

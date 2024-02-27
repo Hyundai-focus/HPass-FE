@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:paddingHorizontal="15dp"
         android:text="김현대님은"
+        android:fontFamily="@font/happiness_sans_bold"
         android:textSize="14sp"
         android:textColor="@color/black"
         android:textStyle="bold" />
@@ -22,6 +23,7 @@
         android:layout_height="wrap_content"
         android:text="H Pass"
         android:paddingHorizontal="15dp"
+        android:fontFamily="@font/happiness_sans_bold"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold" />
