@@ -7,8 +7,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.hyundai.hpass.BuildConfig.BASE_URL
+import com.hyundai.hpass.Websocket.WebSocketClient
 import com.hyundai.hpass.databinding.NfcActivityMainBinding
 import com.hyundai.hpass.main.MainViewModel
+import com.hyundai.hpass.socialLogIn.MyApplication
 
 
 class NfcMainActivity : AppCompatActivity() {
@@ -16,6 +19,8 @@ class NfcMainActivity : AppCompatActivity() {
     private lateinit var binding: NfcActivityMainBinding
     private lateinit var nfcViewModel: NfcViewModel
     private lateinit var mainViewModel: MainViewModel
+    private val webSocketClient = WebSocketClient(BASE_URL)
+    //private val webSocketClient = WebSocketClient("ws://10.0.2.2:8080/socket/NfcCall")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +29,7 @@ class NfcMainActivity : AppCompatActivity() {
         nfcViewModel = ViewModelProvider(this)[NfcViewModel::class.java]
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
+        webSocketClient.start()
         configureEvent()
         bind()
     }
@@ -98,6 +104,7 @@ class NfcMainActivity : AppCompatActivity() {
                 binding.infoText.text = "구독 정보가 확인되었습니다"
                 binding.infoSubtext.text = "할인된 가격으로 즐기세요!"
                 binding.lottieCheck.visibility = View.VISIBLE
+                webSocketClient.sendMessage("member::${MyApplication.preferences.getString("memberNo")}")
             }
         }
     }

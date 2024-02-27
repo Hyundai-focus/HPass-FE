@@ -7,6 +7,7 @@ package com.hyundai.hpass.newProduct.model.response
  */
 
 data class UsrProdStatusResponse(
+    val productHistoryNo : Long,
     val status : Boolean,
     val memberName : String,
     val prodImg : String,
