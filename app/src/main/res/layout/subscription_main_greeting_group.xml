@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="김현대님 안녕하세요!"
+        android:fontFamily="@font/happiness_sans_bold"
         android:textColor="@color/white"
         android:textStyle="bold"
         android:paddingBottom="5dp"
@@ -22,6 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="현대백화점에 오신것을 환영해요!"
+        android:fontFamily="@font/happiness_sans_bold"
         android:textColor="@color/white"
         android:textStyle="bold"
         />

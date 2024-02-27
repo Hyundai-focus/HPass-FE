@@ -35,6 +35,7 @@
             android:layout_height="wrap_content"
             android:text="더현대 서울 B1"
             android:textColor="@color/grey"
+            android:fontFamily="@font/happiness_sans_bold"
             android:textSize="15sp" />
 
         <TextView
@@ -43,6 +44,7 @@
             android:layout_height="wrap_content"
             android:text="옷 상품 이름 및 대충 옷 브랜드 30% 할인"
             android:textColor="@color/black"
+            android:fontFamily="@font/happiness_sans_bold"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -55,6 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="02.01(목)"
+                android:fontFamily="@font/happiness_sans_bold"
                 android:textColor="@color/grey"
                 android:textSize="15sp" />
 
@@ -62,6 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" ~ "
+                android:fontFamily="@font/happiness_sans_bold"
                 android:textColor="@color/grey"
                 android:textSize="15sp" />
 
@@ -70,6 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="02.07(수)"
+                android:fontFamily="@font/happiness_sans_bold"
                 android:textColor="@color/grey"
                 android:textSize="15sp" />
         </LinearLayout>
