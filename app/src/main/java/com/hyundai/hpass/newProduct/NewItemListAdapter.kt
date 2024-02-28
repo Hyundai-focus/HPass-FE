@@ -1,12 +1,12 @@
 package com.hyundai.hpass.newProduct
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.hyundai.hpass.databinding.NewProductItemNewProductBinding
 import com.hyundai.hpass.newProduct.model.response.NewItemListResponse
 
@@ -31,6 +31,7 @@ class NewItemListAdapter(
         holder.binding.apply {
             Glide.with(holder.itemView.context)
                 .load(item.productImg)
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .into(newProductListImg)
             newProductListTitle.text = item.productBrand
             newProductListSubtitle.text = item.productName

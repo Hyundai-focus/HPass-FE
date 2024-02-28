@@ -6,6 +6,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.hyundai.hpass.databinding.NewProductActivityNewProductBinding
 import com.hyundai.hpass.newProduct.model.NewProductViewModel
 import com.hyundai.hpass.newProduct.model.response.UsrProdStatusResponse
@@ -66,6 +67,7 @@ class NewProductActivity : AppCompatActivity() {
         binding.newProductUserImg.visibility= View.VISIBLE
         Glide.with(binding.newProductUserImg.context)
             .load(user.prodImg)
+            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
             .into(binding.newProductUserImg)
     }
 

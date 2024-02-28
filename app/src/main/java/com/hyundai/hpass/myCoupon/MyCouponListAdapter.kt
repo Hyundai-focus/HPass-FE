@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.hyundai.hpass.databinding.MyCouponListItemBinding
 import com.hyundai.hpass.myCoupon.model.response.MyCouponResponse
 
@@ -35,6 +36,7 @@ class MyCouponListAdapter(private val couponList: List<MyCouponResponse>): Recyc
 
         Glide.with(holder.root.context)
             .load(coupon.image)
+            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
             .into(holder.image)
         holder.location.text = coupon.brand
         holder.name.text = coupon.content

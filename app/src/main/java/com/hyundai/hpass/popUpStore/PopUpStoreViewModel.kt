@@ -2,7 +2,14 @@ package com.hyundai.hpass.popUpStore
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.hyundai.hpass.BuildConfig
+import com.hyundai.hpass.network.RetrofitClient
+import com.hyundai.hpass.socialLogIn.MyApplication
 import com.hyundai.hpass.subscription.model.response.PopUpStoreResponse
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
 /**
  *
@@ -12,23 +19,23 @@ import com.hyundai.hpass.subscription.model.response.PopUpStoreResponse
 class PopUpStoreViewModel: ViewModel() {
 
     private val popUpStore: MutableLiveData<List<PopUpStoreResponse>> = MutableLiveData()
+    private val token = MyApplication.preferences.getString(BuildConfig.PREF_KEY_TOKEN)
 
     init {
         loadPopUpStore()
-        mockData()
     }
 
     fun getPopUpStore(): MutableLiveData<List<PopUpStoreResponse>> = popUpStore
 
     private fun loadPopUpStore() {
+        viewModelScope.launch {
+            val popUpRes = async(Dispatchers.IO) {
+                RetrofitClient.popUpStoreService.getAllPopUpStore(token)
+            }.await()
 
-    }
-
-    private fun mockData() {
-        popUpStore.value = listOf(
-            PopUpStoreResponse(1, "스타벅스", "2024-02-01", "2024-02-26", "1층", "https://www.ehyundai.com/attachfiles/branch/20210209104434346.jpg"),
-            PopUpStoreResponse(2,"이디야", "2024-02-01", "2024-02-26", "2층", "https://www.ehyundai.com/attachfiles/branch/20220906035951614.jpg"),
-            PopUpStoreResponse(3,"투썸플레이스", "2024-02-01", "2024-02-26", "3층", "https://www.ehyundai.com/attachfiles/branch/20210209093808991.jpg")
-        )
+            if (popUpRes.isSuccessful && popUpRes.body() != null) {
+                popUpStore.postValue(popUpRes.body())
+            }
+        }
     }
 }

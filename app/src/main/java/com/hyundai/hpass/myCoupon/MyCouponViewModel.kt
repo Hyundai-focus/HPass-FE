@@ -18,12 +18,11 @@ import kotlinx.coroutines.launch
  */
 class MyCouponViewModel : ViewModel() {
 
-    private val token: String
+    private val token: String = MyApplication.preferences.getString(BuildConfig.PREF_KEY_TOKEN)
 
     private val coupons: MutableLiveData<List<MyCouponResponse>> = MutableLiveData()
 
     init {
-        token = MyApplication.preferences.getString(BuildConfig.PREF_KEY_TOKEN)
         loadCoupons()
     }
 

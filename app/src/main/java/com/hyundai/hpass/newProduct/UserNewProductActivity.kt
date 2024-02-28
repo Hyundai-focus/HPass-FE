@@ -1,17 +1,13 @@
 package com.hyundai.hpass.newProduct
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.hyundai.hpass.databinding.NewProductActivityUserNewProductBinding
 import com.hyundai.hpass.newProduct.model.NewProductViewModel
-import com.hyundai.hpass.newProduct.model.request.ApplyNewProdRequest
 import com.hyundai.hpass.newProduct.model.response.UsrProdStatusResponse
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 
 /**
  *
@@ -57,6 +53,7 @@ class UserNewProductActivity : AppCompatActivity() {
         binding.newProductUserPlace.text = prodInfo.receiveLoc
         Glide.with(binding.newProductImg.context)
             .load(prodInfo.prodImg)
+            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
             .into(binding.newProductImg)
     }
 

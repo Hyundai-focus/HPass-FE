@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.hyundai.hpass.R
 import com.hyundai.hpass.databinding.NewProductDialogApplyNewProductBinding
 import com.hyundai.hpass.newProduct.model.NewProductViewModel
@@ -45,6 +46,7 @@ class ApplyNewProductDialog : DialogFragment() {
     private fun setDialogUI(binding: NewProductDialogApplyNewProductBinding, item: NewItemListResponse) {
         Glide.with(this)
             .load(item.productImg)
+            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
             .into(binding.newProductChosenImg)
         binding.newProductChosenTitle.text = item.productBrand
         binding.newProductChosenSubtitle.text = item.productName
