@@ -22,6 +22,7 @@ class MyVIsitStoreViewModel: ViewModel()  {
     val errorMessage: MutableLiveData<String> = MutableLiveData()
 
     val storeList : MutableLiveData<List<StoreListResponse>> = MutableLiveData()
+    val floorList : MutableLiveData<List<Long>> = MutableLiveData()
 
     fun getStoreList(){
         viewModelScope.launch {
@@ -33,6 +34,18 @@ class MyVIsitStoreViewModel: ViewModel()  {
                 storeList.postValue(sortedStoreList)
             }
             else errorMessage.postValue("상점 목록 통신 실패: ${storeRes.code()}")
+        }
+    }
+
+    fun getFloorList(){
+        viewModelScope.launch {
+            val floorRes = async(Dispatchers.IO){
+                RetrofitClient.myVisitStoreService.getFloorList(token)
+            }.await()
+            if (floorRes.isSuccessful) {
+                floorList.postValue(floorRes.body())
+            }
+            else errorMessage.postValue("상점 목록 통신 실패: ${floorRes.code()}")
         }
     }
 }

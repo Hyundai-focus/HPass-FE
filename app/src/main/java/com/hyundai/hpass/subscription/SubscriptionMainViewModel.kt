@@ -68,7 +68,8 @@ class SubscriptionMainViewModel: ViewModel() {
 
             todayRes?.let {
                 if (todayRes.isSuccessful) {
-                    todayStore.postValue(todayRes.body())
+                    val sortedStoreList = todayRes.body()!!.sortedBy { it.storeFloor.firstOrNull { it.isDigit() } }
+                    todayStore.postValue(sortedStoreList)
                 } else {
                     Log.d("SubscriptionMainViewModel", "loadTodayStore: ${todayRes.message()}")
                 }

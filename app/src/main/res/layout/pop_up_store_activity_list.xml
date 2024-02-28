@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".popUpStore.PopUpStoreActivity">
+    tools:context=".popUpStore.PopUpStoreActivity"
+    android:background="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/title"
@@ -50,6 +51,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:listitem="@layout/pop_up_store_list_item"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         />
 
     <androidx.constraintlayout.widget.Guideline

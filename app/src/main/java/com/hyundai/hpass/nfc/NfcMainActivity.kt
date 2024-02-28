@@ -110,7 +110,6 @@ class NfcMainActivity : AppCompatActivity() {
                     binding.infoText.text = "이미 방문한 매장입니다"
                     binding.infoSubtext.text = "다른 매장을 방문해주세요!"
             } else {
-                binding.confirmButton.visibility = View.INVISIBLE
                 binding.lottieCheck.visibility = View.VISIBLE
                 binding.infoText.text = "오늘의 매장 방문 완료"
                 binding.infoSubtext.text = "매장 쿠폰이 발급되었습니다!"

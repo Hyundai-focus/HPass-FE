@@ -40,8 +40,10 @@ class MyCouponListAdapter(private val couponList: List<MyCouponResponse>): Recyc
             .into(holder.image)
         holder.location.text = coupon.brand
         holder.name.text = coupon.content
-        holder.startDate.text = coupon.startDate
-        holder.endDate.text = coupon.endDate
+        val couponStartDate =  coupon.startDate.split('-')[1] + "." + coupon.startDate.split('-')[2]
+        val couponEndDate =  coupon.endDate.split('-')[1] + "." + coupon.endDate.split('-')[2]
+        holder.startDate.text = couponStartDate
+        holder.endDate.text = couponEndDate
 
     }
 

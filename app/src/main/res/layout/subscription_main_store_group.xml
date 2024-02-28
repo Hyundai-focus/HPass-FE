@@ -16,14 +16,17 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Today's Store"
-            android:textSize="23sp"
+            android:textSize="17sp"
             android:textStyle="bold"
-            android:fontFamily="@font/happiness_sans_bold"
+            android:fontFamily="@font/happiness_sans_title"
             android:layout_margin="5dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:paddingBottom="5dp"
+            android:paddingStart="10dp"
+            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/todayStoreMoreText"
@@ -36,6 +39,8 @@
             app:layout_constraintTop_toTopOf="parent"
             android:gravity="end"
             app:layout_constraintBottom_toBottomOf="parent"
+            android:paddingBottom="5dp"
+            android:paddingEnd="10dp"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

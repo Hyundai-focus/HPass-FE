@@ -24,7 +24,7 @@
         android:textSize="12sp"
         android:fontFamily="@font/happiness_sans_title"
         android:textStyle="bold"
-        android:textColor="@color/dark_green"
+        android:textColor="@color/status_black"
         />
     <androidx.cardview.widget.CardView
         android:id="@+id/my_visit_store_status"

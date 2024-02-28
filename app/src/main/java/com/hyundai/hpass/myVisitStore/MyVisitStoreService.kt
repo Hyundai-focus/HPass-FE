@@ -16,4 +16,9 @@ interface MyVisitStoreService {
     suspend fun getStoreList(
         @Header("Authorization") Authorization: String
     ): Response<List<StoreListResponse>>
+
+    @GET("/store/visit/floor")
+    suspend fun getFloorList(
+        @Header("Authorization") Authorization: String
+    ): Response<List<Long>>
 }

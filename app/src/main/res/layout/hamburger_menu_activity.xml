@@ -61,12 +61,14 @@
                 android:id="@+id/hMenuText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="H Pass 멤버십"
-                android:textColor="@color/black"
+                android:text="H.Pass 멤버십"
+                android:textColor="@color/status_black"
                 android:background="@color/white"
-                android:textSize="18sp"
+                android:textSize="16.5sp"
                 android:textStyle="bold"
-                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/happiness_sans_title"
+                android:paddingTop="2dp"
+                android:layout_marginBottom="22dp"
                 />
 
             <TextView
@@ -74,11 +76,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="이벤트 참여"
-                android:textColor="@color/black"
+                android:textColor="@color/status_black"
                 android:background="@color/white"
-                android:textSize="18sp"
+                android:textSize="16.5sp"
                 android:textStyle="bold"
-                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/happiness_sans_title"
+                android:layout_marginBottom="22dp"
                 />
 
             <TextView
@@ -86,11 +89,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="현대백화점카드 혜택"
-                android:textColor="@color/black"
+                android:textColor="@color/status_black"
                 android:background="@color/white"
-                android:textSize="18sp"
+                android:textSize="16.5sp"
                 android:textStyle="bold"
-                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/happiness_sans_title"
+                android:layout_marginBottom="22dp"
                 />
 
             <TextView
@@ -98,11 +102,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="사은행사"
-                android:textColor="@color/black"
+                android:textColor="@color/status_black"
                 android:background="@color/white"
-                android:textSize="18sp"
+                android:textSize="16.5sp"
                 android:textStyle="bold"
-                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/happiness_sans_title"
+                android:layout_marginBottom="22dp"
                 />
 
         </LinearLayout>
