@@ -82,15 +82,22 @@ class NfcViewModel : ViewModel() {
             if (numRes?.isSuccessful == true && numRes.body() != null) {
                 visitStore.postValue(numRes.body())
 
-
                 val visitStoreCountRes = async(Dispatchers.IO) {
                     RetrofitClient.nfcService.visitNum(token)
                 }.await()
 
-                if (visitStoreCountRes.isSuccessful && visitStoreCountRes.body() != null) {
-                    if (visitStoreCountRes.body().toString() == "5") {
-                        isSuccessVisitFiveStore.postValue(true)
-                    }
+                val isExistCouponRes = async(Dispatchers.IO) {
+                    RetrofitClient.nfcService.isExistCoupon(token)
+                }.await()
+
+                if (visitStoreCountRes.isSuccessful && visitStoreCountRes.body() != null
+                    && isExistCouponRes.isSuccessful && isExistCouponRes.body() == false
+                    && isExistCouponRes.body() == false && visitStoreCountRes.body()
+                        .toString() == "5"
+                ) {
+                    isSuccessVisitFiveStore.postValue(true)
+                } else if (isExistCouponRes.body() == true) {
+                    isSuccessVisitFiveStore.postValue(false)
                 }
             }
         }

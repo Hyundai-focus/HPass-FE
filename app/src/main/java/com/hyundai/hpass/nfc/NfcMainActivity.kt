@@ -45,6 +45,8 @@ class NfcMainActivity : AppCompatActivity() {
                 binding.confirmButton.visibility = View.INVISIBLE
                 binding.issueButton.visibility = View.VISIBLE
                 binding.lottieFiveStart.visibility = View.VISIBLE
+                binding.lottieAlert.visibility = View.INVISIBLE
+                binding.lottieCheck.visibility = View.INVISIBLE
                 binding.infoText.text = "오늘의 매장을 모두 방문하셨습니다"
                 binding.infoSubtext.text = "쿠폰을 받으세요!"
             } else {
@@ -106,9 +108,9 @@ class NfcMainActivity : AppCompatActivity() {
                 binding.infoText.text = "오늘의 매장이 아닙니다"
                 binding.infoSubtext.text = "오늘의 매장을 확인해주세요!"
             } else if (visitStore.visitStatus == false) {
-                    binding.lottieAlert.visibility = View.VISIBLE
-                    binding.infoText.text = "이미 방문한 매장입니다"
-                    binding.infoSubtext.text = "다른 매장을 방문해주세요!"
+                binding.lottieAlert.visibility = View.VISIBLE
+                binding.infoText.text = "이미 방문한 매장입니다"
+                binding.infoSubtext.text = "다른 매장을 방문해주세요!"
             } else {
                 binding.lottieCheck.visibility = View.VISIBLE
                 binding.infoText.text = "오늘의 매장 방문 완료"
@@ -146,7 +148,8 @@ class NfcMainActivity : AppCompatActivity() {
                     if (webSocketClient.connectionState == WebSocketConnectionState.CONNECTED) {
                         webSocketClient.sendMessage("member::${MyApplication.preferences.getString("memberNo")}")
                     } else {
-                        Toast.makeText(this@NfcMainActivity, "다시 시도해주세요!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@NfcMainActivity, "다시 시도해주세요!", Toast.LENGTH_SHORT)
+                            .show()
                     }
                 }
             }
@@ -154,8 +157,8 @@ class NfcMainActivity : AppCompatActivity() {
 
         nfcViewModel.getPromotionCoupon().observe(this) { promotionCoupon ->
             binding.lottieFiveStart.visibility = View.INVISIBLE
-            binding.finishButton.visibility = View.VISIBLE
             binding.issueButton.visibility = View.INVISIBLE
+            binding.finishButton.visibility = View.VISIBLE
 
             if (promotionCoupon == "false") {
                 binding.lottieAlert.visibility = View.VISIBLE
