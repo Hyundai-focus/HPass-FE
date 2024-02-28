@@ -29,11 +29,13 @@ class MyVIsitStoreViewModel: ViewModel()  {
             val storeRes = async(Dispatchers.IO){
                 RetrofitClient.myVisitStoreService.getStoreList(token)
             }.await()
-            if (storeRes.isSuccessful) {
+            if (storeRes.isSuccessful && storeRes.body()?.isEmpty() == false) {
                 val sortedStoreList = storeRes.body()!!.sortedBy { it.storeFloor.firstOrNull { it.isDigit() } }
                 storeList.postValue(sortedStoreList)
+            } else {
+                Log.d("MyVIsitStoreViewModel", "getStoreList: ${storeRes.code()}")
+                errorMessage.postValue("상점 목록 통신 실패: ${storeRes.code()}")
             }
-            else errorMessage.postValue("상점 목록 통신 실패: ${storeRes.code()}")
         }
     }
 
@@ -42,10 +44,11 @@ class MyVIsitStoreViewModel: ViewModel()  {
             val floorRes = async(Dispatchers.IO){
                 RetrofitClient.myVisitStoreService.getFloorList(token)
             }.await()
-            if (floorRes.isSuccessful) {
+            if (floorRes.isSuccessful && floorRes.body()?.isEmpty() == false) {
                 floorList.postValue(floorRes.body())
+            } else {
+                errorMessage.postValue("상점 목록 통신 실패: ${floorRes.code()}")
             }
-            else errorMessage.postValue("상점 목록 통신 실패: ${floorRes.code()}")
         }
     }
 }

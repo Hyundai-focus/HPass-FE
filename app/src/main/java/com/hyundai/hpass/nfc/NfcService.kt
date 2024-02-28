@@ -14,6 +14,11 @@ import retrofit2.http.Path
  */
 interface NfcService {
 
+    @GET("/coupon/exist/0")
+    suspend fun isExistCoupon(
+        @Header("Authorization") Authorization: String
+    ): Response<Boolean>
+
     @GET("/store/visit/num")
     suspend fun visitNum(
         @Header("Authorization") Authorization: String

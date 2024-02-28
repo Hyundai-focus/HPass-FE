@@ -17,14 +17,14 @@ import com.hyundai.hpass.subscription.SubscriptionMainActivity
 
 class HamburgerMenuActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: SocialLoginViewModel
+    private lateinit var socialLoginViewModel: SocialLoginViewModel
     private lateinit var binding: HamburgerMenuActivityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = HamburgerMenuActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        viewModel = ViewModelProvider(this)[SocialLoginViewModel::class.java]
+        socialLoginViewModel = ViewModelProvider(this)[SocialLoginViewModel::class.java]
         configureUI()
         configureEvent()
         bind()
@@ -48,7 +48,7 @@ class HamburgerMenuActivity : AppCompatActivity() {
                 val intent = Intent(this, MyPageMainActivity::class.java)
                 startActivity(intent)
             } else {
-                viewModel.authenticateNaver(this@HamburgerMenuActivity)
+                socialLoginViewModel.authenticateNaver(this@HamburgerMenuActivity)
             }
         }
 
@@ -69,12 +69,12 @@ class HamburgerMenuActivity : AppCompatActivity() {
         }
     }
     private fun bind() {
-        viewModel.getLoginSuccess().observe(this) { success ->
+        socialLoginViewModel.getLoginSuccess().observe(this) { success ->
             if (success) {
                 goToMain()
             }
         }
-        viewModel.errorMessage.observe(this) { message ->
+        socialLoginViewModel.errorMessage.observe(this) { message ->
             Log.d("NaverLogin", "Error: $message")
         }
     }
