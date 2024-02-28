@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.hyundai.hpass.databinding.MyVisitStoreStoreBinding
 import com.hyundai.hpass.myVisitStore.model.response.StoreListResponse
 
@@ -31,6 +32,7 @@ class StoreListAdapter(
         holder.binding.apply {
             Glide.with(holder.itemView.context)
                 .load(item.storeImg)
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .into(myVisitStoreImage)
             myVisitStoreFloor.text = item.storeFloor
             myVisitStoreTitle.text = item.storeBrand

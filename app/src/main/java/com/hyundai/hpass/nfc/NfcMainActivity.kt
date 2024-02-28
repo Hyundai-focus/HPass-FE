@@ -149,8 +149,6 @@ class NfcMainActivity : AppCompatActivity() {
                     } else {
                         Toast.makeText(this@NfcMainActivity, "다시 시도해주세요!", Toast.LENGTH_SHORT).show()
                     }
-
-                    finish()
                 }
             }
         }

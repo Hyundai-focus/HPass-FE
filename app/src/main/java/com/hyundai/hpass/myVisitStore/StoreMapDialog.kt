@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.hyundai.hpass.R
 import com.hyundai.hpass.databinding.MyVisitStoreDialogMapBinding
 import com.hyundai.hpass.myVisitStore.model.MyVIsitStoreViewModel
@@ -60,6 +61,7 @@ class StoreMapDialog() : DialogFragment() {
     private fun setDialogUI(binding: MyVisitStoreDialogMapBinding, item: StoreListResponse) {
         Glide.with(this)
             .load(item.storeMap)
+            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
             .into(binding.storeMapImg)
         binding.storeMapFloor.text = item.storeFloor
     }
