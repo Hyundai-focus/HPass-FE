@@ -44,7 +44,10 @@ class PopUpStoreListAdapter(private val storeList: List<PopUpStoreResponse>, pri
             .into(holder.image)
 
         holder.storeName.text = storeData.name
-        holder.period.text = storeData.startDate + " ~ " + storeData.endDate
+        val startDt = storeData.startDate.split("-")[1] + "." +  storeData.startDate.split("-")[2]
+        val endDt = storeData.endDate.split("-")[1] + "." +  storeData.endDate.split("-")[2]
+        val dt = "$startDt ~ $endDt"
+        holder.period.text = dt
         holder.storeLocation.text = storeData.location
 
         holder.root.setOnClickListener {

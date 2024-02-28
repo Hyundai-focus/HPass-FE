@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
     android:layout_marginVertical="3dp"
     app:cardCornerRadius="20dp">
 
@@ -10,7 +13,6 @@
         android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="10dp"
         >
 
         <com.google.android.material.imageview.ShapeableImageView
@@ -21,23 +23,30 @@
             app:layout_constraintStart_toStartOf="parent"
             android:src="@drawable/ic_launcher_background"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/storeName"
-            app:layout_constraintDimensionRatio="5:4"
+            app:layout_constraintDimensionRatio="5:5.5"
             app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize5Percent"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:paddingBottom="10dp"/>
 
-        <TextView
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:src="@drawable/main_card"
+            app:layout_constraintStart_toStartOf="@id/storeImage"
+            app:layout_constraintEnd_toEndOf="@id/storeImage"
+            app:layout_constraintBottom_toBottomOf="@id/storeImage"
+            app:layout_constraintTop_toTopOf="@id/storeImage" />
+
+                <TextView
             android:id="@+id/storeName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="더 현대 서울"
             android:textColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@id/storeImage"
             app:layout_constraintBottom_toTopOf="@id/storeFloor"
-            android:layout_marginTop="10dp"
             android:fontFamily="@font/happiness_sans_bold"
-            android:layout_marginHorizontal="15dp"
-            android:textSize="20sp"
+            android:layout_marginHorizontal="25dp"
+            android:textSize="22.5sp"
             android:textStyle="bold" />
 
         <TextView
@@ -45,13 +54,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="1F Exclusive Label"
-            app:layout_constraintTop_toBottomOf="@id/storeName"
-            app:layout_constraintBottom_toBottomOf="@id/layout"
+            app:layout_constraintBottom_toBottomOf="@id/storeImage"
             android:textColor="@color/black"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="30dp"
             android:fontFamily="@font/happiness_sans_bold"
-            android:layout_marginHorizontal="15dp"
-            android:textSize="20sp"
+            android:layout_marginHorizontal="25dp"
+            android:textSize="22.5sp"
             android:textStyle="bold" />
 
 

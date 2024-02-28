@@ -28,70 +28,117 @@
         app:todayLabelColor="@color/black"
         app:type="one_day_picker" />
 
-    <GridLayout
-        android:id="@+id/gridLayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/timetableLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:columnCount="3"
-        android:rowCount="2"
-        app:layout_constraintTop_toBottomOf="@+id/materialCalendar">
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/time1"
+        app:layout_constraintTop_toBottomOf="@id/materialCalendar"
+        app:layout_constraintBottom_toTopOf="@id/timetableLayout2"
+        android:paddingTop="20dp">
+        <LinearLayout
+            android:id="@+id/timeLayout0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="43dp"
-            android:layout_marginBottom="15dp"
-            android:background="@drawable/popup_booking_button_background"
-            android:text="11 : 00"
-            android:textStyle="bold" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/time2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/timeLayout1">
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/time0"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:background="@drawable/popup_booking_button_background"
+                android:elevation="10dp"
+                android:text="09 : 00"
+                android:layout_margin="5dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/timeLayout1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_row="0"
-            android:layout_column="1"
-            android:background="@drawable/popup_booking_button_background"
-            android:text="13 : 00"
-            android:textStyle="bold" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/time3"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/timeLayout0"
+            app:layout_constraintEnd_toStartOf="@id/timeLayout2">
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/time1"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:background="@drawable/popup_booking_button_background"
+                android:elevation="10dp"
+                android:text="11 : 00"
+                android:layout_margin="5dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/timeLayout2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_row="0"
-            android:layout_column="2"
-            android:layout_marginStart="44dp"
-            android:background="@drawable/popup_booking_button_background"
-            android:text="15 : 00"
-            android:textStyle="bold" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/time4"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/timeLayout1"
+            app:layout_constraintEnd_toEndOf="parent">
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/time2"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:background="@drawable/popup_booking_button_background"
+                android:elevation="10dp"
+                android:text="13 : 00"
+                android:layout_margin="5dp" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/timetableLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/timetableLayout1"
+        app:layout_constraintBottom_toBottomOf="@id/booking_insert">
+        <LinearLayout
+            android:id="@+id/timeLayout3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_row="1"
-            android:layout_column="0"
-            android:layout_marginStart="30dp"
-            android:background="@drawable/popup_booking_button_background"
-            android:text="17 : 00"
-            android:textStyle="bold" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/time5"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/timeLayout4">
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/time3"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:background="@drawable/popup_booking_button_background"
+                android:elevation="10dp"
+                android:text="15 : 00"
+                android:layout_margin="5dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/timeLayout4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_row="1"
-            android:layout_column="1"
-            android:background="@drawable/popup_booking_button_background"
-            android:text="19 : 00"
-            android:textStyle="bold" />
-    </GridLayout>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/timeLayout3"
+            app:layout_constraintEnd_toStartOf="@id/timeLayout5">
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/time4"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:background="@drawable/popup_booking_button_background"
+                android:elevation="10dp"
+                android:text="17 : 00"
+                android:layout_margin="5dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/timeLayout5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/timeLayout4"
+            app:layout_constraintEnd_toEndOf="parent">
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/time5"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:background="@drawable/popup_booking_button_background"
+                android:elevation="10dp"
+                android:text="19 : 00"
+                android:layout_margin="5dp" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/booking_insert"
@@ -109,7 +156,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gridLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/timetableLayout2" />
 
     <ImageView
         android:id="@+id/header"

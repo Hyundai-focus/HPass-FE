@@ -3,10 +3,12 @@ package com.hyundai.hpass.myPage
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import com.hyundai.hpass.R
 import com.hyundai.hpass.databinding.MyPageActivityMainBinding
 import com.hyundai.hpass.myPage.model.MyPageViewModel
-import com.hyundai.hpass.subscription.SubscriptionMainActivity
+import com.hyundai.hpass.subscription.AddSubscriptionActivity
 
 /**
  *
@@ -19,6 +21,8 @@ class MyPageMainActivity:AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.status_black) //상태바 색깔
+        window.decorView.systemUiVisibility = 0
         binding = MyPageActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -39,14 +43,13 @@ class MyPageMainActivity:AppCompatActivity() {
                 binding.myPageSubsButton.setOnClickListener {
                     val intent = Intent(this, MyPageActivity::class.java)
                     startActivity(intent)
-                    finish()
                 }
             }
             else{
                 binding.mypageUserStatus.text="구독하기"
                 binding.myPageSubsButton.setOnClickListener {
-//                    val intent = Intent(this, "구독 시작 액티비티 클래스")
-//                    startActivity(intent)
+                    val intent = Intent(this, AddSubscriptionActivity::class.java)
+                    startActivity(intent)
                     finish()
                 }
             }

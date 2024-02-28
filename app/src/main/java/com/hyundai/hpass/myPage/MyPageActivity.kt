@@ -24,6 +24,9 @@ class MyPageActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+        binding.backButton.setOnClickListener{
+            finish()
+        }
     }
 
     private fun bind() {
@@ -33,8 +36,8 @@ class MyPageActivity : AppCompatActivity() {
                 binding.myPageSubsDetailMoney.text = "월 ₩4500"
                 val startDate = subsInfo.subsStartDt
                 val startLocalDate  = LocalDate.of(startDate[0], startDate[1], startDate[2])
-                binding.myPageSubsDetailStartDate.text = startLocalDate.toString()
-                binding.myPageSubsDetailNextDate.text = viewModel.getNextPaymentDate(startLocalDate)
+                binding.myPageSubsDetailStartDate.text = startLocalDate.toString().replace("-", ".")
+                binding.myPageSubsDetailNextDate.text = viewModel.getNextPaymentDate(startLocalDate).replace("-", ".")
                 if (subsInfo.lastDate == "9999-99-99") {
                     binding.endDateText.text = "결제 예정일"
                     binding.subscriptionStopButton.visibility = View.VISIBLE

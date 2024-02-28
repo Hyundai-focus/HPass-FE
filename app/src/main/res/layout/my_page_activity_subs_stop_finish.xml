@@ -20,7 +20,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:src="@drawable/my_page_subs_icon"/>
+            android:src="@drawable/logo_green"/>
         <TextView
             android:id="@+id/stop_subs_title"
             android:layout_width="wrap_content"

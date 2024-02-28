@@ -26,7 +26,7 @@ class MyBookingAdapter(private var bookingList: List<MyBookingDTO>, private val 
 
         fun bind(booking: MyBookingDTO) {
             bookingStore.text = booking.popupName
-            val periodText = "${booking.bookingDt} ${booking.bookingTime}"
+            val periodText = "${booking.bookingDt.replace("-", ".")} ${booking.bookingTime}"
             period.text = periodText
 
             Glide.with(itemView)

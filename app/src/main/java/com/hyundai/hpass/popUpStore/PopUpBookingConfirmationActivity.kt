@@ -25,7 +25,7 @@ class PopUpBookingConfirmationActivity : AppCompatActivity() {
         bookingDate = findViewById(R.id.booking_date)
 
         // 선택된 날짜 및 시간 가져오기
-        val selectedDate = intent.getStringExtra("selectedDate")
+        val selectedDate = intent.getStringExtra("selectedDate")?.replace("-", ".")
         val selectedTime = intent.getStringExtra("selectedTime")
 
         storeName.text = intent.getStringExtra("storeName")

@@ -3,6 +3,7 @@ package com.hyundai.hpass.subscription
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
@@ -25,6 +26,7 @@ class SubscriptionMainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.light_green) //상태바 색깔
         viewModel = ViewModelProvider(this)[SubscriptionMainViewModel::class.java]
         binding = SubscriptionActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

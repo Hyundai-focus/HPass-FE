@@ -46,45 +46,329 @@
         android:layout_height="match_parent"
         app:layout_constraintTop_toTopOf="parent"
         android:scrollbars="none"
-        android:layout_marginTop="70dp">
+        android:layout_marginTop="60dp">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/my_visit_store_check_list"
                 android:layout_width="match_parent"
-                android:layout_height="110dp"
+                android:layout_height="150dp"
                 android:background="@drawable/my_visit_store_check_list"
+                android:backgroundTint="@color/white"
                 android:elevation="10dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                >
-                <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:textSize="16sp"
-                android:text="오늘의 매장 방문 현황"
-                android:fontFamily="@font/happiness_sans_bold"
-                android:textColor="@color/white"
                 android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"/>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/my_visit_store_check_list_item"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    android:orientation="horizontal"
+                >
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    app:layout_constraintDimensionRatio="3.35:1"
+                    android:src="@drawable/today_store_coupon_bubble"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="38dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintDimensionRatio="5.3:1"
+                    android:gravity="center"
+                    android:fontFamily="@font/happiness_sans_regular"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:text="전상품 30% 할인 쿠폰"
+                    />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="20dp"
+                    >
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/back_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp"
+                    android:backgroundTint="@color/light_green"
+                    app:cardCornerRadius="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/progress_bar2"
+                    android:layout_width="0dp"
+                    android:layout_height="15dp"
+                    app:cardCornerRadius="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginBottom="15dp" />
-
+                    app:layout_constraintWidth_percent="0.4">
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/new_product_user_history">
+                    </FrameLayout>
+                </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/progress_bar3"
+                        android:layout_width="0dp"
+                        android:layout_height="15dp"
+                        app:cardCornerRadius="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintWidth_percent="0.6">
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/new_product_user_history">
+                        </FrameLayout>
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/progress_bar4"
+                        android:layout_width="0dp"
+                        android:layout_height="15dp"
+                        app:cardCornerRadius="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintWidth_percent="0.8">
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/new_product_user_history">
+                        </FrameLayout>
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/progress_bar5"
+                        android:layout_width="0dp"
+                        android:layout_height="15dp"
+                        app:cardCornerRadius="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintWidth_percent="1">
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/new_product_user_history">
+                        </FrameLayout>
+                    </androidx.cardview.widget.CardView>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    app:layout_constraintBottom_toTopOf="@id/back_bar"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintWidth_percent="0.2">
+                    <ImageView
+                        android:id="@+id/level1"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:src="@drawable/today_store_visit_bar_bubble"/>
+                    <TextView
+                        android:id="@+id/level1_text"
+                        android:layout_width="30dp"
+                        android:layout_height="25dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:text="1F"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:fontFamily="@font/happiness_sans_title"
+                        />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    app:layout_constraintBottom_toTopOf="@id/back_bar"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintWidth_percent="0.4">
+                    <ImageView
+                        android:id="@+id/level2"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:src="@drawable/today_store_visit_bar_bubble"/>
+                    <TextView
+                        android:id="@+id/level2_text"
+                        android:layout_width="30dp"
+                        android:layout_height="25dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:text="2F"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:fontFamily="@font/happiness_sans_title"
+                        />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    app:layout_constraintBottom_toTopOf="@id/back_bar"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintWidth_percent="0.6">
+                    <ImageView
+                        android:id="@+id/level3"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:src="@drawable/today_store_visit_bar_bubble"/>
+                    <TextView
+                        android:id="@+id/level3_text"
+                        android:layout_width="30dp"
+                        android:layout_height="25dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:text="3F"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:fontFamily="@font/happiness_sans_title"
+                        />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    app:layout_constraintBottom_toTopOf="@id/back_bar"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintWidth_percent="0.8">
+                    <ImageView
+                        android:id="@+id/level4"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:src="@drawable/today_store_visit_bar_bubble"/>
+                    <TextView
+                        android:id="@+id/level4_text"
+                        android:layout_width="30dp"
+                        android:layout_height="25dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:text="4F"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:fontFamily="@font/happiness_sans_title"
+                        />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    app:layout_constraintBottom_toTopOf="@id/back_bar"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintWidth_percent="1">
+                    <ImageView
+                        android:id="@+id/level5"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:src="@drawable/today_store_visit_bar_bubble"/>
+                    <TextView
+                        android:id="@+id/level5_text"
+                        android:layout_width="30dp"
+                        android:layout_height="25dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:text="5F"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:fontFamily="@font/happiness_sans_title"
+                        />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="17.5dp"
+                    android:layout_marginBottom="12.5dp">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/progress_jelbbo_img1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="2.5dp"
+                        app:layout_constraintWidth_percent="0.2">
+                        <ImageView
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:src="@drawable/today_store_bar_jelbbo"
+                            android:elevation="10dp"
+                            />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/progress_jelbbo_img2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="2.5dp"
+                        app:layout_constraintWidth_percent="0.4">
+                        <ImageView
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:src="@drawable/today_store_bar_jelbbo"
+                            android:elevation="10dp"
+                            />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/progress_jelbbo_img3"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="2.5dp"
+                        app:layout_constraintWidth_percent="0.6">
+                        <ImageView
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:src="@drawable/today_store_bar_jelbbo"
+                            android:elevation="10dp"
+                            />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/progress_jelbbo_img4"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="2.5dp"
+                        app:layout_constraintWidth_percent="0.8">
+                        <ImageView
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:src="@drawable/today_store_bar_jelbbo"
+                            android:elevation="10dp"
+                            />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/progress_jelbbo_img5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="2.5dp"
+                        app:layout_constraintWidth_percent="0.995">
+                        <ImageView
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:src="@drawable/today_store_bar_jelbbo"
+                            android:elevation="10dp"
+                            />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.core.widget.NestedScrollView
                 android:layout_marginTop="30dp"
@@ -93,65 +377,13 @@
                 app:layout_constraintTop_toBottomOf="@id/my_visit_store_check_list"
             >
                 <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/my_visit_store_store_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:nestedScrollingEnabled="false"
-                    />
+                    android:id="@+id/my_visit_store_store_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:nestedScrollingEnabled="false" />
             </androidx.core.widget.NestedScrollView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
-<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--        android:id="@+id/my_visit_store_check_list"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="110dp"-->
-<!--        android:background="@drawable/my_visit_store_check_list"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/my_visit_store_top"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        android:layout_marginStart="20dp"-->
-<!--        android:layout_marginEnd="20dp"-->
-<!--        android:layout_marginTop="30dp"-->
-<!--        android:elevation="10dp"-->
-<!--        >-->
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            android:textSize="16sp"-->
-<!--            android:text="오늘의 매장 방문 현황"-->
-<!--            android:fontFamily="@font/happiness_sans_bold"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:layout_marginStart="10dp"/>-->
-
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/my_visit_store_check_list_item"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-<!--            android:orientation="horizontal"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            android:layout_marginBottom="10dp" />-->
-
-
-<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/my_visit_store_store_list"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/my_visit_store_check_list"-->
-<!--        tools:layout_editor_absoluteX="0dp"-->
-<!--        />-->
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
