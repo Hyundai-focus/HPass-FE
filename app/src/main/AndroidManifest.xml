@@ -18,14 +18,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.HPass"
+        android:theme="@style/Theme.HPass.RemoveSplash"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".main.HamburgerMenuActivity"
-            android:exported="false" />
-        <activity
-            android:name=".main.MainActivity"
+            android:name=".main.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,6 +30,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".main.HamburgerMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.MainActivity"
+            android:exported="false"/>
         <activity
             android:name=".myVisitStore.MyVisitStoreActivity"
             android:exported="false" />
@@ -42,12 +45,13 @@
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data
-                    android:scheme="hpass"
                     android:host="hyundai.com"
                     android:pathPrefix="/nfc"
-                    />
+                    android:scheme="hpass" />
             </intent-filter>
         </activity>
         <activity
@@ -55,7 +59,7 @@
             android:exported="false" />
         <activity
             android:name=".socialLogIn.SocialLoginActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".popUpStore.PopUpStoreActivity"
             android:exported="false" />
@@ -81,12 +85,16 @@
             android:name=".myPage.MyPageSubsStopResultActivty"
             android:exported="false" />
         <activity
+            android:name=".myPage.MyPageSubsMoreActivity"
+            android:exported="false" />
+        <activity
             android:name=".myCoupon.MyCouponActivity"
             android:exported="false" />
         <activity
             android:name=".popUpStore.PopUpBookingConfirmationActivity"
             android:exported="false" />
-        <activity android:name=".subscription.AddSubscriptionActivity"
+        <activity
+            android:name=".subscription.AddSubscriptionActivity"
             android:exported="false" />
     </application>
 

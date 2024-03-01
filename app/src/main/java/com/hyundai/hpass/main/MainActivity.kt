@@ -20,10 +20,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         window.statusBarColor = ContextCompat.getColor(this, R.color.light_green) //상태바 색깔
         binding = MainActivityBinding.inflate(layoutInflater)
-        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        setContentView(binding.root)
-
         bind()
+        setContentView(binding.root)
         configureEvent()
     }
 
@@ -35,15 +33,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun bind() {
-        viewModel.getLoginPass().observe(this) { pass ->
-            MyApplication.preferences.setString("loginPass", pass.toString())
-            Log.d("MainActivity: 로그인 여부",MyApplication.preferences.getString("loginPass"))
-
-            if (pass) {
-                binding.mainPage.setImageResource(R.drawable.main_page_login)
-            } else {
-                binding.mainPage.setImageResource(R.drawable.main_page_not_login)
-            }
+        if (MyApplication.preferences.getString("loginPass") == true.toString()) {
+            binding.mainPage.setImageResource(R.drawable.main_page_login)
+        } else {
+            binding.mainPage.setImageResource(R.drawable.main_page_not_login)
         }
     }
 }

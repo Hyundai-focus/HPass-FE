@@ -35,4 +35,9 @@ interface SubscriptionService {
         @Header("Authorization") authorization: String,
         @Query("lastDate") lastDate: String
     ): Response<ResponseBody>
+
+    @POST("/subscription/more")
+    suspend fun moreSubscription(
+        @Header("Authorization") authorization: String,
+    ): Response<ResponseBody>
 }

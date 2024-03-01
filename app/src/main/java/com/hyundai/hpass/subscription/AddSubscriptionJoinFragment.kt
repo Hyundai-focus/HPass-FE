@@ -56,7 +56,9 @@ class AddSubscriptionJoinFragment : Fragment() {
         binding.subsJoinBtn.setOnClickListener {
             parentFragmentManager.beginTransaction().replace(R.id.add_subs_container, AddSubscriptionInfoFragment()).addToBackStack(null).commit()
         }
-
+        binding.backButton.setOnClickListener{
+            requireActivity().finish()
+        }
     }
 
     private fun isJoinEnabled(): Boolean {
