@@ -2,6 +2,7 @@ package com.hyundai.hpass.myPage
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
@@ -39,14 +40,14 @@ class MyPageMainActivity:AppCompatActivity() {
             val nameText = userInfo.name + "님"
             binding.myPageUserName.text = nameText
             if(userInfo.status){//구독자 전용
-                binding.mypageUserStatus.text="구독중"
+                binding.mypageUserStatusNo.visibility = View.INVISIBLE
                 binding.myPageSubsButton.setOnClickListener {
                     val intent = Intent(this, MyPageActivity::class.java)
                     startActivity(intent)
                 }
             }
             else{
-                binding.mypageUserStatus.text="구독하기"
+                binding.mypageUserStatusYes.visibility = View.INVISIBLE
                 binding.myPageSubsButton.setOnClickListener {
                     val intent = Intent(this, AddSubscriptionActivity::class.java)
                     startActivity(intent)

@@ -74,7 +74,24 @@
             android:layout_marginStart="25dp"
             android:layout_marginTop="10dp"/>
         <TextView
-            android:id="@+id/mypage_user_status"
+            android:id="@+id/mypage_user_status_yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="구독중"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginEnd="30dp"
+            android:layout_marginTop="11dp"
+            android:background="@drawable/shape_corner_round"
+            android:backgroundTint="#CAE5DC"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"/>
+        <TextView
+            android:id="@+id/mypage_user_status_no"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"

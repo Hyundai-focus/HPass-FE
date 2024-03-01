@@ -22,6 +22,11 @@ class MyVisitStoreActivity : AppCompatActivity() {
         configureEvent()
         bind()
     }
+    override fun onResume() {
+        super.onResume()
+        configureEvent()
+        bind()
+    }
     private fun configureEvent(){
         viewModel.getStoreList()
         viewModel.getFloorList()
