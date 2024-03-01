@@ -73,14 +73,17 @@ class AddSubscriptionInfoFragment : Fragment() {
         binding.purchaseBtn.setOnClickListener{
             viewModel.getBootPayToken()
         }
+        binding.backButton.setOnClickListener{
+            parentFragmentManager.popBackStack()
+        }
     }
     fun checkButtonEnabled() {
         binding.purchaseBtn.isEnabled = binding.checkboxAll.isChecked && binding.phoneNumberInput.text.length == 11
     }
 
     private fun bind() {
-        binding.subsPeriod.text = viewModel.calculatePaymentDate(LocalDate.now(),0)
-        binding.subsEndDate.text = viewModel.calculatePaymentDate(LocalDate.now(),1)
+        binding.subsPeriod.text = viewModel.calculatePaymentDate(LocalDate.now(),0).replace("-", ".")
+        binding.subsEndDate.text = viewModel.calculatePaymentDate(LocalDate.now(),1).replace("-", ".")
         viewModel.getUserToken().observe(viewLifecycleOwner){ userToken ->
             if(userToken != "" && userToken != null) {
                 viewModel.purchaseSubscribe(binding.phoneNumberInput.text.toString(), userToken, requireContext().applicationContext)
@@ -88,6 +91,8 @@ class AddSubscriptionInfoFragment : Fragment() {
         }
         viewModel.getSubsSuccess().observe(viewLifecycleOwner){payment ->
             if (payment != "") {
+                binding.purchaseProgressBar.visibility = View.VISIBLE
+                binding.root.visibility = View.INVISIBLE
                 MyApplication.preferences.setString(BuildConfig.PREF_KEY_SUBS, BuildConfig.PREF_VALUE_TRUE)
                 val bundle = Bundle().apply {
                     putString("subs_period", binding.subsPeriod.text.toString())

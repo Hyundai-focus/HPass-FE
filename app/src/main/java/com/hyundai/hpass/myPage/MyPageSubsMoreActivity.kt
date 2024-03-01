@@ -6,23 +6,19 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.hyundai.hpass.BuildConfig
+import com.hyundai.hpass.databinding.MyPageActivityMoreSubscriptionBinding
 import com.hyundai.hpass.databinding.MyPageActivityStopSubscriptionBinding
 import com.hyundai.hpass.myPage.model.SubsStopViewModel
 import com.hyundai.hpass.newProduct.ImpossibleNewProductDialog
 import com.hyundai.hpass.socialLogIn.MyApplication
 
-/**
- *
- * @author 김은서
- *
- */
-class MyPageSubsStopActivity : AppCompatActivity() {
-    private lateinit var binding: MyPageActivityStopSubscriptionBinding
+class MyPageSubsMoreActivity : AppCompatActivity() {
+    private lateinit var binding: MyPageActivityMoreSubscriptionBinding
     private lateinit var viewModel: SubsStopViewModel
     private lateinit var lastDate: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = MyPageActivityStopSubscriptionBinding.inflate(layoutInflater)
+        binding = MyPageActivityMoreSubscriptionBinding.inflate(layoutInflater)
         setContentView(binding.root)
         viewModel = ViewModelProvider(this)[SubsStopViewModel::class.java]
         lastDate = intent.getStringExtra("lastDate").toString()
@@ -31,29 +27,28 @@ class MyPageSubsStopActivity : AppCompatActivity() {
     }
 
     private fun setBtnEvent(){
-        binding.subsNoStopButton.setOnClickListener {
-            val intent = Intent(this, MyPageActivity::class.java)
-            startActivity(intent)
+        binding.backButton.setOnClickListener {
             finish()
         }
-        binding.continueStopSubs.setOnClickListener {
-            val dialogFragment = MyPageSubsDialog()
+        binding.subsMoreButton.setOnClickListener {
+            val dialogFragment = MyPageSubsMoreDialog()
             dialogFragment.setCallback {
-                viewModel.stopSubscription(lastDate)
+                viewModel.moreSubscription()
             }
-            dialogFragment.show(supportFragmentManager, "SubsStopDialogTag")
+            dialogFragment.show(supportFragmentManager, "SubsMoreDialogTag")
         }
     }
     private fun bind() {
-        viewModel.getStopSubsSuccess().observe(this) {success ->
+        viewModel.getMoreSubsSuccess().observe(this) {success ->
             if(success) {
-                Log.d("구독 취소", "retrofit 통신: 성공")
+                Log.d("구독 연장", "retrofit 통신: 성공")
                 val resultIntent = Intent(this, MyPageSubsStopResultActivty::class.java)
                 resultIntent.putExtra("lastDate", lastDate)
+                resultIntent.putExtra("status", "more")
                 startActivity(resultIntent)
                 finish()
             }
-            else Log.d("구독 취소", "retrofit 통신: 실패")
+            else Log.d("구독 연장", "retrofit 통신: 실패")
         }
     }
 }

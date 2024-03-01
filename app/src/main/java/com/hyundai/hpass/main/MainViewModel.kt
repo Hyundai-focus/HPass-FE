@@ -29,6 +29,7 @@ class MainViewModel : ViewModel() {
     }
 
     private fun isLogin() {
+        MyApplication.preferences.setString(BuildConfig.PREF_KEY_SUBS, null)
         val accessToken = MyApplication.preferences.getString(BuildConfig.PREF_KEY_TOKEN)
         Log.d("isLogin: accessToken 유무", accessToken)
         if( accessToken != "null"){
@@ -47,7 +48,6 @@ class MainViewModel : ViewModel() {
                     Log.d("verifyToken Retrofit 통신:", "성공: $it")
                     if (it.isMember) {
                         MyApplication.preferences.setString(BuildConfig.PREF_KEY_TOKEN, it.accessToken)
-                        Log.d("verifyToken: userName", it.memberName)
                         MyApplication.preferences.setString("memberName", it.memberName)
                         MyApplication.preferences.setString("memberNo", it.memberNo.toString())
                         loginPass.postValue(true)

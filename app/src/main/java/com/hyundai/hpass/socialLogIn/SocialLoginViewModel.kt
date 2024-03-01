@@ -44,6 +44,7 @@ class SocialLoginViewModel: ViewModel() {
             }
         }
         override fun onFailure(httpStatus: Int, message: String) {
+            loginSuccess.postValue(false)
             errorMessage.postValue("Profile fetch failed: $message")
         }
         override fun onError(errorCode: Int, message: String) {
@@ -60,6 +61,7 @@ class SocialLoginViewModel: ViewModel() {
 
         override fun onFailure(httpStatus: Int, message: String) {
             errorMessage.postValue("Login failed: $message")
+            loginSuccess.postValue(false)
         }
 
         override fun onError(errorCode: Int, message: String) {
@@ -81,13 +83,18 @@ class SocialLoginViewModel: ViewModel() {
                 if(loginResponse != null){
                     Log.d("SocialLoginActivity Retrofit 통신:", "성공: ${loginResponse.toString()}")
                     Log.d("SocialLoginActivity 자체 JWT 토큰 발급:", "성공: ${loginResponse.accessToken}")
+                    MyApplication.preferences.setString("loginPass", true.toString())
                     MyApplication.preferences.setString(PREF_KEY_TOKEN, loginResponse.accessToken)
                     if (loginResponse.isSubscribed) MyApplication.preferences.setString(PREF_KEY_SUBS, PREF_VALUE_TRUE)
                     loginSuccess.postValue(true)
                 }
-                else errorMessage.postValue("loginResponse: null")
+                else {
+                    loginSuccess.postValue(false)
+                    errorMessage.postValue("loginResponse: null")
+                }
             }
             else {
+                loginSuccess.postValue(false)
                 errorMessage.postValue("로그인 Retrofit 통신 실패: ${loginRes.code()}")
             }
         }

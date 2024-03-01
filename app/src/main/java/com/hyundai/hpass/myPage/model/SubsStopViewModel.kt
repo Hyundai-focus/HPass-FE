@@ -19,7 +19,9 @@ import okhttp3.internal.wait
  */
 class SubsStopViewModel: ViewModel() {
     private val stopSubsSuccess : MutableLiveData<Boolean> = MutableLiveData()
+    private val moreSubsSuccess : MutableLiveData<Boolean> = MutableLiveData()
     fun getStopSubsSuccess() : LiveData<Boolean> = stopSubsSuccess
+    fun getMoreSubsSuccess() : LiveData<Boolean> = moreSubsSuccess
 
     fun stopSubscription(lastDate: String) {
         val accessToken = MyApplication.preferences.getString(BuildConfig.PREF_KEY_TOKEN)
@@ -31,5 +33,16 @@ class SubsStopViewModel: ViewModel() {
             else stopSubsSuccess.postValue(false)
         }
     }
+    fun moreSubscription() {
+        val accessToken = MyApplication.preferences.getString(BuildConfig.PREF_KEY_TOKEN)
+        viewModelScope.launch{
+            val subsMoreRes = async(Dispatchers.IO) {
+                RetrofitClient.subscriptionService.moreSubscription(accessToken)
+            }.await()
+            if (subsMoreRes.isSuccessful) moreSubsSuccess.postValue(true)
+            else moreSubsSuccess.postValue(false)
+        }
+    }
+
 
 }

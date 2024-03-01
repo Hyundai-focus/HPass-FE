@@ -202,10 +202,24 @@
         android:layout_marginEnd="20dp"
         android:background="@drawable/my_page_only_bottom_line"
         android:text="구독 취소"
+        android:visibility="gone"
         android:textColor="#C3C3C3"
         android:textSize="12sp"
         android:layout_marginTop="10dp"
+        android:fontFamily="@font/happiness_sans_bold"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/subscription_more_button"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        app:layout_constraintTop_toBottomOf="@id/my_page_subs_main_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/my_page_only_bottom_line"
+        android:text="구독을 연장하시겠습니까?"
         android:visibility="gone"
+        android:textColor="#C3C3C3"
+        android:textSize="12sp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/happiness_sans_bold"/>
 
     <ImageButton
