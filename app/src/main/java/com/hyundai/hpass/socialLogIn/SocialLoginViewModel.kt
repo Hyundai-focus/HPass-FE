@@ -85,6 +85,8 @@ class SocialLoginViewModel: ViewModel() {
                     Log.d("SocialLoginActivity 자체 JWT 토큰 발급:", "성공: ${loginResponse.accessToken}")
                     MyApplication.preferences.setString("loginPass", true.toString())
                     MyApplication.preferences.setString(PREF_KEY_TOKEN, loginResponse.accessToken)
+                    MyApplication.preferences.setString("memberName", loginResponse.memberName)
+                    MyApplication.preferences.setString("memberNo", loginResponse.memberNo.toString())
                     if (loginResponse.isSubscribed) MyApplication.preferences.setString(PREF_KEY_SUBS, PREF_VALUE_TRUE)
                     loginSuccess.postValue(true)
                 }
