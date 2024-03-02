@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/face_icon"
         app:layout_constraintBottom_toTopOf="@id/booking_impossible_ok_button"
-        android:text="죄송합니다! \n 다른 날짜나 시간을 선택해주세요"
+        android:text="예약을 원하는 \n 날짜나 시간을 선택해주세요!"
         android:textStyle="bold"
         android:fontFamily="@font/happiness_sans_regular"
         android:textColor="@color/black"

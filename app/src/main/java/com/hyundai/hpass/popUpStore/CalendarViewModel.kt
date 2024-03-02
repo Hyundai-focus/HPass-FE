@@ -57,11 +57,12 @@ class CalendarViewModel(
 
                     fun timeToIndex(time: String): Int {
                         return when (time) {
-                            "11 : 00" -> 0
-                            "13 : 00" -> 1
-                            "15 : 00" -> 2
-                            "17 : 00" -> 3
-                            "19 : 00" -> 4
+                            "09 : 00" -> 0
+                            "11 : 00" -> 1
+                            "13 : 00" -> 2
+                            "15 : 00" -> 3
+                            "17 : 00" -> 4
+                            "19 : 00" -> 5
                             else -> throw IllegalArgumentException("잘못된 시간: $time")
                         }
                     }

@@ -21,6 +21,7 @@ import com.hyundai.hpass.databinding.PopUpStoreActivityBookingBinding
 import com.hyundai.hpass.subscription.model.response.PopUpStoreResponse
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
@@ -52,16 +53,13 @@ class CalendarBottomSheetDialogFragment(private val storeData: PopUpStoreRespons
         val viewModelFactory = CalendarViewModelFactory(popupNo, popupStartDt, popupEndDt)
         viewModel = ViewModelProvider(this, viewModelFactory).get(CalendarViewModel::class.java)
 
-//        viewModel.errorMessage.observe(viewLifecycleOwner, Observer { message ->
-//            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
-//        })
-
         // BottomSheetDialog 전체화면으로 띄우기
         val bottomSheet = dialog?.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
         val behavior = BottomSheetBehavior.from<View>(bottomSheet!!)
         behavior.state = BottomSheetBehavior.STATE_EXPANDED
 
         val timeButtons = arrayOf(
+            binding.time0,
             binding.time1,
             binding.time2,
             binding.time3,
@@ -77,12 +75,9 @@ class CalendarBottomSheetDialogFragment(private val storeData: PopUpStoreRespons
         val startCalendar = Calendar.getInstance().apply {
             time = dateFormat.parse(popupStartDt) ?: Date()
         }
-        val tomorrow = Calendar.getInstance().apply {
-            add(Calendar.DAY_OF_MONTH, 1) // 오늘 날짜에서 하루를 더해 내일 날짜로 생성
-        }
 
-        // popupStartDt와 내일 날짜 중 더 늦은 날짜를 최소 날짜로 설정
-        val minDate = if (tomorrow.after(startCalendar)) tomorrow else startCalendar
+        // popupStartDt와 오늘 날짜 중 더 늦은 날짜를 최소 날짜로 설정
+        val minDate = if (Calendar.getInstance().after(startCalendar)) Calendar.getInstance() else startCalendar
 
         val endCalendar = Calendar.getInstance().apply {
             time = dateFormat.parse(popupEndDt) ?: Date()
@@ -105,10 +100,7 @@ class CalendarBottomSheetDialogFragment(private val storeData: PopUpStoreRespons
                 // viewModel의 viewModelScope에서 launch하여 loadReservations 함수를 호출
                 viewModel.viewModelScope.launch {
                     try {
-                        // 비동기로 예약 데이터를 로드
                         viewModel.loadReservations()
-
-                        // 예약 데이터가 업데이트될 때까지 대기
                         viewModel.reservations.observe(viewLifecycleOwner) { reservations ->
                             val availabilities = reservations[dateStr] ?: listOf()
 
@@ -122,14 +114,33 @@ class CalendarBottomSheetDialogFragment(private val storeData: PopUpStoreRespons
 
                             // 각 timeButton에 대해, 잔여 시간 데이터에 따라 가시성 설정
                             timeButtons.forEachIndexed { index, button ->
+                                val buttonTime = button.text.toString().replace(" ", "") // 공백 제거
+                                Log.d("CalendarFragment", "Button time: $buttonTime")
+
+                                // 현재 시간보다 이전 시간의 버튼 비활성화
+                                val buttonHour = buttonTime.split(":")[0].toInt() // 버튼의 시간 추출
+                                Log.d("CalendarFragment", "Button Hour: $buttonHour")
+
+                                val currentCalendar = Calendar.getInstance()
+                                val currentHour = currentCalendar.get(Calendar.HOUR_OF_DAY)
+                                Log.d("CalendarFragment", "Current hour: $currentHour")
+
+                                // 예약 가능 여부에 따라 버튼 상태 변경
                                 if (index < availabilities.size && availabilities[index]) {
                                     button.visibility = View.VISIBLE
                                     button.isEnabled = false
                                     button.background = ContextCompat.getDrawable(requireContext(), R.drawable.popup_booking_invalidated)
                                 } else {
-                                    button.visibility = View.VISIBLE
-                                    button.isEnabled = true
-                                    button.background = ContextCompat.getDrawable(requireContext(), R.drawable.popup_booking_button_background)
+                                    if (dateStr == dateFormat.format(currentCalendar.time) && currentHour >= buttonHour) {
+                                        Log.d("CalendarFragment", "여기")
+                                        button.visibility = View.VISIBLE
+                                        button.isEnabled = false
+                                        button.background = ContextCompat.getDrawable(requireContext(), R.drawable.popup_booking_invalidated)
+                                    } else {
+                                        button.visibility = View.VISIBLE
+                                        button.isEnabled = true
+                                        button.background = ContextCompat.getDrawable(requireContext(), R.drawable.popup_booking_button_background)
+                                    }
                                 }
                             }
                         }
@@ -143,6 +154,7 @@ class CalendarBottomSheetDialogFragment(private val storeData: PopUpStoreRespons
         })
 
         val timeButtonListeners = listOf(
+            "09 : 00",
             "11 : 00",
             "13 : 00",
             "15 : 00",
@@ -198,9 +210,9 @@ class CalendarBottomSheetDialogFragment(private val storeData: PopUpStoreRespons
 
                 viewModel.insertBooking(item)
             } else {
-                // 예약 불가능한 경우
-                val dialogFragment = ImpossibleBookingDialog()
-                dialogFragment.show(childFragmentManager, "impossibleBookingDialog")
+                // 날짜나 시간을 선택하지 않은 경우
+                val dialogFragment = PleaseSelectBookingDialog()
+                dialogFragment.show(childFragmentManager, "pleaseSelectBookingDialog")
             }
         }
     }
