@@ -69,7 +69,7 @@ class CalendarViewModel(
 
                     // 예약된 시간을 true로 표시
                     val availabilityList =
-                        reservationMap[date]?.toMutableList() ?: MutableList(5) { false }
+                        reservationMap[date]?.toMutableList() ?: MutableList(6) { false }
                     availabilityList[timeToIndex(time)] = true
                     reservationMap[date] = availabilityList
                 }
