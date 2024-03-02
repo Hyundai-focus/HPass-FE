@@ -67,6 +67,12 @@ class HamburgerMenuActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
+        if (MyApplication.preferences.getString("loginPass") == "true") {
+            binding.logoutBtn.setOnClickListener {
+                MyApplication.preferences.clear()
+                goToMain()
+            }
+        }
     }
     private fun bind() {
         socialLoginViewModel.getLoginSuccess().observe(this) { success ->

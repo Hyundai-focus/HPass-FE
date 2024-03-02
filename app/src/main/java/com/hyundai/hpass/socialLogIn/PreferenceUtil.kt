@@ -17,4 +17,7 @@ class PreferenceUtil(context: Context) {
     fun getString(key: String):String{
         return preferences.getString(key, null).toString()
     }
+    fun clear(){
+        preferences.edit().clear().commit()
+    }
 }
