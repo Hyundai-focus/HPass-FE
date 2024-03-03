@@ -18,6 +18,8 @@ import com.hyundai.hpass.main.MainViewModel
 import com.hyundai.hpass.socialLogIn.MyApplication
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.time.ZoneId
+import java.time.ZonedDateTime
 
 
 class NfcMainActivity : AppCompatActivity() {
@@ -43,12 +45,13 @@ class NfcMainActivity : AppCompatActivity() {
         binding.confirmButton.setOnClickListener {
             if (nfcViewModel.getIsSuccessVisitFiveStore().value == true) {
                 binding.confirmButton.visibility = View.INVISIBLE
-                binding.issueButton.visibility = View.VISIBLE
-                binding.lottieFiveStart.visibility = View.VISIBLE
                 binding.lottieAlert.visibility = View.INVISIBLE
                 binding.lottieCheck.visibility = View.INVISIBLE
+
+                binding.issueButton.visibility = View.VISIBLE
+                binding.lottieFiveStart.visibility = View.VISIBLE
                 binding.infoText.text = "오늘의 매장을 모두 방문하셨습니다"
-                binding.infoSubtext.text = "쿠폰을 받으세요!"
+                binding.infoSubtext.text = "추가 쿠폰을 받으세요!"
             } else {
                 finish()
             }
@@ -88,9 +91,6 @@ class NfcMainActivity : AppCompatActivity() {
                 binding.infoText.text = "팝업스토어 예약 내역이 없습니다"
                 binding.infoSubtext.text = "팝업스토어 예약 먼저 해주세요!"
             } else {
-                binding.cardViewLayout.visibility = View.VISIBLE
-                binding.infoText.text = "예약 내역이 확인되었습니다"
-                binding.infoSubtext.text = "지금 바로 입장해주세요!"
 
                 Glide
                     .with(this)
@@ -99,19 +99,40 @@ class NfcMainActivity : AppCompatActivity() {
                     .into(binding.image)
                 binding.storeName.text = popUpStore.popUpName
                 binding.bookingTime.text = popUpStore.bookingDate + " " + popUpStore.bookingTime
+
+                popUpStore.bookingTime.let {
+                    val time = it.split(":")
+                    val hour = time[0].toInt()
+
+                    val zoneDateTime = ZonedDateTime.now(ZoneId.of("Asia/Seoul"))
+
+                    if (zoneDateTime.hour >= hour + 1) {
+                        binding.lottieFail.visibility = View.VISIBLE
+                        binding.infoText.text = "입장 가능한 시간이 아닙니다"
+                        binding.infoSubtext.text = "예약시간이 지났습니다!"
+                    } else if (zoneDateTime.hour < hour - 1) {
+                        binding.lottieFail.visibility = View.VISIBLE
+                        binding.infoText.text = "입장가능한 시간이 아닙니다"
+                        binding.infoSubtext.text = "조금만 더 기다려주세요!"
+                    } else {
+                        binding.cardViewLayout.visibility = View.VISIBLE
+                        binding.infoText.text = "예약 내역이 확인되었습니다"
+                        binding.infoSubtext.text = "지금 바로 입장해주세요!"
+                    }
+                }
             }
         }
 
         nfcViewModel.getVisitStore().observe(this) { visitStore ->
-            if (visitStore.storeFloor == "not today") {
-                binding.lottieFail.visibility = View.VISIBLE
-                binding.infoText.text = "오늘의 매장이 아닙니다"
-                binding.infoSubtext.text = "오늘의 매장을 확인해주세요!"
-            } else if (visitStore.visitStatus == false) {
+            if (visitStore.storeFloor == "already") {
                 binding.lottieAlert.visibility = View.VISIBLE
                 binding.infoText.text = "이미 방문한 매장입니다"
                 binding.infoSubtext.text = "다른 매장을 방문해주세요!"
-            } else {
+            } else if (visitStore.storeFloor == "not today") {
+                binding.lottieFail.visibility = View.VISIBLE
+                binding.infoText.text = "오늘의 매장이 아닙니다"
+                binding.infoSubtext.text = "오늘의 매장을 확인해주세요!"
+            } else if (visitStore.visitStatus) {
                 binding.lottieCheck.visibility = View.VISIBLE
                 binding.infoText.text = "오늘의 매장 방문 완료"
                 binding.infoSubtext.text = "매장 쿠폰이 발급되었습니다!"

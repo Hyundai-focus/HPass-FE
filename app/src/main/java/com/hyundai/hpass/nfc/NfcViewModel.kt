@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 
 /**
  *
- * @author 김은서
+ * @author 김기훈
  *
  */
 class NfcViewModel : ViewModel() {
@@ -73,32 +73,49 @@ class NfcViewModel : ViewModel() {
 
     private fun visitStore(storeNo: String?) {
         viewModelScope.launch {
-            val numRes = async(Dispatchers.IO) {
+            val visitRes = async(Dispatchers.IO) {
                 storeNo?.let {
                     RetrofitClient.nfcService.visitStore(it.toLong(), token)
                 }
             }.await()
 
-            if (numRes?.isSuccessful == true && numRes.body() != null) {
-                visitStore.postValue(numRes.body())
+            if (visitRes?.isSuccessful == true && visitRes.body() != null) {
 
-                val visitStoreCountRes = async(Dispatchers.IO) {
-                    RetrofitClient.nfcService.visitNum(token)
-                }.await()
+                visitRes.body()?.let {
+                    if (it.storeFloor == "already" || it.storeFloor == "not today") {
+                        visitStore.postValue(it)
+                    } else if (it.visitStatus) {
+                        // 오늘의 매장 방문 성공
+                        issueCouponByStore(storeNo, it)
 
-                val isExistCouponRes = async(Dispatchers.IO) {
-                    RetrofitClient.nfcService.isExistCoupon(token)
-                }.await()
+                        val visitStoreCountRes = async(Dispatchers.IO) {
+                            RetrofitClient.nfcService.visitNum(token)
+                        }.await()
 
-                if (visitStoreCountRes.isSuccessful && visitStoreCountRes.body() != null
-                    && isExistCouponRes.isSuccessful && isExistCouponRes.body() == false
-                    && isExistCouponRes.body() == false && visitStoreCountRes.body()
-                        .toString() == "5"
-                ) {
-                    isSuccessVisitFiveStore.postValue(true)
-                } else if (isExistCouponRes.body() == true) {
-                    isSuccessVisitFiveStore.postValue(false)
+                        if (visitStoreCountRes.isSuccessful
+                            && visitStoreCountRes.body() != null
+                            && visitStoreCountRes.body() == 5L
+                        ) {
+                            isSuccessVisitFiveStore.postValue(true)
+                        } else {
+                            isSuccessVisitFiveStore.postValue(false)
+                        }
+                    }
                 }
+            }
+        }
+    }
+
+    private fun issueCouponByStore(storeNo: String?, storeListResponse: StoreListResponse) {
+        viewModelScope.launch {
+            val couponRes = async(Dispatchers.IO) {
+                storeNo?.let {
+                    RetrofitClient.nfcService.issueCouponByStore(it.toLong(), token)
+                }
+            }.await()
+
+            if (couponRes?.isSuccessful == true && couponRes.body() != null) {
+                visitStore.postValue(storeListResponse)
             }
         }
     }
