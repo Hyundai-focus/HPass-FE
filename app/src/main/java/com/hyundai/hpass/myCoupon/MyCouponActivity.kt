@@ -28,7 +28,7 @@ class MyCouponActivity : AppCompatActivity() {
 
     private fun bind() {
         viewModel.getCoupon().observe(this) { couponList ->
-            val myCouponListAdapter = MyCouponListAdapter(couponList)
+            val myCouponListAdapter = MyCouponListAdapter(couponList, viewModel)
             binding.couponList.adapter = myCouponListAdapter
             binding.couponList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         }
