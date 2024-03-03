@@ -39,4 +39,16 @@ class MyCouponViewModel : ViewModel() {
             }
         }
     }
+
+    fun useCoupon(couponNo: Long) {
+        viewModelScope.launch {
+            val numRes = async(Dispatchers.IO) {
+                RetrofitClient.myCouponService.useCoupon(token, couponNo)
+            }.await()
+
+            numRes.body()?.let {
+                loadCoupons()
+            }
+        }
+    }
 }

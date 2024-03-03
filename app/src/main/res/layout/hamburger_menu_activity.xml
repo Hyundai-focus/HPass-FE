@@ -112,11 +112,31 @@
 
         </LinearLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="⭐ new ⭐"
+            android:textColor="#A63641"
+            android:fontFamily="@font/happiness_sans_title"
+            android:textSize="16.5sp"
+            app:layout_constraintTop_toTopOf="@id/benefitGroup"
+            app:layout_constraintEnd_toEndOf="@id/guidelineV93"
+
+            />
+
         <androidx.constraintlayout.widget.Guideline
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/guidelineV07"
             app:layout_constraintGuide_percent="0.07"
+            android:orientation="vertical"
+            />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guidelineV93"
+            app:layout_constraintGuide_percent="0.93"
             android:orientation="vertical"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>

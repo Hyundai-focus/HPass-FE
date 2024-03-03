@@ -45,8 +45,8 @@ class SubscriptionMainActivity : AppCompatActivity() {
         binding.subscriptionMainButtonGroup.todayStore.buttonImage.setImageResource(R.drawable.subscription_today_store)
         binding.subscriptionMainButtonGroup.newProduct.buttonText.text = "이달의 신제품"
         binding.subscriptionMainButtonGroup.newProduct.buttonImage.setImageResource(R.drawable.subscription_new_product)
-        binding.subscriptionMainButtonGroup.myPage.buttonText.text = "마이 페이지"
-        binding.subscriptionMainButtonGroup.myPage.buttonImage.setImageResource(R.drawable.my_page_subs_icon)
+        binding.subscriptionMainButtonGroup.mySubscription.buttonText.text = "구독 관리"
+        binding.subscriptionMainButtonGroup.mySubscription.buttonImage.setImageResource(R.drawable.my_page_subs_icon)
     }
 
     private fun configureEvent() {
@@ -71,7 +71,7 @@ class SubscriptionMainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.subscriptionMainButtonGroup.myPage.root.setOnClickListener {
+        binding.subscriptionMainButtonGroup.mySubscription.root.setOnClickListener {
             val intent = Intent(this, MyPageActivity::class.java)
             startActivity(intent)
         }

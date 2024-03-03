@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/shape_corner_round"
+    tools:context=".myCoupon.UsingCouponFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="쿠폰 사용하기"
+        android:textSize="20dp"
+        android:fontFamily="@font/happiness_sans_bold"
+        app:layout_constraintStart_toStartOf="@id/guidelineV05"
+        app:layout_constraintTop_toTopOf="@id/guidelineH10"
+        app:layout_constraintBottom_toTopOf="@id/dialog_background"
+        android:layout_marginBottom="20dp"
+        />
+
+    <View
+        android:id="@+id/dialog_background"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:background="@drawable/shape_corner_round"
+        android:backgroundTint="@color/light_green"
+        app:layout_constraintEnd_toEndOf="@id/guidelineV95"
+        app:layout_constraintStart_toStartOf="@id/guidelineV05"
+        app:layout_constraintTop_toBottomOf="@+id/guidelineH25"
+        app:layout_constraintBottom_toBottomOf="@id/guidelineH50"
+        app:srcCompat="@drawable/my_booking_delete_dialog_background" />
+
+    <TextView
+        android:id="@+id/store_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="매장 직원에게 보여주세요"
+        android:textSize="18dp"
+        android:fontFamily="@font/happiness_sans_bold"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="@id/dialog_background"
+        app:layout_constraintBottom_toBottomOf="@id/dialog_background"
+        />
+
+    <TextView
+        android:id="@+id/infoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/dialog_background"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/grey"
+        app:layout_constraintStart_toStartOf="@id/guidelineV05"
+        app:layout_constraintEnd_toEndOf="@id/guidelineV95"
+        android:text="· 직원이 사용하기 버튼을 누르면, 사용 완료 처리가 됩니다"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/cancelButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/my_booking_no_button"
+        android:text="취소"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_marginVertical="10dp"
+        app:layout_constraintStart_toStartOf="@id/guidelineV05"
+        app:layout_constraintTop_toBottomOf="@id/infoText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guidelineV45"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/useButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:background="@drawable/my_booking_yes_button"
+        android:text="사용하기"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/guidelineV95"
+        app:layout_constraintTop_toBottomOf="@id/infoText"
+        app:layout_constraintStart_toStartOf="@id/guidelineV55"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.10"
+        android:id="@+id/guidelineH10"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.25"
+        android:id="@+id/guidelineH25"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.35"
+        android:id="@+id/guidelineH35"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5"
+        android:id="@+id/guidelineH50"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.70"
+        android:id="@+id/guidelineH70"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.80"
+        android:id="@+id/guidelineH80"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05"
+        android:id="@+id/guidelineV05"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.13"
+        android:id="@+id/guidelineV13"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.83"
+        android:id="@+id/guidelineV83"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.45"
+        android:id="@+id/guidelineV45"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.55"
+        android:id="@+id/guidelineV55"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95"
+        android:id="@+id/guidelineV95"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
