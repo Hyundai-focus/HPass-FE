@@ -41,4 +41,10 @@ interface NfcService {
         @Path("couponNo") couponNo: Long,
         @Header("Authorization") Authorization: String
     ): Response<Boolean>
+
+    @GET("/coupon/issue/store/{storeNo}")
+    suspend fun issueCouponByStore(
+        @Path("storeNo") storeNo: Long,
+        @Header("Authorization") Authorization: String
+    ): Response<Boolean>
 }

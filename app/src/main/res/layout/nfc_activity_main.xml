@@ -168,7 +168,7 @@
         android:layout_marginBottom="30dp"
         android:background="@drawable/new_product_apply_button"
         android:fontFamily="@font/happiness_sans_bold"
-        android:text="쿠폰 발급받기"
+        android:text="프로모션 쿠폰 발급받기"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:visibility="gone"
