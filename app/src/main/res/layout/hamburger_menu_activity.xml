@@ -61,7 +61,7 @@
                 android:id="@+id/hMenuText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="H.Pass 멤버십"
+                android:text="H.Pass 구독 서비스"
                 android:textColor="@color/status_black"
                 android:background="@color/white"
                 android:textSize="16.5sp"
