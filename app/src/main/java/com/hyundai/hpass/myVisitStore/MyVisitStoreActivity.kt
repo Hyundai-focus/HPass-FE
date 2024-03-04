@@ -9,7 +9,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.hyundai.hpass.databinding.MyVisitStoreActivityMyVisitStoreBinding
 import com.hyundai.hpass.myVisitStore.model.MyVIsitStoreViewModel
 
-
+// 작성자: 김은서
+// 기능: 오늘의 상점 메인 액티비티
 class MyVisitStoreActivity : AppCompatActivity() {
     private lateinit var binding: MyVisitStoreActivityMyVisitStoreBinding
     private lateinit var viewModel: MyVIsitStoreViewModel

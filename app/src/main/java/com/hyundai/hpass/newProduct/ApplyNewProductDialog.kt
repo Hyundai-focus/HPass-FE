@@ -16,11 +16,8 @@ import com.hyundai.hpass.newProduct.model.NewProductViewModel
 import com.hyundai.hpass.newProduct.model.request.ApplyNewProdRequest
 import com.hyundai.hpass.newProduct.model.response.NewItemListResponse
 
-/**
- *
- * @author 김은서
- *
- */
+// 작성자: 김은서
+// 기능: 신상품 신청 다이얼로그
 class ApplyNewProductDialog : DialogFragment() {
     private lateinit var context: Context
     private lateinit var binding: NewProductDialogApplyNewProductBinding

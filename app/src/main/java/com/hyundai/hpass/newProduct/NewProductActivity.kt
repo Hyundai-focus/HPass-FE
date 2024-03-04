@@ -11,6 +11,8 @@ import com.hyundai.hpass.databinding.NewProductActivityNewProductBinding
 import com.hyundai.hpass.newProduct.model.NewProductViewModel
 import com.hyundai.hpass.newProduct.model.response.UsrProdStatusResponse
 
+// 작성자: 김은서
+// 기능: 신상품 체험 메인 액티비티
 class NewProductActivity : AppCompatActivity() {
     private lateinit var viewModel: NewProductViewModel
     private lateinit var binding: NewProductActivityNewProductBinding

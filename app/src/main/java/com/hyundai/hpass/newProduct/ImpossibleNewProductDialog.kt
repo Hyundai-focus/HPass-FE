@@ -8,11 +8,8 @@ import androidx.fragment.app.DialogFragment
 import com.hyundai.hpass.R
 import com.hyundai.hpass.databinding.NewProductDialogImpossibleBinding
 
-/**
- *
- * @author 김은서
- *
- */
+// 작성자: 김은서
+// 기능: 신상품 신청 불가 다이얼로그
 class ImpossibleNewProductDialog : DialogFragment() {
     private lateinit var binding: NewProductDialogImpossibleBinding
     override fun onCreate(savedInstanceState: Bundle?) {

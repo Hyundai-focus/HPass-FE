@@ -12,11 +12,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
-/**
- *
- * @author 김은서
- *
- */
+// 작성자: 김은서
+// 기능: 오늘의 상점 뷰모델
 class MyVIsitStoreViewModel: ViewModel()  {
     val token = MyApplication.preferences.getString(PREF_KEY_TOKEN)
     val errorMessage: MutableLiveData<String> = MutableLiveData()
@@ -24,6 +21,8 @@ class MyVIsitStoreViewModel: ViewModel()  {
     val storeList : MutableLiveData<List<StoreListResponse>> = MutableLiveData()
     val floorList : MutableLiveData<List<Long>> = MutableLiveData()
 
+    // 작성자: 김은서
+    // 기능: 오늘의 상점 목록 통신
     fun getStoreList(){
         viewModelScope.launch {
             val storeRes = async(Dispatchers.IO){
@@ -33,12 +32,13 @@ class MyVIsitStoreViewModel: ViewModel()  {
                 val sortedStoreList = storeRes.body()!!.sortedBy { it.storeFloor.firstOrNull { it.isDigit() } }
                 storeList.postValue(sortedStoreList)
             } else {
-                Log.d("MyVIsitStoreViewModel", "getStoreList: ${storeRes.code()}")
                 errorMessage.postValue("상점 목록 통신 실패: ${storeRes.code()}")
             }
         }
     }
 
+    // 작성자: 김은서
+    // 기능: 방문한 오늘의 상점 층수 목록 통신
     fun getFloorList(){
         viewModelScope.launch {
             val floorRes = async(Dispatchers.IO){
@@ -47,7 +47,7 @@ class MyVIsitStoreViewModel: ViewModel()  {
             if (floorRes.isSuccessful && floorRes.body()?.isEmpty() == false) {
                 floorList.postValue(floorRes.body())
             } else {
-                errorMessage.postValue("상점 목록 통신 실패: ${floorRes.code()}")
+                errorMessage.postValue("방문 목록 통신 실패: ${floorRes.code()}")
             }
         }
     }
