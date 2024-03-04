@@ -9,11 +9,8 @@ import com.hyundai.hpass.databinding.NewProductActivityUserNewProductBinding
 import com.hyundai.hpass.newProduct.model.NewProductViewModel
 import com.hyundai.hpass.newProduct.model.response.UsrProdStatusResponse
 
-/**
- *
- * @author 김은서
- *
- */
+// 작성자: 김은서
+// 기능: 신청한 신상품 상태 및 정보 액티비티
 class UserNewProductActivity : AppCompatActivity() {
     private lateinit var viewModel: NewProductViewModel
     private lateinit var binding : NewProductActivityUserNewProductBinding

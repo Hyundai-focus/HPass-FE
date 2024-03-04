@@ -65,6 +65,7 @@
                 android:layout_marginTop="10dp"
                 >
                 <TextView
+                    android:id="@+id/todayCoupon"
                     android:layout_width="0dp"
                     android:layout_height="38dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -80,6 +81,22 @@
                     android:text="전상품 30% 할인 쿠폰"
                     android:backgroundTint="@color/light_green"
                     android:background="@drawable/shape_corner_round"
+                    />
+                <TextView
+                    android:id="@+id/noStoreVisit"
+                    android:layout_width="0dp"
+                    android:layout_height="38dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/todayCoupon"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:fontFamily="@font/happiness_sans_regular"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    android:visibility="invisible"
+                    android:text="오늘의 매장 방문을 시작해보세요"
                     />
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"

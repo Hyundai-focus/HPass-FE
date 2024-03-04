@@ -10,11 +10,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.hyundai.hpass.databinding.NewProductItemNewProductBinding
 import com.hyundai.hpass.newProduct.model.response.NewItemListResponse
 
-/**
- *
- * @author 김은서
- *
- */
+// 작성자: 김은서
+// 기능: 신상품 리사이클러뷰 어댑터
 class NewItemListAdapter(
     private val status:Boolean,
     private val items : List<NewItemListResponse>,

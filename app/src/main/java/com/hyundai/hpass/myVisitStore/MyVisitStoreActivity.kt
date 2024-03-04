@@ -9,7 +9,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.hyundai.hpass.databinding.MyVisitStoreActivityMyVisitStoreBinding
 import com.hyundai.hpass.myVisitStore.model.MyVIsitStoreViewModel
 
-
+// 작성자: 김은서
+// 기능: 오늘의 상점 메인 액티비티
 class MyVisitStoreActivity : AppCompatActivity() {
     private lateinit var binding: MyVisitStoreActivityMyVisitStoreBinding
     private lateinit var viewModel: MyVIsitStoreViewModel
@@ -46,6 +47,10 @@ class MyVisitStoreActivity : AppCompatActivity() {
     fun bindFloorText(floors : List<Long>){
         val context = binding.root.context
         val num = floors.size
+        if(num == 0){
+            binding.backBar.visibility = View.INVISIBLE
+            binding.noStoreVisit.visibility = View.VISIBLE
+        }
         for (i in 1..5) {
             val textId = context.resources.getIdentifier("level${i}_text", "id", context.packageName)
             val textView = binding.root.findViewById<TextView>(textId)

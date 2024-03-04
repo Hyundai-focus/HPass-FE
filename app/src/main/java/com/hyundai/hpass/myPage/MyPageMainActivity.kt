@@ -13,11 +13,8 @@ import com.hyundai.hpass.myPage.model.MyPageViewModel
 import com.hyundai.hpass.socialLogIn.MyApplication
 import com.hyundai.hpass.subscription.AddSubscriptionActivity
 
-/**
- *
- * @author 김은서
- *
- */
+//작성자: 김은서
+//기능: 메인페이지의 마이페이지
 class MyPageMainActivity:AppCompatActivity() {
     private lateinit var binding: MyPageActivityMainBinding
     private lateinit var viewModel: MyPageViewModel

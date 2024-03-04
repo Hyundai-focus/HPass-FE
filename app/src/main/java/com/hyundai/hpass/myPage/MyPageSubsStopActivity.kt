@@ -11,11 +11,8 @@ import com.hyundai.hpass.myPage.model.SubsStopViewModel
 import com.hyundai.hpass.newProduct.ImpossibleNewProductDialog
 import com.hyundai.hpass.socialLogIn.MyApplication
 
-/**
- *
- * @author 김은서
- *
- */
+// 작성자: 김은서, 최현서
+// 기능: 구독 취소 만류 액티비티
 class MyPageSubsStopActivity : AppCompatActivity() {
     private lateinit var binding: MyPageActivityStopSubscriptionBinding
     private lateinit var viewModel: SubsStopViewModel

@@ -55,6 +55,8 @@ object RetrofitClient {
             .create(PopUpBookingService::class.java)
     }
 
+    // 작성자: 김은서
+    // 기능: 오늘의 상점 통신 레트로핏
     val myVisitStoreService: MyVisitStoreService by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -63,6 +65,8 @@ object RetrofitClient {
             .create(MyVisitStoreService::class.java)
     }
 
+    // 작성자: 김은서
+    // 기능: 신상품 체험 통신 레트로핏
     val newProductService : NewProductService by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -71,6 +75,9 @@ object RetrofitClient {
             .create(NewProductService::class.java)
     }
 
+
+    // 작성자: 김은서
+    // 기능: 마이페이지 통신 레트로핏
     val myPageService : MyPageService by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)

@@ -11,11 +11,8 @@ import com.hyundai.hpass.databinding.MyPageDialogStopSubsBinding
 import com.hyundai.hpass.databinding.NewProductDialogApplyNewProductBinding
 import com.hyundai.hpass.newProduct.model.response.NewItemListResponse
 
-/**
- *
- * @author 김은서
- *
- */
+// 작성자: 김은서
+// 기능: 구독 취소 시 유저에게 보여주는 다이얼로그
 class MyPageSubsDialog :DialogFragment() {
     private lateinit var binding: MyPageDialogStopSubsBinding
     private var callback: (() -> Unit)? = null // 콜백 변수

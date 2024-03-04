@@ -15,11 +15,8 @@ import com.hyundai.hpass.databinding.MyVisitStoreDialogMapBinding
 import com.hyundai.hpass.myVisitStore.model.MyVIsitStoreViewModel
 import com.hyundai.hpass.myVisitStore.model.response.StoreListResponse
 
-/**
- *
- * @author 김은서
- *
- */
+// 작성자: 김은서
+// 기능: 오늘의 상점 지도 다이얼로그
 class StoreMapDialog() : DialogFragment() {
     private lateinit var context: Context
     private lateinit var binding: MyVisitStoreDialogMapBinding

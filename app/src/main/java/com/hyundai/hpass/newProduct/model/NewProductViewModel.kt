@@ -14,11 +14,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
-/**
- *
- * @author 김은서
- *
- */
+
+// 작성자: 김은서
+// 기능: 신상품 체험 뷰모델
 class NewProductViewModel:ViewModel() {
     val token = MyApplication.preferences.getString(BuildConfig.PREF_KEY_TOKEN)
     val errorMessage: MutableLiveData<String> = MutableLiveData()
@@ -28,6 +26,9 @@ class NewProductViewModel:ViewModel() {
     val applyStatus : MutableLiveData<String> = MutableLiveData()
     val cancelStatus : MutableLiveData<String> = MutableLiveData()
 
+
+    // 작성자: 김은서
+    // 기능: 신상품 목록 통신
     fun getProductList(){
         viewModelScope.launch {
             val prodRes = async(Dispatchers.IO){
@@ -44,6 +45,8 @@ class NewProductViewModel:ViewModel() {
         }
     }
 
+    // 작성자: 김은서
+    // 기능: 유저 신청 정보 통신
     fun getUsrProdInfo(){
         viewModelScope.launch {
             val userProd = async(Dispatchers.IO){
@@ -56,6 +59,8 @@ class NewProductViewModel:ViewModel() {
         }
     }
 
+    // 작성자: 김은서
+    // 기능: 신상품 신청하기 통신
     fun applyNewProd(prodNumber: ApplyNewProdRequest){
         viewModelScope.launch {
             val applyRes = async(Dispatchers.IO){
@@ -68,6 +73,8 @@ class NewProductViewModel:ViewModel() {
         }
     }
 
+    // 작성자: 김은서
+    // 기능: 신상품 신청 취소 통신
     fun cancelProd(){
         viewModelScope.launch {
             val cancelRes = async(Dispatchers.IO){
@@ -76,7 +83,7 @@ class NewProductViewModel:ViewModel() {
             if(cancelRes.isSuccessful) {
                 cancelStatus.postValue(cancelRes.body())
             }
-            else errorMessage.postValue( "신청 통신 실패: ${cancelRes.code()}")
+            else errorMessage.postValue( "신청 취소 통신 실패: ${cancelRes.code()}")
         }
     }
 }

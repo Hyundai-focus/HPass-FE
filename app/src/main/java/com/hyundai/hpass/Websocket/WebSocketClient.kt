@@ -1,16 +1,14 @@
 package com.hyundai.hpass.Websocket
 
-/**
- *
- * @author 김은서
- *
- */
+
 import android.util.Log
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.WebSocket
 import okhttp3.WebSocketListener
 
+// 작성자: 김은서
+// 기능: 웹소켓 구현
 enum class WebSocketConnectionState {
     CONNECTED,
     DISCONNECTED

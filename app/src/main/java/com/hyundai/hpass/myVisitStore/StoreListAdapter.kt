@@ -10,11 +10,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.hyundai.hpass.databinding.MyVisitStoreStoreBinding
 import com.hyundai.hpass.myVisitStore.model.response.StoreListResponse
 
-/**
- *
- * @author 김은서
- *
- */
+// 작성자: 김은서
+// 기능: 오늘의 상점 리사이클러뷰 어댑터
 class StoreListAdapter(
     private val items: List<StoreListResponse>,
     private val fragmentManager: FragmentManager
@@ -28,7 +25,7 @@ class StoreListAdapter(
     }
 
     override fun onBindViewHolder(holder: StoreListViewHolder, position: Int) {
-        val item = items[position] // 데이터 리스트에서 해당 위치의 데이터를 가져옵니다.
+        val item = items[position]
         holder.binding.apply {
             Glide.with(holder.itemView.context)
                 .load(item.storeImg)
