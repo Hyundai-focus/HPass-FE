@@ -1,6 +1,5 @@
 package com.hyundai.hpass.myVisitStore.model
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -14,7 +13,7 @@ import kotlinx.coroutines.launch
 
 // 작성자: 김은서
 // 기능: 오늘의 상점 뷰모델
-class MyVIsitStoreViewModel: ViewModel()  {
+class MyVisitStoreViewModel: ViewModel()  {
     val token = MyApplication.preferences.getString(PREF_KEY_TOKEN)
     val errorMessage: MutableLiveData<String> = MutableLiveData()
 

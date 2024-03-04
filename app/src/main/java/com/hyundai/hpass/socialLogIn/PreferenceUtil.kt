@@ -18,6 +18,6 @@ class PreferenceUtil(context: Context) {
         return preferences.getString(key, null).toString()
     }
     fun clear(){
-        preferences.edit().clear().commit()
+        preferences.edit().clear().apply()
     }
 }

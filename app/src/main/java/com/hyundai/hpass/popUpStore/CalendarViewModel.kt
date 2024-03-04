@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hyundai.hpass.BuildConfig.PREF_KEY_TOKEN
 import com.hyundai.hpass.network.RetrofitClient
+import com.hyundai.hpass.popUpStore.model.BookingItem
+import com.hyundai.hpass.popUpStore.model.PopUpBookingDTO
 import com.hyundai.hpass.socialLogIn.MyApplication
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -24,9 +26,6 @@ class CalendarViewModel(
 ) : ViewModel() {
     private val _bookingSuccess = MutableLiveData<Boolean>()
     val bookingSuccess: LiveData<Boolean> = _bookingSuccess
-
-    private val _errorMessage = MutableLiveData<String>()
-    val errorMessage: LiveData<String> = _errorMessage
 
     private val _reservations = MutableLiveData<Map<String, List<Boolean>>>()
     val reservations: LiveData<Map<String, List<Boolean>>> = _reservations
@@ -75,13 +74,11 @@ class CalendarViewModel(
                 }
 
                 _reservations.postValue(reservationMap)
-            } else {
-                _errorMessage.postValue("서버로부터 예상치 못한 응답을 받았습니다: ${loadRes.errorBody()?.string()}")
             }
         }
     }
 
-    fun insertBooking(item: bookingItem) {
+    fun insertBooking(item: BookingItem) {
         viewModelScope.launch {
             try {
                 val insertRes = async(Dispatchers.IO) {
@@ -94,16 +91,10 @@ class CalendarViewModel(
                     _bookingSuccess.postValue(true)
                 } else {
                     _bookingSuccess.postValue(false)
-                    _errorMessage.postValue(
-                        "서버로부터 예상치 못한 응답을 받았습니다: ${
-                            insertRes.errorBody()?.string()
-                        }"
-                    )
                 }
             } catch (e: Exception) {
                 _bookingSuccess.postValue(false)
                 Log.e("InsertBooking", "Error inserting booking: ${e.message}", e)
-                _errorMessage.postValue("예약 정보를 삽입하는 중 오류가 발생했습니다: ${e.message}")
             }
         }
     }

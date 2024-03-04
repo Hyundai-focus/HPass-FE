@@ -1,18 +1,15 @@
 package com.hyundai.hpass.subscription
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.text.Editable
 import android.text.InputFilter
 import android.text.TextWatcher
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
-import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.hyundai.hpass.BuildConfig
 import com.hyundai.hpass.R
@@ -21,7 +18,7 @@ import com.hyundai.hpass.socialLogIn.MyApplication
 import java.time.LocalDate
 
 class AddSubscriptionInfoFragment : Fragment() {
-    lateinit var binding: AddSubscriptionFragmentInfoBinding
+    private lateinit var binding: AddSubscriptionFragmentInfoBinding
     private lateinit var checkboxes: List<CheckBox>
     lateinit var viewModel: AddSubscriptionInfoViewModel
     override fun onCreateView(

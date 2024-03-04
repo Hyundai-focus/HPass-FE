@@ -11,7 +11,6 @@ import com.hyundai.hpass.BuildConfig.PREF_KEY_SUBS
 import com.hyundai.hpass.BuildConfig.PREF_KEY_TOKEN
 import com.hyundai.hpass.BuildConfig.PREF_VALUE_TRUE
 import com.hyundai.hpass.network.RetrofitClient
-import com.hyundai.hpass.socialLogIn.model.response.LoginResponse
 import com.navercorp.nid.NaverIdLoginSDK
 import com.navercorp.nid.oauth.NidOAuthLogin
 import com.navercorp.nid.oauth.OAuthLoginCallback
@@ -26,7 +25,7 @@ import kotlinx.coroutines.launch
  * @author 최현서
  *
  */
-class SocialLoginViewModel: ViewModel() {
+class SocialLoginViewModel : ViewModel() {
     private val loginSuccess: MutableLiveData<Boolean> = MutableLiveData()
     val errorMessage: MutableLiveData<String> = MutableLiveData()
     fun getLoginSuccess(): LiveData<Boolean> = loginSuccess
@@ -43,10 +42,12 @@ class SocialLoginViewModel: ViewModel() {
                 }
             }
         }
+
         override fun onFailure(httpStatus: Int, message: String) {
             loginSuccess.postValue(false)
             errorMessage.postValue("Profile fetch failed: $message")
         }
+
         override fun onError(errorCode: Int, message: String) {
             onFailure(errorCode, message)
         }
@@ -68,6 +69,7 @@ class SocialLoginViewModel: ViewModel() {
             onFailure(errorCode, message)
         }
     }
+
     fun authenticateNaver(context: Context) {
         NaverIdLoginSDK.authenticate(context as Activity, oauthLoginCallback)
     }
@@ -78,29 +80,31 @@ class SocialLoginViewModel: ViewModel() {
                 RetrofitClient.memberService.naverLogin(email, name)
             }.await()
 
-            if (loginRes.isSuccessful){
+            if (loginRes.isSuccessful) {
                 val loginResponse = loginRes.body()
-                if(loginResponse != null){
+                if (loginResponse != null) {
                     Log.d("SocialLoginActivity Retrofit 통신:", "성공: ${loginResponse.toString()}")
                     Log.d("SocialLoginActivity 자체 JWT 토큰 발급:", "성공: ${loginResponse.accessToken}")
                     MyApplication.preferences.setString("loginPass", true.toString())
                     MyApplication.preferences.setString(PREF_KEY_TOKEN, loginResponse.accessToken)
                     MyApplication.preferences.setString("memberName", loginResponse.memberName)
-                    MyApplication.preferences.setString("memberNo", loginResponse.memberNo.toString())
-                    if (loginResponse.isSubscribed) MyApplication.preferences.setString(PREF_KEY_SUBS, PREF_VALUE_TRUE)
+                    MyApplication.preferences.setString(
+                        "memberNo",
+                        loginResponse.memberNo.toString()
+                    )
+                    if (loginResponse.isSubscribed) MyApplication.preferences.setString(
+                        PREF_KEY_SUBS,
+                        PREF_VALUE_TRUE
+                    )
                     loginSuccess.postValue(true)
-                }
-                else {
+                } else {
                     loginSuccess.postValue(false)
                     errorMessage.postValue("loginResponse: null")
                 }
-            }
-            else {
+            } else {
                 loginSuccess.postValue(false)
                 errorMessage.postValue("로그인 Retrofit 통신 실패: ${loginRes.code()}")
             }
         }
     }
-
-
 }

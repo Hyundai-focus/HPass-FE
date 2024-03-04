@@ -13,7 +13,7 @@ import com.hyundai.hpass.newProduct.model.response.UsrProdStatusResponse
 // 기능: 신청한 신상품 상태 및 정보 액티비티
 class UserNewProductActivity : AppCompatActivity() {
     private lateinit var viewModel: NewProductViewModel
-    private lateinit var binding : NewProductActivityUserNewProductBinding
+    private lateinit var binding: NewProductActivityUserNewProductBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = NewProductActivityUserNewProductBinding.inflate(layoutInflater)
@@ -23,24 +23,29 @@ class UserNewProductActivity : AppCompatActivity() {
         configureEvent()
         bind()
     }
-    private fun configureEvent(){
+
+    private fun configureEvent() {
         viewModel.getUsrProdInfo()
-    }
-    private fun bind(){
+
         binding.newProductCancelButton.setOnClickListener {
             viewModel.cancelProd()
             viewModel.cancelStatus.observe(this) { cancelStatus ->
-                if(cancelStatus.equals("success")) finish()
+                if (cancelStatus.equals("success")) finish()
             }
         }
-        binding.newProductButtonOk.setOnClickListener{
+
+        binding.newProductButtonOk.setOnClickListener {
             finish()
         }
-        viewModel.userProdInfo.observe(this){userProdInfo->
+    }
+
+    private fun bind() {
+        viewModel.userProdInfo.observe(this) { userProdInfo ->
             setUserProductStatus(userProdInfo)
         }
     }
-    fun setUserProductStatus(prodInfo: UsrProdStatusResponse){
+
+    private fun setUserProductStatus(prodInfo: UsrProdStatusResponse) {
         val userText = prodInfo.memberName + "님의"
         binding.newProductUserName.text = userText
         binding.newProductTitle.text = prodInfo.prodBrand
@@ -54,13 +59,12 @@ class UserNewProductActivity : AppCompatActivity() {
             .into(binding.newProductImg)
     }
 
-    fun dateFormat(beforeDate: String?): String {
+    private fun dateFormat(beforeDate: String?): String {
         if (beforeDate.isNullOrEmpty()) return "" // null 또는 빈 문자열이면 빈 문자열 반환
         val parts = beforeDate.split(" ")
         return if (parts.isNotEmpty()) {
             parts[0].replace("-", ".")
         } else ""
     }
-
 }
 

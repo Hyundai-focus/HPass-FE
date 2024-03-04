@@ -5,12 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.hyundai.hpass.BuildConfig
 import com.hyundai.hpass.databinding.MyPageActivityMoreSubscriptionBinding
-import com.hyundai.hpass.databinding.MyPageActivityStopSubscriptionBinding
 import com.hyundai.hpass.myPage.model.SubsStopViewModel
-import com.hyundai.hpass.newProduct.ImpossibleNewProductDialog
-import com.hyundai.hpass.socialLogIn.MyApplication
 
 class MyPageSubsMoreActivity : AppCompatActivity() {
     private lateinit var binding: MyPageActivityMoreSubscriptionBinding
@@ -26,7 +22,7 @@ class MyPageSubsMoreActivity : AppCompatActivity() {
         bind()
     }
 
-    private fun setBtnEvent(){
+    private fun setBtnEvent() {
         binding.backButton.setOnClickListener {
             finish()
         }
@@ -38,17 +34,17 @@ class MyPageSubsMoreActivity : AppCompatActivity() {
             dialogFragment.show(supportFragmentManager, "SubsMoreDialogTag")
         }
     }
+
     private fun bind() {
-        viewModel.getMoreSubsSuccess().observe(this) {success ->
-            if(success) {
+        viewModel.getMoreSubsSuccess().observe(this) { success ->
+            if (success) {
                 Log.d("구독 연장", "retrofit 통신: 성공")
-                val resultIntent = Intent(this, MyPageSubsStopResultActivty::class.java)
+                val resultIntent = Intent(this, MyPageSubsStopResultActivity::class.java)
                 resultIntent.putExtra("lastDate", lastDate)
                 resultIntent.putExtra("status", "more")
                 startActivity(resultIntent)
                 finish()
-            }
-            else Log.d("구독 연장", "retrofit 통신: 실패")
+            } else Log.d("구독 연장", "retrofit 통신: 실패")
         }
     }
 }

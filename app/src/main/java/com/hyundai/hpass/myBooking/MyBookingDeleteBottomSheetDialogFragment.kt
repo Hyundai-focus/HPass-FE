@@ -9,6 +9,7 @@ import androidx.appcompat.widget.AppCompatButton
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.hyundai.hpass.R
 import com.hyundai.hpass.databinding.MyBookingDeleteBinding
+import com.hyundai.hpass.myBooking.model.MyBookingDTO
 
 /**
  *

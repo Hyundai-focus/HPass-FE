@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
  */
 class SubscriptionMainViewModel: ViewModel() {
 
-    private var token: String
+    private var token: String = MyApplication.preferences.getString("Authorization")
 
     private val memberName: MutableLiveData<String> = MutableLiveData()
     private val popUpStore: MutableLiveData<List<PopUpStoreResponse>> = MutableLiveData()
@@ -28,7 +28,6 @@ class SubscriptionMainViewModel: ViewModel() {
     private val newProduct: MutableLiveData<List<NewItemListResponse>> = MutableLiveData()
 
     init {
-        token = MyApplication.preferences.getString("Authorization")
         loadUser()
         loadPopUpStore()
         loadTodayStore()
@@ -50,7 +49,7 @@ class SubscriptionMainViewModel: ViewModel() {
                 RetrofitClient.popUpStoreService.getAllPopUpStore(token)
             }.await()
 
-            popUpRes?.let {
+            popUpRes.let {
                 if (popUpRes.isSuccessful) {
                     popUpStore.postValue(popUpRes.body())
                 } else {
@@ -66,7 +65,7 @@ class SubscriptionMainViewModel: ViewModel() {
                 RetrofitClient.myVisitStoreService.getStoreList(token)
             }.await()
 
-            todayRes?.let {
+            todayRes.let {
                 if (todayRes.isSuccessful) {
                     val sortedStoreList = todayRes.body()!!.sortedBy { it.storeFloor.firstOrNull { it.isDigit() } }
                     todayStore.postValue(sortedStoreList)
@@ -83,7 +82,7 @@ class SubscriptionMainViewModel: ViewModel() {
                 RetrofitClient.newProductService.getProdList(token)
             }.await()
 
-            newProductRes?.let {
+            newProductRes.let {
                 if (newProductRes.isSuccessful) {
                     newProduct.postValue(newProductRes.body())
                 } else {

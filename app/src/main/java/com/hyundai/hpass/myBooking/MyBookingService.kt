@@ -1,6 +1,6 @@
 package com.hyundai.hpass.myBooking
 
-import com.hyundai.hpass.popUpStore.PopUpBookingDTO
+import com.hyundai.hpass.myBooking.model.MyBookingDTO
 import retrofit2.Response
 import retrofit2.http.DELETE
 import retrofit2.http.GET

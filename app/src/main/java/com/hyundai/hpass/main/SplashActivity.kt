@@ -57,7 +57,7 @@ class SplashActivity : AppCompatActivity() {
                     dataSource: DataSource,
                     isFirstResource: Boolean
                 ): Boolean {
-                    resource?.setLoopCount(1) // GIF를 한 번만 재생하도록 설정
+                    resource.setLoopCount(1) // GIF를 한 번만 재생하도록 설정
                     return false
                 }
             })

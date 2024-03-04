@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.hyundai.hpass.databinding.SocialLoginActivitySocialLoginBinding
 import com.hyundai.hpass.main.MainActivity
-import com.hyundai.hpass.subscription.SubscriptionMainActivity
 
 /**
  *
@@ -23,42 +22,28 @@ class SocialLoginActivity : AppCompatActivity() {
         binding = SocialLoginActivitySocialLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         viewModel = ViewModelProvider(this)[SocialLoginViewModel::class.java]
+
         configureEvent()
         bind()
     }
 
     private fun configureEvent() {
-
-//        viewModel.isLogin()
         binding.naverBtn.setOnClickListener {
             viewModel.authenticateNaver(this@SocialLoginActivity)
         }
     }
     private fun bind() {
-//        viewModel.getLoginPass().observe(this) {pass ->
-//            Log.d("자동 로그인 여부", pass.toString())
-//            if (pass) {
-//                Log.d("자동 로그인", "PASS")
-//                goToMain()
-//            }
-//            else Log.d("자동 로그인", "FAIL")
-//        }
-
         viewModel.getLoginSuccess().observe(this) { success ->
             if (success) {
-                goToMain()
+                val intent = Intent(this, MainActivity::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                }
+                startActivity(intent)
+                finish()
             }
         }
         viewModel.errorMessage.observe(this) { message ->
             Log.d("SocialLoginActivity", "Error: $message")
         }
-    }
-
-    private fun goToMain() {
-        val intent = Intent(this, MainActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
-        }
-        startActivity(intent)
-        finish()
     }
 }

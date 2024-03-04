@@ -1,6 +1,5 @@
 package com.hyundai.hpass.newProduct.model
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -17,73 +16,71 @@ import kotlinx.coroutines.launch
 
 // 작성자: 김은서
 // 기능: 신상품 체험 뷰모델
-class NewProductViewModel:ViewModel() {
-    val token = MyApplication.preferences.getString(BuildConfig.PREF_KEY_TOKEN)
-    val errorMessage: MutableLiveData<String> = MutableLiveData()
+class NewProductViewModel : ViewModel() {
+    private val token = MyApplication.preferences.getString(BuildConfig.PREF_KEY_TOKEN)
 
-    val newProductItems : MutableLiveData<List<NewItemListResponse>> = MutableLiveData()
-    val userProdInfo : MutableLiveData<UsrProdStatusResponse> = MutableLiveData()
-    val applyStatus : MutableLiveData<String> = MutableLiveData()
-    val cancelStatus : MutableLiveData<String> = MutableLiveData()
+    val newProductItems: MutableLiveData<List<NewItemListResponse>> = MutableLiveData()
+    val userProdInfo: MutableLiveData<UsrProdStatusResponse> = MutableLiveData()
+    val applyStatus: MutableLiveData<String> = MutableLiveData()
+    val cancelStatus: MutableLiveData<String> = MutableLiveData()
 
 
     // 작성자: 김은서
     // 기능: 신상품 목록 통신
-    fun getProductList(){
+    fun getProductList() {
         viewModelScope.launch {
-            val prodRes = async(Dispatchers.IO){
+            val prodRes = async(Dispatchers.IO) {
                 RetrofitClient.newProductService.getProdList(token)
             }.await()
-            if(prodRes.isSuccessful){
+
+            if (prodRes.isSuccessful) {
                 // stock이 0인 상품을 마지막으로 보내고, 날짜가 빠른 순으로 정렬
-                val prodListResponse = prodRes.body()!!.sortedWith(compareBy({ it.stock == 0 }, { it.receiveDt }))
+                val prodListResponse =
+                    prodRes.body()!!.sortedWith(compareBy({ it.stock == 0 }, { it.receiveDt }))
                 newProductItems.postValue(prodListResponse)
-            }
-            else{
-                errorMessage.postValue("신상품 목록 통신 실패: ${prodRes.code()}")
             }
         }
     }
 
     // 작성자: 김은서
     // 기능: 유저 신청 정보 통신
-    fun getUsrProdInfo(){
+    fun getUsrProdInfo() {
         viewModelScope.launch {
-            val userProd = async(Dispatchers.IO){
+            val userProd = async(Dispatchers.IO) {
                 RetrofitClient.newProductService.usrProductApplyInfo(token)
             }.await()
-            if(userProd.isSuccessful) {
+
+            if (userProd.isSuccessful) {
                 userProdInfo.postValue(userProd.body()!!)
             }
-            else errorMessage.postValue( "유저 신청 정보 통신 실패: ${userProd.code()}")
         }
     }
 
     // 작성자: 김은서
     // 기능: 신상품 신청하기 통신
-    fun applyNewProd(prodNumber: ApplyNewProdRequest){
+    fun applyNewProd(prodNumber: ApplyNewProdRequest) {
         viewModelScope.launch {
-            val applyRes = async(Dispatchers.IO){
+            val applyRes = async(Dispatchers.IO) {
                 RetrofitClient.newProductService.applyNewProd(token, prodNumber)
             }.await()
-            if(applyRes.isSuccessful) {
+
+            if (applyRes.isSuccessful) {
                 applyStatus.postValue(applyRes.body())
             }
-            else errorMessage.postValue( "신청 통신 실패: ${applyRes.code()}")
         }
     }
 
     // 작성자: 김은서
     // 기능: 신상품 신청 취소 통신
-    fun cancelProd(){
+    fun cancelProd() {
         viewModelScope.launch {
-            val cancelRes = async(Dispatchers.IO){
+            val cancelRes = async(Dispatchers.IO) {
                 RetrofitClient.newProductService.cancelNewProd(token)
             }.await()
-            if(cancelRes.isSuccessful) {
+            
+            if (cancelRes.isSuccessful) {
                 cancelStatus.postValue(cancelRes.body())
             }
-            else errorMessage.postValue( "신청 취소 통신 실패: ${cancelRes.code()}")
         }
     }
 }
