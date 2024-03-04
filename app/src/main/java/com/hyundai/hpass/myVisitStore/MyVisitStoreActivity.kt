@@ -51,21 +51,20 @@ class MyVisitStoreActivity : AppCompatActivity() {
             val textView = binding.root.findViewById<TextView>(textId)
             val jelbboId = context.resources.getIdentifier("progress_jelbbo_img$i", "id", context.packageName)
             val jelbboView = binding.root.findViewById<View>(jelbboId)
+            val levelBubbleId = context.resources.getIdentifier("level$i", "id", context.packageName)
+            val levelBubbleView = binding.root.findViewById<View>(levelBubbleId)
+            val barId = context.resources.getIdentifier("progress_bar$i", "id", context.packageName)
+            val barView = binding.root.findViewById<View>(barId)
             jelbboView.visibility = View.INVISIBLE
-            if(i <= num)textView.text = "${floors.get(i - 1)}F"
-            else{
-                val levelBubbleId = context.resources.getIdentifier("level$i", "id", context.packageName)
-                val levelBubbleView = binding.root.findViewById<View>(levelBubbleId)
-                val barId = context.resources.getIdentifier("progress_bar$i", "id", context.packageName)
-                val barView = binding.root.findViewById<View>(barId)
-
-                levelBubbleView.visibility = View.INVISIBLE
-                textView.visibility = View.INVISIBLE
-                barView.visibility = View.INVISIBLE
+            if(i <= num){
+                levelBubbleView.visibility = View.VISIBLE
+                textView.visibility = View.VISIBLE
+                textView.text = "${floors.get(i - 1)}F"
             }
-            if(i == num) jelbboView.visibility = View.VISIBLE
+            if(i == num){
+                jelbboView.visibility = View.VISIBLE
+                barView.visibility = View.VISIBLE
+            }
         }
-
-
     }
 }
