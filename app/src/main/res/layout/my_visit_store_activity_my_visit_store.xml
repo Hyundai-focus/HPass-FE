@@ -100,7 +100,8 @@
                         app:cardCornerRadius="20dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintWidth_percent="0.2">
+                        app:layout_constraintWidth_percent="0.2"
+                        android:visibility="invisible">
                     <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -115,7 +116,8 @@
                     app:cardCornerRadius="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintWidth_percent="0.4">
+                    app:layout_constraintWidth_percent="0.4"
+                    android:visibility="invisible">
                     <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -129,7 +131,8 @@
                         app:cardCornerRadius="20dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintWidth_percent="0.6">
+                        app:layout_constraintWidth_percent="0.6"
+                        android:visibility="invisible">
                         <FrameLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -143,7 +146,8 @@
                         app:cardCornerRadius="20dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintWidth_percent="0.8">
+                        app:layout_constraintWidth_percent="0.8"
+                        android:visibility="invisible">
                         <FrameLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -157,7 +161,8 @@
                         app:cardCornerRadius="20dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintWidth_percent="1">
+                        app:layout_constraintWidth_percent="1"
+                        android:visibility="invisible">
                         <FrameLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -176,7 +181,8 @@
                         android:layout_height="30dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        android:src="@drawable/today_store_visit_bar_bubble"/>
+                        android:src="@drawable/today_store_visit_bar_bubble"
+                        android:visibility="invisible"/>
                     <TextView
                         android:id="@+id/level1_text"
                         android:layout_width="30dp"
@@ -187,6 +193,7 @@
                         android:gravity="center"
                         android:textSize="10sp"
                         android:fontFamily="@font/happiness_sans_title"
+                        android:visibility="invisible"
                         />
                 </androidx.constraintlayout.widget.ConstraintLayout>
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -201,7 +208,8 @@
                         android:layout_height="30dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        android:src="@drawable/today_store_visit_bar_bubble"/>
+                        android:src="@drawable/today_store_visit_bar_bubble"
+                        android:visibility="invisible"/>
                     <TextView
                         android:id="@+id/level2_text"
                         android:layout_width="30dp"
@@ -212,6 +220,7 @@
                         android:gravity="center"
                         android:textSize="10sp"
                         android:fontFamily="@font/happiness_sans_title"
+                        android:visibility="invisible"
                         />
                 </androidx.constraintlayout.widget.ConstraintLayout>
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -226,7 +235,8 @@
                         android:layout_height="30dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        android:src="@drawable/today_store_visit_bar_bubble"/>
+                        android:src="@drawable/today_store_visit_bar_bubble"
+                        android:visibility="invisible"/>
                     <TextView
                         android:id="@+id/level3_text"
                         android:layout_width="30dp"
@@ -237,6 +247,7 @@
                         android:gravity="center"
                         android:textSize="10sp"
                         android:fontFamily="@font/happiness_sans_title"
+                        android:visibility="invisible"
                         />
                 </androidx.constraintlayout.widget.ConstraintLayout>
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -251,7 +262,8 @@
                         android:layout_height="30dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        android:src="@drawable/today_store_visit_bar_bubble"/>
+                        android:src="@drawable/today_store_visit_bar_bubble"
+                        android:visibility="invisible"/>
                     <TextView
                         android:id="@+id/level4_text"
                         android:layout_width="30dp"
@@ -262,6 +274,7 @@
                         android:gravity="center"
                         android:textSize="10sp"
                         android:fontFamily="@font/happiness_sans_title"
+                        android:visibility="invisible"
                         />
                 </androidx.constraintlayout.widget.ConstraintLayout>
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -276,7 +289,8 @@
                         android:layout_height="30dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        android:src="@drawable/today_store_visit_bar_bubble"/>
+                        android:src="@drawable/today_store_visit_bar_bubble"
+                        android:visibility="invisible"/>
                     <TextView
                         android:id="@+id/level5_text"
                         android:layout_width="30dp"
@@ -287,6 +301,7 @@
                         android:gravity="center"
                         android:textSize="10sp"
                         android:fontFamily="@font/happiness_sans_title"
+                        android:visibility="invisible"
                         />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -302,7 +317,8 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginStart="2.5dp"
-                        app:layout_constraintWidth_percent="0.2">
+                        app:layout_constraintWidth_percent="0.2"
+                        android:visibility="invisible">
                         <ImageView
                             android:layout_width="35dp"
                             android:layout_height="35dp"
@@ -318,7 +334,8 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginStart="2.5dp"
-                        app:layout_constraintWidth_percent="0.4">
+                        app:layout_constraintWidth_percent="0.4"
+                        android:visibility="invisible">
                         <ImageView
                             android:layout_width="35dp"
                             android:layout_height="35dp"
@@ -334,7 +351,8 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginStart="2.5dp"
-                        app:layout_constraintWidth_percent="0.6">
+                        app:layout_constraintWidth_percent="0.6"
+                        android:visibility="invisible">
                         <ImageView
                             android:layout_width="35dp"
                             android:layout_height="35dp"
@@ -350,7 +368,8 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginStart="2.5dp"
-                        app:layout_constraintWidth_percent="0.8">
+                        app:layout_constraintWidth_percent="0.8"
+                        android:visibility="invisible">
                         <ImageView
                             android:layout_width="35dp"
                             android:layout_height="35dp"
@@ -366,7 +385,8 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginStart="2.5dp"
-                        app:layout_constraintWidth_percent="0.995">
+                        app:layout_constraintWidth_percent="0.995"
+                        android:visibility="invisible">
                         <ImageView
                             android:layout_width="35dp"
                             android:layout_height="35dp"
