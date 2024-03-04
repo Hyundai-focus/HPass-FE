@@ -7,6 +7,11 @@ import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Query
 
+/**
+ *
+ * @author 황수연
+ *
+ */
 interface PopUpBookingService {
     @GET("popup/booking/list")
     suspend fun getBookingsWithinPopupPeriod(

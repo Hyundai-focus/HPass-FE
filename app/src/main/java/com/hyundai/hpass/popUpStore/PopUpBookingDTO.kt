@@ -1,5 +1,10 @@
 package com.hyundai.hpass.popUpStore
 
+/**
+ *
+ * @author 황수연
+ *
+ */
 data class PopUpBookingDTO(
     /**
     예약 아이디

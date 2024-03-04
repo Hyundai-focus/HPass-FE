@@ -13,6 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/my_booking_status"
         >
 
         <ImageView
@@ -20,11 +21,36 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_launcher_background"
             app:layout_constraintDimensionRatio="1.75:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/status" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/status"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            app:layout_constraintStart_toStartOf="@id/popUpStoreImage"
+            app:layout_constraintEnd_toEndOf="@id/popUpStoreImage"
+            app:layout_constraintTop_toTopOf="@id/popUpStoreImage"
+            android:background="@drawable/my_visit_store_store_outline"
+            android:clipToOutline="true"
+            android:backgroundTint="@color/status_false"
+            android:visibility="invisible">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textColor="@color/white"
+                android:fontFamily="@font/happiness_sans_bold"
+                android:textSize="40sp"
+                android:text="기간 만료"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/bookingStore"
