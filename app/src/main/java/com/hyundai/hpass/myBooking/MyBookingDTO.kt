@@ -1,5 +1,10 @@
 package com.hyundai.hpass.myBooking
 
+/**
+ *
+ * @author 황수연
+ *
+ */
 data class MyBookingDTO(
     /**
     예약 아이디
