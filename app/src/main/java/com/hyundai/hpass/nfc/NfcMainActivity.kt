@@ -101,7 +101,7 @@ class NfcMainActivity : AppCompatActivity() {
                 binding.bookingTime.text = popUpStore.bookingDate + " " + popUpStore.bookingTime
 
                 popUpStore.bookingTime.let {
-                    val time = it.split(":")
+                    val time = it.split(" : ")
                     val hour = time[0].toInt()
 
                     val zoneDateTime = ZonedDateTime.now(ZoneId.of("Asia/Seoul"))
