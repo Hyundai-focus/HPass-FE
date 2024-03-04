@@ -44,7 +44,7 @@ class MyVIsitStoreViewModel: ViewModel()  {
             val floorRes = async(Dispatchers.IO){
                 RetrofitClient.myVisitStoreService.getFloorList(token)
             }.await()
-            if (floorRes.isSuccessful && floorRes.body()?.isEmpty() == false) {
+            if (floorRes.isSuccessful) {
                 floorList.postValue(floorRes.body())
             } else {
                 errorMessage.postValue("방문 목록 통신 실패: ${floorRes.code()}")

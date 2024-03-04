@@ -47,6 +47,10 @@ class MyVisitStoreActivity : AppCompatActivity() {
     fun bindFloorText(floors : List<Long>){
         val context = binding.root.context
         val num = floors.size
+        if(num == 0){
+            binding.backBar.visibility = View.INVISIBLE
+            binding.noStoreVisit.visibility = View.VISIBLE
+        }
         for (i in 1..5) {
             val textId = context.resources.getIdentifier("level${i}_text", "id", context.packageName)
             val textView = binding.root.findViewById<TextView>(textId)
