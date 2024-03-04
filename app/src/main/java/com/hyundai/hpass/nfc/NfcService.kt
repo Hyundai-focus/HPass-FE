@@ -9,16 +9,10 @@ import retrofit2.http.Path
 
 /**
  *
- * @author 김은서
+ * @author 김기훈
  *
  */
 interface NfcService {
-
-    @GET("/coupon/exist/0")
-    suspend fun isExistCoupon(
-        @Header("Authorization") Authorization: String
-    ): Response<Boolean>
-
     @GET("/store/visit/num")
     suspend fun visitNum(
         @Header("Authorization") Authorization: String

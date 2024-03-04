@@ -1,4 +1,4 @@
-package com.hyundai.hpass.myBooking
+package com.hyundai.hpass.myBooking.model
 
 /**
  *

@@ -1,7 +1,6 @@
 package com.hyundai.hpass.myBooking
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -25,11 +24,10 @@ class MyBookingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.my_booking_activity_my_booking)
 
-        viewModel = ViewModelProvider(this).get(MyBookingViewModel::class.java)
+        viewModel = ViewModelProvider(this)[MyBookingViewModel::class.java]
 
         // 예약 정보 로드
         viewModel.loadBookings()
-        Log.d("MyBookingActivity", "Loading bookings...")
 
         configureEvent()
         bind()

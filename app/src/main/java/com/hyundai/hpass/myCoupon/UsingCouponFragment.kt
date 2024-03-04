@@ -15,7 +15,7 @@ class UsingCouponFragment(private val coupon: MyCouponResponse, private val view
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = UsingCouponFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }

@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hyundai.hpass.BuildConfig
+import com.hyundai.hpass.myBooking.model.MyBookingDTO
 import com.hyundai.hpass.network.RetrofitClient
 import com.hyundai.hpass.socialLogIn.MyApplication
 import kotlinx.coroutines.launch

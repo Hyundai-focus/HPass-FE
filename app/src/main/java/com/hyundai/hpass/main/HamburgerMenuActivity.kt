@@ -25,6 +25,7 @@ class HamburgerMenuActivity : AppCompatActivity() {
         binding = HamburgerMenuActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
         socialLoginViewModel = ViewModelProvider(this)[SocialLoginViewModel::class.java]
+
         configureUI()
         configureEvent()
         bind()
@@ -53,8 +54,6 @@ class HamburgerMenuActivity : AppCompatActivity() {
         }
 
         binding.hMenuText.setOnClickListener {
-            Log.d("HamburgerMenuActivity: 로그인 여부",MyApplication.preferences.getString("loginPass"))
-            Log.d("HamburgerMenuActivity: 구독 여부",MyApplication.preferences.getString(BuildConfig.PREF_KEY_SUBS))
             if (MyApplication.preferences.getString("loginPass") != "true") {
                 Toast.makeText(this, "로그인이 필요합니다.", Toast.LENGTH_SHORT).show()
             } else if (MyApplication.preferences.getString(BuildConfig.PREF_KEY_SUBS) == BuildConfig.PREF_VALUE_TRUE) {

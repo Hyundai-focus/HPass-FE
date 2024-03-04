@@ -82,7 +82,7 @@
             android:name=".myPage.MyPageSubsStopActivity"
             android:exported="false" />
         <activity
-            android:name=".myPage.MyPageSubsStopResultActivty"
+            android:name=".myPage.MyPageSubsStopResultActivity"
             android:exported="false" />
         <activity
             android:name=".myPage.MyPageSubsMoreActivity"

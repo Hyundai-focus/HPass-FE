@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.hyundai.hpass.R
+import com.hyundai.hpass.myBooking.model.MyBookingDTO
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale

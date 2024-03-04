@@ -1,4 +1,4 @@
-package com.hyundai.hpass.popUpStore
+package com.hyundai.hpass.popUpStore.model
 
 /**
  *

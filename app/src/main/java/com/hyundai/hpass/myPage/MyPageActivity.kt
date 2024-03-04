@@ -1,10 +1,9 @@
 package com.hyundai.hpass.myPage
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.hyundai.hpass.databinding.MyPageActivityMyPageBinding
 import java.time.LocalDate
@@ -19,14 +18,18 @@ class MyPageActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[SubsInfoViewModel::class.java]
         setContentView(binding.root)
         bind()
+        configureEvent()
+    }
+
+    private fun configureEvent() {
         binding.subscriptionStopButton.setOnClickListener {
-            var intent = Intent(this, MyPageSubsStopActivity::class.java)
+            val intent = Intent(this, MyPageSubsStopActivity::class.java)
             intent.putExtra("lastDate", lastDate)
             startActivity(intent)
             finish()
         }
         binding.subscriptionMoreButton.setOnClickListener {
-            var intent = Intent(this, MyPageSubsMoreActivity::class.java)
+            val intent = Intent(this, MyPageSubsMoreActivity::class.java)
             intent.putExtra("lastDate", lastDate)
             startActivity(intent)
             finish()

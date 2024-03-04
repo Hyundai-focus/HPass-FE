@@ -11,7 +11,6 @@ import retrofit2.http.Header
  *
  */
 interface PopUpStoreService {
-
     @GET("popup/list")
     suspend fun getAllPopUpStore (
         @Header("Authorization") authorization: String

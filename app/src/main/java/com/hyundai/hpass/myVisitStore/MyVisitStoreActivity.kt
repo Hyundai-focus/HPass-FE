@@ -4,21 +4,20 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.ViewModelProvider
 import com.hyundai.hpass.databinding.MyVisitStoreActivityMyVisitStoreBinding
-import com.hyundai.hpass.myVisitStore.model.MyVIsitStoreViewModel
+import com.hyundai.hpass.myVisitStore.model.MyVisitStoreViewModel
 
 // 작성자: 김은서
 // 기능: 오늘의 상점 메인 액티비티
 class MyVisitStoreActivity : AppCompatActivity() {
     private lateinit var binding: MyVisitStoreActivityMyVisitStoreBinding
-    private lateinit var viewModel: MyVIsitStoreViewModel
+    private lateinit var viewModel: MyVisitStoreViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = MyVisitStoreActivityMyVisitStoreBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        viewModel = ViewModelProvider(this)[MyVIsitStoreViewModel::class.java]
+        viewModel = ViewModelProvider(this)[MyVisitStoreViewModel::class.java]
 
         configureEvent()
         bind()
@@ -44,7 +43,7 @@ class MyVisitStoreActivity : AppCompatActivity() {
             bindFloorText(floorList)
         }
     }
-    fun bindFloorText(floors : List<Long>){
+    private fun bindFloorText(floors : List<Long>){
         val context = binding.root.context
         val num = floors.size
         if(num == 0){

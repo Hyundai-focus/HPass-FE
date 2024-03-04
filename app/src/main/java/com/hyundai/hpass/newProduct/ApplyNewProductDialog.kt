@@ -26,21 +26,29 @@ class ApplyNewProductDialog : DialogFragment() {
         super.onCreate(savedInstanceState)
         setStyle(STYLE_NORMAL, R.style.DialogTheme)
     }
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = NewProductDialogApplyNewProductBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this)[NewProductViewModel::class.java]
         context = requireContext()
-        val item = arguments?.getSerializable("item",NewItemListResponse::class.java)
+        val item = arguments?.getSerializable("item", NewItemListResponse::class.java)
         item?.let {
             setDialogUI(binding, it)
         }
         binding.newProductApplyButton.setOnClickListener {
-            ApplyNewProduct(item!!.productNo)
+            applyNewProduct(item!!.productNo)
         }
         return binding.root
     }
 
-    private fun setDialogUI(binding: NewProductDialogApplyNewProductBinding, item: NewItemListResponse) {
+    private fun setDialogUI(
+        binding: NewProductDialogApplyNewProductBinding,
+        item: NewItemListResponse
+    ) {
         Glide.with(this)
             .load(item.productImg)
             .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
@@ -48,14 +56,14 @@ class ApplyNewProductDialog : DialogFragment() {
         binding.newProductChosenTitle.text = item.productBrand
         binding.newProductChosenSubtitle.text = item.productName
         val locs = item.receiveLoc.split(" ")
-        val receivLoc = locs[0] + " " +  locs[1]
+        val receivLoc = locs[0] + " " + locs[1]
         binding.productLocDialog.text = receivLoc
     }
 
-    private fun ApplyNewProduct(prodNumber: Long) {
+    private fun applyNewProduct(prodNumber: Long) {
         viewModel.applyNewProd(ApplyNewProdRequest(prodNumber))
         viewModel.applyStatus.observe(this) { applyStatus ->
-            if(applyStatus.equals("success")){
+            if (applyStatus.equals("success")) {
                 val intent = Intent(context, UserNewProductActivity::class.java)
                 startActivity(intent)
                 dismiss() // DialogFragment 닫기

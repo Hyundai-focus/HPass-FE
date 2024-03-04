@@ -5,11 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.hyundai.hpass.BuildConfig
 import com.hyundai.hpass.databinding.MyPageActivityStopSubscriptionBinding
 import com.hyundai.hpass.myPage.model.SubsStopViewModel
-import com.hyundai.hpass.newProduct.ImpossibleNewProductDialog
-import com.hyundai.hpass.socialLogIn.MyApplication
 
 // 작성자: 김은서, 최현서
 // 기능: 구독 취소 만류 액티비티
@@ -45,7 +42,7 @@ class MyPageSubsStopActivity : AppCompatActivity() {
         viewModel.getStopSubsSuccess().observe(this) {success ->
             if(success) {
                 Log.d("구독 취소", "retrofit 통신: 성공")
-                val resultIntent = Intent(this, MyPageSubsStopResultActivty::class.java)
+                val resultIntent = Intent(this, MyPageSubsStopResultActivity::class.java)
                 resultIntent.putExtra("lastDate", lastDate)
                 startActivity(resultIntent)
                 finish()

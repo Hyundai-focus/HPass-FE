@@ -1,11 +1,11 @@
-package com.hyundai.hpass.popUpStore
+package com.hyundai.hpass.popUpStore.model
 
 /**
  *
  * @author 황수연
  *
  */
-data class bookingItem(
+data class BookingItem(
     /**
     팝업스토어 아이디
      */

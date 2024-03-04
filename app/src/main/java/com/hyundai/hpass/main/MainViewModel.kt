@@ -8,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.hyundai.hpass.BuildConfig
 import com.hyundai.hpass.network.RetrofitClient
 import com.hyundai.hpass.socialLogIn.MyApplication
-import com.hyundai.hpass.socialLogIn.model.response.LoginResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -32,19 +31,19 @@ class MainViewModel : ViewModel() {
         MyApplication.preferences.setString(BuildConfig.PREF_KEY_SUBS, null)
         val accessToken = MyApplication.preferences.getString(BuildConfig.PREF_KEY_TOKEN)
         Log.d("isLogin: accessToken 유무", accessToken)
-        if( accessToken != "null"){
+        if (accessToken != "null") {
             verifyToken(accessToken)
         } else loginPass.postValue(false)
     }
+
     private fun verifyToken(accessToken: String) {
-        var verifyResponse: LoginResponse? = null
         viewModelScope.launch {
             val verifyRes = async(Dispatchers.IO) {
                 RetrofitClient.memberService.verifyToken(accessToken)
             }.await()
-            if(verifyRes.isSuccessful){
-                verifyResponse = verifyRes.body()
-                verifyResponse?.let {
+
+            if (verifyRes.isSuccessful) {
+                verifyRes.body()?.let {
                     Log.d("verifyToken Retrofit 통신:", "성공: $it")
                     if (it.isMember) {
                         MyApplication.preferences.setString(BuildConfig.PREF_KEY_TOKEN, it.accessToken)
@@ -58,12 +57,7 @@ class MainViewModel : ViewModel() {
                         BuildConfig.PREF_VALUE_TRUE
                     )
                 }
-                if(verifyResponse == null) {
-                    loginPass.postValue(false)
-                    Log.d("verifyToken Retrofit 통신:", "실패")
-                }
-            }
-            else {
+            } else {
                 loginPass.postValue(false)
                 Log.d("verifyToken Retrofit 통신:", "실패")
             }

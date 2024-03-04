@@ -44,7 +44,7 @@ class StoreListAdapter(
         return items.size
     }
 
-    fun mapDialog(item :StoreListResponse){
+    private fun mapDialog(item :StoreListResponse){
         val dialog = StoreMapDialog.newInstance(item)
         dialog.show(fragmentManager, "StoreMapDialogTag")
     }

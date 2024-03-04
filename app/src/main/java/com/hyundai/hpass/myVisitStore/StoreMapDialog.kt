@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.hyundai.hpass.R
 import com.hyundai.hpass.databinding.MyVisitStoreDialogMapBinding
-import com.hyundai.hpass.myVisitStore.model.MyVIsitStoreViewModel
+import com.hyundai.hpass.myVisitStore.model.MyVisitStoreViewModel
 import com.hyundai.hpass.myVisitStore.model.response.StoreListResponse
 
 // 작성자: 김은서
@@ -20,11 +20,11 @@ import com.hyundai.hpass.myVisitStore.model.response.StoreListResponse
 class StoreMapDialog() : DialogFragment() {
     private lateinit var context: Context
     private lateinit var binding: MyVisitStoreDialogMapBinding
-    private lateinit var viewModel: MyVIsitStoreViewModel
+    private lateinit var viewModel: MyVisitStoreViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this)[MyVIsitStoreViewModel::class.java]
+        viewModel = ViewModelProvider(this)[MyVisitStoreViewModel::class.java]
     }
     override fun onStart() { //레이아웃 설정
         super.onStart()
@@ -43,7 +43,7 @@ class StoreMapDialog() : DialogFragment() {
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = MyVisitStoreDialogMapBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(this)[MyVIsitStoreViewModel::class.java]
+        viewModel = ViewModelProvider(this)[MyVisitStoreViewModel::class.java]
         context = requireContext()
         val item = arguments?.getSerializable("item",StoreListResponse::class.java)
         item?.let {

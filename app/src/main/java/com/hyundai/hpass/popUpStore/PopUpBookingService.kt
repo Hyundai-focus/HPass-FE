@@ -1,5 +1,7 @@
 package com.hyundai.hpass.popUpStore
 
+import com.hyundai.hpass.popUpStore.model.BookingItem
+import com.hyundai.hpass.popUpStore.model.PopUpBookingDTO
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -22,5 +24,5 @@ interface PopUpBookingService {
     ): Response<List<PopUpBookingDTO>>
 
     @POST("popup/booking")
-    suspend fun insert(@Header("Authorization") authorization: String, @Body item: bookingItem): Response<String>
+    suspend fun insert(@Header("Authorization") authorization: String, @Body item: BookingItem): Response<String>
 }

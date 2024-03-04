@@ -10,18 +10,18 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import com.applandeo.materialcalendarview.EventDay
 import com.applandeo.materialcalendarview.listeners.OnDayClickListener
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.hyundai.hpass.R
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
 import com.hyundai.hpass.databinding.PopUpStoreActivityBookingBinding
+import com.hyundai.hpass.popUpStore.model.BookingItem
 import com.hyundai.hpass.subscription.model.response.PopUpStoreResponse
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
-import java.time.LocalDateTime
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
@@ -51,7 +51,7 @@ class CalendarBottomSheetDialogFragment(private val storeData: PopUpStoreRespons
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val viewModelFactory = CalendarViewModelFactory(popupNo, popupStartDt, popupEndDt)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(CalendarViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory)[CalendarViewModel::class.java]
 
         // BottomSheetDialog 전체화면으로 띄우기
         val bottomSheet = dialog?.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
@@ -67,7 +67,7 @@ class CalendarBottomSheetDialogFragment(private val storeData: PopUpStoreRespons
             binding.time5
         )
 
-        var storeName: TextView = view.findViewById(R.id.store_name)
+        val storeName: TextView = view.findViewById(R.id.store_name)
         storeName.text = storeData.name
 
         // CalendarView의 최소 날짜 설정
@@ -94,8 +94,8 @@ class CalendarBottomSheetDialogFragment(private val storeData: PopUpStoreRespons
         binding.materialCalendar.setOnDayClickListener(object : OnDayClickListener {
             override fun onDayClick(eventDay: EventDay) {
                 val calendar = eventDay.calendar
-                val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-                val dateStr = dateFormat.format(calendar.time)
+                val formatDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                val dateStr = formatDate.format(calendar.time)
 
                 // viewModel의 viewModelScope에서 launch하여 loadReservations 함수를 호출
                 viewModel.viewModelScope.launch {
@@ -176,9 +176,9 @@ class CalendarBottomSheetDialogFragment(private val storeData: PopUpStoreRespons
             updateTimeButtons(selectedTime, timeButtons)
         }
 
-        val btn_booking: AppCompatButton = view.findViewById(R.id.booking_insert)
+        val btnBooking: AppCompatButton = view.findViewById(R.id.booking_insert)
 
-        btn_booking.setOnClickListener {
+        btnBooking.setOnClickListener {
             // 선택한 시간대
             val selectedTime = viewModel.selectedTime.value
 
@@ -186,7 +186,7 @@ class CalendarBottomSheetDialogFragment(private val storeData: PopUpStoreRespons
             val selectedDate = dateFormat.format(binding.materialCalendar.selectedDate.time)
 
             if (!selectedTime.isNullOrEmpty() && !selectedDate.isNullOrEmpty()) {
-                val item = bookingItem(
+                val item = BookingItem(
                     popupNo = storeData.no,
                     bookingTime = selectedTime,
                     bookingDt = selectedDate
