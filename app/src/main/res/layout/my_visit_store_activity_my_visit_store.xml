@@ -78,7 +78,7 @@
                     android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="15sp"
-                    android:text="전상품 30% 할인 쿠폰"
+                    android:text="Tasty Seoul 20% 할인 쿠폰"
                     android:backgroundTint="@color/light_green"
                     android:background="@drawable/shape_corner_round"
                     />
