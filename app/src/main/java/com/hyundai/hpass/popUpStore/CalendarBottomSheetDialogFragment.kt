@@ -97,69 +97,78 @@ class CalendarBottomSheetDialogFragment(private val storeData: PopUpStoreRespons
                 val formatDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
                 val dateStr = formatDate.format(calendar.time)
 
-                // viewModel의 viewModelScope에서 launch하여 loadReservations 함수를 호출
-                viewModel.viewModelScope.launch {
-                    try {
-                        viewModel.loadReservations()
-                        viewModel.reservations.observe(viewLifecycleOwner) { reservations ->
-                            val availabilities = reservations[dateStr] ?: listOf()
+                viewModel.updateSelectedDate(dateStr);
+            }
+        })
 
-                            // 모든 버튼을 초기 상태로 리셋
-                            timeButtons.forEach { button ->
+        viewModel.selectedDate.observe(viewLifecycleOwner) { dateStr ->
+            // viewModel의 viewModelScope에서 launch하여 loadReservations 함수를 호출
+            viewModel.viewModelScope.launch {
+                try {
+                    viewModel.loadReservations()
+                    viewModel.reservations.observe(viewLifecycleOwner) { reservations ->
+                        val availabilities = reservations[dateStr] ?: listOf()
+
+                        // 모든 버튼을 초기 상태로 리셋
+                        timeButtons.forEach { button ->
+                            button.visibility = View.VISIBLE
+                            button.isEnabled = true
+                            button.background = ContextCompat.getDrawable(requireContext(), R.drawable.popup_booking_button_background)
+                            button.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+                        }
+
+                        // 각 timeButton에 대해, 잔여 시간 데이터에 따라 가시성 설정
+                        timeButtons.forEachIndexed { index, button ->
+                            val buttonTime = button.text.toString().replace(" ", "") // 공백 제거
+                            Log.d("CalendarFragment", "Button time: $buttonTime")
+
+                            // 현재 시간보다 이전 시간의 버튼 비활성화
+                            val buttonHour = buttonTime.split(":")[0].toInt() // 버튼의 시간 추출
+                            Log.d("CalendarFragment", "Button Hour: $buttonHour")
+
+                            val currentCalendar = Calendar.getInstance()
+                            val currentHour = currentCalendar.get(Calendar.HOUR_OF_DAY)
+                            Log.d("CalendarFragment", "Current hour: $currentHour")
+
+                            // 예약 가능 여부에 따라 버튼 상태 변경
+                            if (index < availabilities.size && availabilities[index]) {
                                 button.visibility = View.VISIBLE
-                                button.isEnabled = true
-                                button.background = ContextCompat.getDrawable(requireContext(), R.drawable.popup_booking_button_background)
-                                button.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
-                            }
-
-                            // 각 timeButton에 대해, 잔여 시간 데이터에 따라 가시성 설정
-                            timeButtons.forEachIndexed { index, button ->
-                                val buttonTime = button.text.toString().replace(" ", "") // 공백 제거
-                                Log.d("CalendarFragment", "Button time: $buttonTime")
-
-                                // 현재 시간보다 이전 시간의 버튼 비활성화
-                                val buttonHour = buttonTime.split(":")[0].toInt() // 버튼의 시간 추출
-                                Log.d("CalendarFragment", "Button Hour: $buttonHour")
-
-                                val currentCalendar = Calendar.getInstance()
-                                val currentHour = currentCalendar.get(Calendar.HOUR_OF_DAY)
-                                Log.d("CalendarFragment", "Current hour: $currentHour")
-
-                                // 예약 가능 여부에 따라 버튼 상태 변경
-                                if (index < availabilities.size && availabilities[index]) {
+                                button.isEnabled = false
+                                button.background = ContextCompat.getDrawable(requireContext(), R.drawable.popup_booking_invalidated)
+                            } else {
+                                if (dateStr == dateFormat.format(currentCalendar.time) && currentHour >= buttonHour) {
+                                    Log.d("CalendarFragment", "여기")
                                     button.visibility = View.VISIBLE
                                     button.isEnabled = false
                                     button.background = ContextCompat.getDrawable(requireContext(), R.drawable.popup_booking_invalidated)
                                 } else {
-                                    if (dateStr == dateFormat.format(currentCalendar.time) && currentHour >= buttonHour) {
-                                        Log.d("CalendarFragment", "여기")
-                                        button.visibility = View.VISIBLE
-                                        button.isEnabled = false
-                                        button.background = ContextCompat.getDrawable(requireContext(), R.drawable.popup_booking_invalidated)
-                                    } else {
-                                        button.visibility = View.VISIBLE
-                                        button.isEnabled = true
-                                        button.background = ContextCompat.getDrawable(requireContext(), R.drawable.popup_booking_button_background)
-                                    }
+                                    button.visibility = View.VISIBLE
+                                    button.isEnabled = true
+                                    button.background = ContextCompat.getDrawable(requireContext(), R.drawable.popup_booking_button_background)
                                 }
                             }
                         }
-                    } catch (e: Exception) {
-                        // 예외 처리
-                        Log.e("CalendarFragment", "Error loading reservations: ${e.message}")
-                        Toast.makeText(requireContext(), "Error loading reservations", Toast.LENGTH_SHORT).show()
                     }
+                } catch (e: Exception) {
+                    // 예외 처리
+                    Log.e("CalendarFragment", "Error loading reservations: ${e.message}")
+                    Toast.makeText(requireContext(), "Error loading reservations", Toast.LENGTH_SHORT).show()
                 }
             }
-        })
+        }
+
+        val todayCalendar = Calendar.getInstance()
+        val formatDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val dateStr = formatDate.format(todayCalendar.time)
+        viewModel.updateSelectedDate(dateStr)
 
         val timeButtonListeners = listOf(
-            "09 : 00",
-            "11 : 00",
-            "13 : 00",
-            "15 : 00",
-            "17 : 00",
-            "19 : 00"
+            "10 : 00",
+            "12 : 00",
+            "14 : 00",
+            "16 : 00",
+            "18 : 00",
+            "20 : 00"
         )
 
         // 클릭 리스너 설정

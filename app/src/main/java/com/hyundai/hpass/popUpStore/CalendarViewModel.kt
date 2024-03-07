@@ -30,6 +30,9 @@ class CalendarViewModel(
     private val _reservations = MutableLiveData<Map<String, List<Boolean>>>()
     val reservations: LiveData<Map<String, List<Boolean>>> = _reservations
 
+    private val _selectedDate = MutableLiveData<String>()
+    val selectedDate: LiveData<String> get() = _selectedDate
+
     private val _selectedTime = MutableLiveData<String>()
     val selectedTime: LiveData<String> get() = _selectedTime
 
@@ -56,12 +59,12 @@ class CalendarViewModel(
 
                     fun timeToIndex(time: String): Int {
                         return when (time) {
-                            "09 : 00" -> 0
-                            "11 : 00" -> 1
-                            "13 : 00" -> 2
-                            "15 : 00" -> 3
-                            "17 : 00" -> 4
-                            "19 : 00" -> 5
+                            "10 : 00" -> 0
+                            "12 : 00" -> 1
+                            "14 : 00" -> 2
+                            "16 : 00" -> 3
+                            "18 : 00" -> 4
+                            "20 : 00" -> 5
                             else -> throw IllegalArgumentException("잘못된 시간: $time")
                         }
                     }
@@ -101,5 +104,9 @@ class CalendarViewModel(
 
     fun updateSelectedTime(time: String) {
         _selectedTime.value = time
+    }
+
+    fun updateSelectedDate(date: String) {
+        _selectedDate.value = date
     }
 }
