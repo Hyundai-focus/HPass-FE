@@ -34,10 +34,12 @@
             android:textColor="@color/black"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/happiness_sans_bold"
             app:layout_constraintStart_toStartOf="@id/guidelineV05"
-            app:layout_constraintTop_toBottomOf="@id/popUpStoreImage" />
+            app:layout_constraintTop_toBottomOf="@id/popUpStoreImage"
+            app:layout_constraintBottom_toTopOf="@id/popUpStoreName"
+            />
 
         <TextView
             android:id="@+id/popUpStoreName"
@@ -50,7 +52,9 @@
             android:textStyle="bold"
             android:paddingTop="2dp"
             app:layout_constraintStart_toStartOf="@id/guidelineV05"
-            app:layout_constraintTop_toBottomOf="@id/popUpStore" />
+            app:layout_constraintTop_toBottomOf="@id/popUpStore"
+            app:layout_constraintBottom_toTopOf="@id/period"
+            />
 
         <TextView
             android:id="@+id/period"
@@ -64,28 +68,30 @@
             android:paddingTop="2dp"
             android:paddingBottom="2dp"
             app:layout_constraintStart_toStartOf="@id/guidelineV05"
-            app:layout_constraintTop_toBottomOf="@id/popUpStoreName" />
+            app:layout_constraintTop_toBottomOf="@id/popUpStoreName"
+            app:layout_constraintBottom_toTopOf="@id/location"
+            />
 
         <TextView
             android:id="@+id/location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="헤브블루"
+            android:text="1층일수도"
             android:textColor="@color/grey"
             android:fontFamily="@font/happiness_sans_bold"
             android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/guidelineV05"
             app:layout_constraintTop_toBottomOf="@id/period"
-            app:layout_constraintBottom_toBottomOf="@id/guidelineH92"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineH97"
             />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineH92"
+            android:id="@+id/guidelineH97"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.94" />
+            app:layout_constraintGuide_percent="0.97" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineV05"

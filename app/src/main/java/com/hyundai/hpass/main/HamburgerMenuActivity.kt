@@ -3,6 +3,7 @@ package com.hyundai.hpass.main
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -34,6 +35,8 @@ class HamburgerMenuActivity : AppCompatActivity() {
     private fun configureUI() {
         if (MyApplication.preferences.getString("loginPass") == "true") {
             binding.login.setImageResource(R.drawable.hamburger_login)
+            binding.name.visibility = View.VISIBLE
+            binding.name.text = MyApplication.preferences.getString("memberName") + "님  >"
         } else {
             binding.login.setImageResource(R.drawable.hamburger_not_login)
         }
@@ -45,11 +48,15 @@ class HamburgerMenuActivity : AppCompatActivity() {
         }
 
         binding.login.setOnClickListener {
+            if (MyApplication.preferences.getString("loginPass") != "true") {
+                socialLoginViewModel.authenticateNaver(this@HamburgerMenuActivity)
+            }
+        }
+
+        binding.name.setOnClickListener {
             if (MyApplication.preferences.getString("loginPass") == "true") {
                 val intent = Intent(this, MyPageMainActivity::class.java)
                 startActivity(intent)
-            } else {
-                socialLoginViewModel.authenticateNaver(this@HamburgerMenuActivity)
             }
         }
 

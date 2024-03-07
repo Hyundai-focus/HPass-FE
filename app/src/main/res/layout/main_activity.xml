@@ -17,6 +17,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         />
 
+    <TextView
+        android:id="@+id/infoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="로그인하시면 다양한"
+        android:textSize="14dp"
+        android:textColor="@color/white"
+        android:lineSpacingExtra="6dp"
+        android:visibility="invisible"
+        android:fontFamily="@font/happiness_sans_bold"
+        app:layout_constraintStart_toStartOf="@id/guidelineV08"
+        app:layout_constraintTop_toTopOf="@id/guidelineH19"
+        />
+
     <View
         android:id="@+id/overlay"
         android:layout_width="0dp"
@@ -33,6 +47,20 @@
         android:id="@+id/guidelineV70"
         app:layout_constraintGuide_percent="0.7"
         android:orientation="vertical" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guidelineV08"
+        app:layout_constraintGuide_percent="0.08"
+        android:orientation="vertical" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guidelineH19"
+        app:layout_constraintGuide_percent="0.19"
+        android:orientation="horizontal" />
 
     <androidx.constraintlayout.widget.Guideline
         android:layout_width="wrap_content"

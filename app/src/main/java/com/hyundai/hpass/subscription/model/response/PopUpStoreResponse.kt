@@ -12,6 +12,6 @@ data class PopUpStoreResponse (
     @SerializedName("popUpName") val name: String,
     @SerializedName("popUpStartDate") val startDate: String,
     @SerializedName("popUpEndDate") val endDate: String,
-    @SerializedName("pupUpLocation") val location: String,
+    @SerializedName("popUpLocation") val location: String,
     @SerializedName("popUpImage") val image: String
 )
