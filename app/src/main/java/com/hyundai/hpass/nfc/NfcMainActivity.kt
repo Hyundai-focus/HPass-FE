@@ -111,7 +111,7 @@ class NfcMainActivity : AppCompatActivity() {
                         binding.infoText.text = "입장 가능한 시간이 아닙니다"
                         binding.infoSubtext.text = "예약시간이 지났습니다!"
                     } else if (zoneDateTime.hour < hour - 1) {
-                        binding.lottieFail.visibility = View.VISIBLE
+                        binding.lottieAlert.visibility = View.VISIBLE
                         binding.infoText.text = "입장가능한 시간이 아닙니다"
                         binding.infoSubtext.text = "조금만 더 기다려주세요!"
                     } else {
