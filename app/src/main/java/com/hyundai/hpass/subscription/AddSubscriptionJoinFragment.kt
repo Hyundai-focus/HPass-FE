@@ -12,6 +12,8 @@ import com.hyundai.hpass.R
 import com.hyundai.hpass.databinding.AddSubscriptionFragmentInfoBinding
 import com.hyundai.hpass.databinding.AddSubscriptionFragmentJoinBinding
 
+// 작성자: 최현서
+// 기능: 구독 시작 페이지
 class AddSubscriptionJoinFragment : Fragment() {
     lateinit var binding: AddSubscriptionFragmentJoinBinding
     private lateinit var checkboxes: List<CheckBox>

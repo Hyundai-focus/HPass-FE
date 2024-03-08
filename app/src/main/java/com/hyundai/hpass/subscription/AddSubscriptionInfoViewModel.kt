@@ -22,11 +22,8 @@ import kr.co.bootpay.bio.models.BioPrice
 import org.json.JSONObject
 import java.time.LocalDate
 
-/**
- *
- * @author 최현서
- *
- */
+// 작성자: 최현서
+// 기능: 부트페이 결제 및 구독 등록
 class AddSubscriptionInfoViewModel : ViewModel() {
     private var userToken: MutableLiveData<String?> = MutableLiveData()
     private val subsSuccess: MutableLiveData<String> = MutableLiveData()

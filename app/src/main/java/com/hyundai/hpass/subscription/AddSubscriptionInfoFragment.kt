@@ -17,6 +17,8 @@ import com.hyundai.hpass.databinding.AddSubscriptionFragmentInfoBinding
 import com.hyundai.hpass.socialLogIn.MyApplication
 import java.time.LocalDate
 
+// 작성자: 최현서
+// 기능: 구독 정보 입력
 class AddSubscriptionInfoFragment : Fragment() {
     private lateinit var binding: AddSubscriptionFragmentInfoBinding
     private lateinit var checkboxes: List<CheckBox>

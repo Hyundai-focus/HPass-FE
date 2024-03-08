@@ -20,11 +20,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
-/**
- *
- * @author 최현서
- *
- */
+// 작성자: 최현서
+// 기능: 네이버 소셜 로그인/회원가입
 class SocialLoginViewModel : ViewModel() {
     private val loginSuccess: MutableLiveData<Boolean> = MutableLiveData()
     val errorMessage: MutableLiveData<String> = MutableLiveData()

@@ -8,11 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.hyundai.hpass.databinding.SocialLoginActivitySocialLoginBinding
 import com.hyundai.hpass.main.MainActivity
 
-/**
- *
- * @author 최현서
- *
- */
+// 작성자: 최현서
 class SocialLoginActivity : AppCompatActivity() {
 
     private lateinit var viewModel: SocialLoginViewModel

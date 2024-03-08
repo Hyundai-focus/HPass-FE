@@ -12,6 +12,8 @@ import com.hyundai.hpass.databinding.MyPageDialogStopSubsBinding
 import com.hyundai.hpass.databinding.NewProductDialogApplyNewProductBinding
 import com.hyundai.hpass.newProduct.model.response.NewItemListResponse
 
+// 작성자: 김은서, 최현서
+// 기능: 구독 연장 다이얼로그
 class MyPageSubsMoreDialog :DialogFragment() {
     private lateinit var binding: MyPageDialogMoreSubsBinding
     private var callback: (() -> Unit)? = null // 콜백 변수
