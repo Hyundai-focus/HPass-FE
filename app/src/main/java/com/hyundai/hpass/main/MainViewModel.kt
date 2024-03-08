@@ -12,11 +12,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
-/**
- *
- * @author 최현서
- *
- */
+// 작성자: 최현서
+// 기능: 로그인/회원/구독 검증
 class MainViewModel : ViewModel() {
     private val loginPass: MutableLiveData<Boolean> = MutableLiveData()
     private val isSubscribed: MutableLiveData<Boolean> = MutableLiveData()

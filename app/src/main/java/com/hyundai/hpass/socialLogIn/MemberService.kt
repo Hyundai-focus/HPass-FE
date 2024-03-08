@@ -9,11 +9,7 @@ import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Query
 
-/**
- *
- * @author 최현서
- *
- */
+// 작성자: 최현서
 interface MemberService {
     @GET("/member")
     suspend fun verifyToken(

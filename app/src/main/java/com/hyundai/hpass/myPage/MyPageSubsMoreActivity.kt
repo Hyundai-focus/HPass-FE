@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.hyundai.hpass.databinding.MyPageActivityMoreSubscriptionBinding
 import com.hyundai.hpass.myPage.model.SubsStopViewModel
 
+// 작성자: 김은서, 최현서
+// 기능: 구독 연장 액티비티
 class MyPageSubsMoreActivity : AppCompatActivity() {
     private lateinit var binding: MyPageActivityMoreSubscriptionBinding
     private lateinit var viewModel: SubsStopViewModel

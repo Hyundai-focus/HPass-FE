@@ -8,11 +8,7 @@ import com.hyundai.hpass.BuildConfig.OAUTH_CLIENT_NAME
 import com.hyundai.hpass.BuildConfig.OAUTH_CLIENT_SECRET
 import com.navercorp.nid.NaverIdLoginSDK
 
-/**
- *
- * @author 최현서
- *
- */
+// 작성자: 최현서
 class MyApplication: Application() {
     companion object {
         lateinit var preferences: PreferenceUtil

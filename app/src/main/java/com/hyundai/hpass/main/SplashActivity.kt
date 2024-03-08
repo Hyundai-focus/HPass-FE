@@ -17,6 +17,8 @@ import com.hyundai.hpass.R
 import com.hyundai.hpass.databinding.ActivitySplashBinding
 import com.hyundai.hpass.socialLogIn.MyApplication
 
+// 작성자: 최현서
+// 기능: 스플래시 화면 및 자동로그인 처리
 class SplashActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySplashBinding
     private lateinit var viewModel: MainViewModel

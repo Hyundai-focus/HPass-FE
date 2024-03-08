@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.hyundai.hpass.R
 import com.hyundai.hpass.databinding.AddSubscriptionActivityBinding
 
+// 작성자: 최현서
+// 기능: 구독 추가
 class AddSubscriptionActivity : AppCompatActivity() {
     private lateinit var binding: AddSubscriptionActivityBinding
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.hyundai.hpass.databinding.AddSubscriptionFragmentConfirmationBinding
 
+// 작성자: 최현서
+// 기능: 구독 완료
 class AddSubscriptionConfirmationFragment : Fragment() {
     private lateinit var binding: AddSubscriptionFragmentConfirmationBinding
     override fun onCreateView(

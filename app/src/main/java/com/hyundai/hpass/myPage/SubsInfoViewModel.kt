@@ -14,11 +14,8 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 
-/**
- *
- * @author 최현서
- *
- */
+// 작성자: 최현서
+// 기능: 나의 구독정보 확인
 class SubsInfoViewModel : ViewModel() {
     private val subscribeInfo: MutableLiveData<Subscription?> = MutableLiveData()
     fun getSubscribeInfo(): LiveData<Subscription?> = subscribeInfo
